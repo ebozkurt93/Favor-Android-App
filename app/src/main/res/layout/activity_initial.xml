@@ -31,7 +31,7 @@
 
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/activity_initial_login_button"
             style="@style/InitialButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         </View>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/activity_initial_signup_button"
             style="@style/InitialButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

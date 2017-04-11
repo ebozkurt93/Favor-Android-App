@@ -9,7 +9,7 @@
         layout="@layout/sign_up1_action_bar"/>
 
     <TextView
-        android:id="@+id/sign_up1_top_text"
+        android:id="@+id/activity_sign_up1_top_text"
         style="@style/LoginTexts.NoField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,40 +19,40 @@
         />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/sign_up1_name_text_input_layout"
+        android:id="@+id/activity_sign_up1_name_text_input_layout"
         style="@style/LoginTexts.NoField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
 
         <EditText
-            android:id="@+id/sign_up1_name_editText"
+            android:id="@+id/activity_sign_up1_name_editText"
             style="@style/LoginTexts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
-            android:inputType="textPersonName"/>
+            android:inputType="textVisiblePassword"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/sign_up1_lastname_text_input_layout"
+        android:id="@+id/activity_sign_up1_surname_text_input_layout"
         style="@style/LoginTexts.NoField"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/sign_up1_lastname_editText"
+            android:id="@+id/activity_sign_up1_surname_editText"
             style="@style/LoginTexts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/surname"
-            android:inputType="textPersonName"/>
+            android:inputType="textVisiblePassword"/>
     </android.support.design.widget.TextInputLayout>
 
 
     <Button
-        android:id="@+id/sign_up1_next_button"
+        android:id="@+id/activity_sign_up1_next_button"
         style="@style/LoginSignupButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
