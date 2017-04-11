@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Favor</string>
+    <string name="placeholder_long">Lorem ipsum dolor sit amet, mea ei alii reprehendunt, an his mucius facilis corpora. Vim volutpat principes forensibus ei, sed appetere periculis ut, et sit perfecto quaestio persequeris. Mei id malis volutpat. Pro ad nullam mediocrem facilisis, sed graece imperdiet prodesset ut. Ei libris graecis pri, pri modo percipit luptatum no. Modus detraxit patrioque ad sed, duis reprimique ne mel. Te decore delectus eos, nec probo efficiendi ad, in qui vidit senserit similique.</string>
+    <string name="login">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up1_top_text">Hello! What is your name?</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="next">Next</string>
+    <string name="sign_up2_text">Nice to meet you! Information you share below will not be shown to other users.</string>
+    <string name="email">Email</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="create_password">Create Password</string>
 </resources>

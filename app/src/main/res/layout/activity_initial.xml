@@ -13,12 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2">
+
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Lorem ipsum dolor sit amet, mea ei alii reprehendunt, an his mucius facilis corpora. Vim volutpat principes forensibus ei, sed appetere periculis ut, et sit perfecto quaestio persequeris. Mei id malis volutpat. Pro ad nullam mediocrem facilisis, sed graece imperdiet prodesset ut. Ei libris graecis pri, pri modo percipit luptatum no. Modus detraxit patrioque ad sed, duis reprimique ne mel. Te decore delectus eos, nec probo efficiendi ad, in qui vidit senserit similique.
-"/>
+            android:text="@string/placeholder_long"/>
 
     </FrameLayout>
 
@@ -35,15 +36,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Log In"/>
+            android:text="@string/login"/>
 
         <View
             android:layout_width="1dp"
-            android:clickable="false"
+            android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_height="match_parent"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:clickable="false">
         </View>
 
         <Button
@@ -52,6 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sign Up"/>
+            android:text="@string/sign_up"/>
     </LinearLayout>
 </LinearLayout>
