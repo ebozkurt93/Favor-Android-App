@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,7 +51,8 @@ public class SignUp1Activity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SignUp1Activity.this, "Next button", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(SignUp1Activity.this, SignUp2Activity.class);
+                startActivity(i);
             }
         });
 

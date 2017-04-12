@@ -30,6 +30,7 @@ public class InitialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(InitialActivity.this, SignUp1Activity.class);
+                //Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
                 startActivity(i);
 
             }

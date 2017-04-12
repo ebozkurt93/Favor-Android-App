@@ -23,7 +23,7 @@
         style="@style/LoginTexts.NoField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="63dp">
 
         <EditText
             android:id="@+id/activity_sign_up1_name_editText"
@@ -37,7 +37,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/activity_sign_up1_surname_text_input_layout"
         style="@style/LoginTexts.NoField"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="48dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -51,12 +51,13 @@
     </android.support.design.widget.TextInputLayout>
 
 
+
     <Button
         android:id="@+id/activity_sign_up1_next_button"
         style="@style/LoginSignupButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
         android:text="@string/next"/>
 
 </LinearLayout>

@@ -10,10 +10,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@android:color/transparent"
-        android:tint="#898989"
-        android:padding="13dp"
+        android:padding="16dp"
         android:scaleType="fitStart"
-        android:src="@drawable/ic_chevron_left_black_24dp"/>
+        android:src="@drawable/ic_chevron_left_black_24dp"
+        android:tint="#898989"/>
 
     <TextView
         android:id="@+id/sign_up1_action_bar_text_view"
