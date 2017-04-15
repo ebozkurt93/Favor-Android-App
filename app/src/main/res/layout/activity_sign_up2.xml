@@ -40,9 +40,9 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/activity_sign_up2_birthdate_text_input_layout"
         style="@style/LoginTexts.NoField"
-        android:layout_marginTop="29dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp">
 
         <EditText
             android:id="@+id/activity_sign_up2_birthdate_editText"
@@ -52,7 +52,6 @@
             android:hint="@string/birth_date_you_must_be_over_18"
             android:inputType="date"/>
     </android.support.design.widget.TextInputLayout>
-
 
 
     <Button

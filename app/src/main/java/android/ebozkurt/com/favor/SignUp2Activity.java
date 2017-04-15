@@ -48,17 +48,29 @@ public class SignUp2Activity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                if (Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+                    emailTextInputLayout.setError(null);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                    emailTextInputLayout.setError(getString(R.string.invalid_email_address));
-                } else
-                    emailTextInputLayout.setError(null);
+
             }
         });
 
+        birthdate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+                        emailTextInputLayout.setError(getString(R.string.invalid_email_address));
+                    } else
+                        emailTextInputLayout.setError(null);
+
+                }
+            }
+        });
 
 /*
 //doesnt work properly

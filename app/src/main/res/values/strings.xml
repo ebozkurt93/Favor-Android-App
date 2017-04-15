@@ -13,5 +13,5 @@
     <string name="create_password">Create Password</string>
     <string name="invalid_email_address">Invalid email address.</string>
 
-    <string name="birth_date_you_must_be_over_18">Birth Date <b>(You Must Be Over 18)</b></string>
+    <string name="birth_date_you_must_be_over_18">Birth Date <i>(You Must Be Over 18)</i></string>
 </resources>
