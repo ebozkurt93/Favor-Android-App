@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Favor</string>
+    <string name="app_name">Boon</string>
     <string name="placeholder_long">Lorem ipsum dolor sit amet, mea ei alii reprehendunt, an his mucius facilis corpora. Vim volutpat principes forensibus ei, sed appetere periculis ut, et sit perfecto quaestio persequeris. Mei id malis volutpat. Pro ad nullam mediocrem facilisis, sed graece imperdiet prodesset ut. Ei libris graecis pri, pri modo percipit luptatum no. Modus detraxit patrioque ad sed, duis reprimique ne mel. Te decore delectus eos, nec probo efficiendi ad, in qui vidit senserit similique.</string>
+    <string name="placeholder_short">Lorem ipsum dolor sit amet</string>
     <string name="login">Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up1_top_text">Hello! What is your name?</string>
@@ -12,6 +13,9 @@
     <string name="birth_date">Birth Date</string>
     <string name="create_password">Create Password</string>
     <string name="invalid_email_address">Invalid email address.</string>
+    <string name="sign_up3_top_text">Passwords must be at least 6 characters and contain at least one letter and one number. Passwords are case sensitive.</string>
 
+    <!-- TODO check these 2 resources and update them-->
     <string name="birth_date_you_must_be_over_18">Birth Date <i>(You Must Be Over 18)</i></string>
+    <string name="sign_up_3_terms_of_service">By proceeding, you accept the <u>Terms of Service</u> and <u>Conditions</u> to use</string>
 </resources>

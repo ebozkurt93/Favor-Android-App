@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class SignUp2Activity extends AppCompatActivity {
+public class SignUp2Activity extends ActivityHelper {
 
     ImageButton actionBarBack;
     EditText email, birthdate;
@@ -20,6 +20,7 @@ public class SignUp2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up2);
+        ActivityHelper.initialize(this);
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         email = (EditText) findViewById(R.id.activity_sign_up2_email_editText);

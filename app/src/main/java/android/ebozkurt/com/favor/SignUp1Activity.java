@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class SignUp1Activity extends AppCompatActivity {
+public class SignUp1Activity extends ActivityHelper {
 
     private static final String TAG = "SignUp1Activity";
 
@@ -26,6 +27,7 @@ public class SignUp1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up1);
+        ActivityHelper.initialize(this);
 /*
         ActionBar actionBar = getSupportActionBar();
         View customView = LayoutInflater.from(this).inflate(R.layout.sign_up1_action_bar, null);

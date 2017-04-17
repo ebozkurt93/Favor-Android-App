@@ -21,6 +21,8 @@ public class InitialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
+        ActivityHelper.initialize(this);
+
 
         login = (Button) findViewById(R.id.activity_initial_login_button);
         signup = (Button) findViewById(R.id.activity_initial_signup_button);

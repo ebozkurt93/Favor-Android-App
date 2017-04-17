@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".SignUp2Activity">
         </activity>
+        <activity android:name=".SignUp3Activity">
+        </activity>
     </application>
 
 </manifest>
