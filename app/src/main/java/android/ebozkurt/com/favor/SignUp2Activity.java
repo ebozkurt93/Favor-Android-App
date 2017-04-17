@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -15,6 +17,7 @@ public class SignUp2Activity extends ActivityHelper {
     ImageButton actionBarBack;
     EditText email, birthdate;
     TextInputLayout emailTextInputLayout, birthdateTextInputLayout;
+    Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class SignUp2Activity extends ActivityHelper {
         birthdate = (EditText) findViewById(R.id.activity_sign_up2_birthdate_editText);
         emailTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_email_text_input_layout);
         birthdateTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_birthdate_text_input_layout);
+        nextButton = (Button) findViewById(R.id.activity_sign_up2_next_button);
 
         /*
         final CharSequence birthdateHintShort = getString(R.string.birth_date);
@@ -63,7 +67,7 @@ public class SignUp2Activity extends ActivityHelper {
         birthdate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
+                if (hasFocus) {
                     if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
                         emailTextInputLayout.setError(getString(R.string.invalid_email_address));
                     } else
@@ -86,5 +90,15 @@ public class SignUp2Activity extends ActivityHelper {
             }
         });
 */
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignUp2Activity.this,SignUp3Activity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 }

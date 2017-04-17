@@ -26,6 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#bbbbbb"
+        app:passwordToggleContentDescription="demo"
         app:errorEnabled="true">
 
         <EditText
@@ -33,10 +36,9 @@
             style="@style/LoginTexts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
-
 
 
     <Button
@@ -53,7 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/placeholder_short"
+        android:textSize="13sp"
+        android:text="@string/sign_up_3_terms_of_service"
         android:textColor="#898989"/>
 
 </LinearLayout>

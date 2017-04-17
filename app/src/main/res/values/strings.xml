@@ -17,5 +17,7 @@
 
     <!-- TODO check these 2 resources and update them-->
     <string name="birth_date_you_must_be_over_18">Birth Date <i>(You Must Be Over 18)</i></string>
-    <string name="sign_up_3_terms_of_service">By proceeding, you accept the <u>Terms of Service</u> and <u>Conditions</u> to use</string>
+    <string name="sign_up_3_terms_of_service">By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s</string>
+   <!--  <string name="sign_up_3_terms_of_service">By proceeding, you accept the &lt;i&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Terms of Service&lt;/a&gt;&lt;/i&gt; and &lt;i&gt;&lt;a href= &quot;http://facebook.com&quot;&gt;Conditions&lt;/a&gt;&lt;/i&gt; to use %1$s</string> -->
+    <string name="password">Password</string>
 </resources>
