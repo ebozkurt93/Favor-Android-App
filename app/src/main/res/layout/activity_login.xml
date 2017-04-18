@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
     <!-- add action bar here-->
     <include
@@ -39,7 +40,9 @@
         style="@style/LoginTexts.NoField"
         android:layout_marginTop="48dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#bbbbbb">
 
         <EditText
             android:id="@+id/activity_login_password_editText"
@@ -51,9 +54,8 @@
     </android.support.design.widget.TextInputLayout>
 
 
-
     <Button
-        android:id="@+id/activity_sign_up1_next_button"
+        android:id="@+id/activity_login_sign_in_button"
         style="@style/LoginSignupButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

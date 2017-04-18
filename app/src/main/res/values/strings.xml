@@ -4,26 +4,33 @@
     <string name="placeholder_short">Lorem ipsum dolor sit amet</string>
     <string name="login">Log In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sign_up1_top_text">Hello! What is your name?</string>
+    <string name="hello_what_is">Hello! What is your name?</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="next">Next</string>
-    <string name="sign_up2_text">Nice to meet you! Information you share below will not be shown to other users.</string>
+    <string name="nice_to_meet">Nice to meet you! Information you share below will not be shown to other users.</string>
     <string name="email">Email</string>
     <string name="birth_date">Birth Date</string>
     <string name="create_password">Create Password</string>
     <string name="invalid_email_address">Invalid email address.</string>
-    <string name="sign_up3_top_text">Passwords must be at least 6 characters and contain at least one letter and one number. Passwords are case sensitive.</string>
+    <string name="passwords_must_be">Passwords must be at least 6 characters and contain at least one letter and one number. Passwords are case sensitive.</string>
 
     <!-- TODO check these 2 resources and update them-->
     <string name="birth_date_you_must_be_over_18">Birth Date <i>(You Must Be Over 18)</i></string>
-    <string name="sign_up_3_terms_of_service"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s]]></string>
+    <string name="by_proceeding_you"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s]]></string>
     <!--  <string name="sign_up_3_terms_of_service">By proceeding, you accept the &lt;i&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Terms of Service&lt;/a&gt;&lt;/i&gt; and &lt;i&gt;&lt;a href= &quot;http://facebook.com&quot;&gt;Conditions&lt;/a&gt;&lt;/i&gt; to use %1$s</string> -->
     <string name="password">Password</string>
-    <string name="sign_up4_top_text">Congratulations! You are signed up. You can simply click on the button below and go to your mailbox to confirm your account and start using %1$s.</string>
+    <string name="congratulations_you_are">Congratulations! You are signed up. You can simply click on the button below and go to your mailbox to confirm your account and start using %1$s.</string>
     <string name="go_to_mailbox">Go To Mailbox</string>
     <string name="close">Close</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot Password</string>
+    <string name="send_mail">Send Mail</string>
+    <string name="time_for_a_new_password">Time for a new password? We will send you an email with further instructions.</string>
+    <string name="cancel">Cancel</string>
+    <string name="mail_sent_you">Mail sent! You can go to your mailbox and generate your new password by simply clicking on the button below;</string>
+    <string name="please_generate_your_new_password">Please generate your new password.</string>
+    <string name="generate_new_password">Generate New Password</string>
+    <string name="new_password">New Password</string>
 </resources>

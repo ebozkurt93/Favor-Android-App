@@ -23,7 +23,7 @@ public class SignUp3Activity extends AppCompatActivity {
         ActivityHelper.initialize(this);
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
-        String formattedTermsOfConditions = String.format(getResources().getString(R.string.sign_up_3_terms_of_service), getResources().getString(R.string.app_name));
+        String formattedTermsOfConditions = String.format(getResources().getString(R.string.by_proceeding_you), getResources().getString(R.string.app_name));
         termsOfConditions = (TextView) findViewById(R.id.activity_sign_up3_terms_and_conditions_textView);
         termsOfConditions.setText(Html.fromHtml(formattedTermsOfConditions));
         termsOfConditions.setMovementMethod(LinkMovementMethod.getInstance());

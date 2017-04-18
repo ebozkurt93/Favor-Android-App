@@ -21,7 +21,7 @@ public class SignUp4Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up4);
         ActivityHelper.initialize(this);
 
-        String formattedTopText = String.format(getResources().getString(R.string.sign_up4_top_text), getResources().getString(R.string.app_name));
+        String formattedTopText = String.format(getResources().getString(R.string.congratulations_you_are), getResources().getString(R.string.app_name));
         topText = (TextView) findViewById(R.id.activity_sign_up4_top_text);
         topText.setText(formattedTopText);
         mailBoxButton = (Button) findViewById(R.id.activity_sign_up4_mailbox_button);
