@@ -22,4 +22,8 @@
     <string name="password">Password</string>
     <string name="sign_up4_top_text">Congratulations! You are signed up. You can simply click on the button below and go to your mailbox to confirm your account and start using %1$s.</string>
     <string name="go_to_mailbox">Go To Mailbox</string>
+    <string name="close">Close</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>
