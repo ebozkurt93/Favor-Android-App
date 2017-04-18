@@ -42,7 +42,7 @@
 
 
     <Button
-        android:id="@+id/activity_sign_up2_next_button"
+        android:id="@+id/activity_sign_up3_sign_up_button"
         style="@style/LoginSignupButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

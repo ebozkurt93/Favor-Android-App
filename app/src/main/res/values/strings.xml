@@ -17,7 +17,9 @@
 
     <!-- TODO check these 2 resources and update them-->
     <string name="birth_date_you_must_be_over_18">Birth Date <i>(You Must Be Over 18)</i></string>
-    <string name="sign_up_3_terms_of_service">By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s</string>
-   <!--  <string name="sign_up_3_terms_of_service">By proceeding, you accept the &lt;i&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Terms of Service&lt;/a&gt;&lt;/i&gt; and &lt;i&gt;&lt;a href= &quot;http://facebook.com&quot;&gt;Conditions&lt;/a&gt;&lt;/i&gt; to use %1$s</string> -->
+    <string name="sign_up_3_terms_of_service"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s]]></string>
+    <!--  <string name="sign_up_3_terms_of_service">By proceeding, you accept the &lt;i&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Terms of Service&lt;/a&gt;&lt;/i&gt; and &lt;i&gt;&lt;a href= &quot;http://facebook.com&quot;&gt;Conditions&lt;/a&gt;&lt;/i&gt; to use %1$s</string> -->
     <string name="password">Password</string>
+    <string name="sign_up4_top_text">Congratulations! You are signed up. You can simply click on the button below and go to your mailbox to confirm your account and start using %1$s.</string>
+    <string name="go_to_mailbox">Go To Mailbox</string>
 </resources>

@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".SignUp3Activity">
         </activity>
+        <activity android:name=".SignUp4Activity">
+        </activity>
     </application>
 
 </manifest>

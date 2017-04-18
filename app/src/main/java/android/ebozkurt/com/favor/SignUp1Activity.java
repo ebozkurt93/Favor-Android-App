@@ -38,8 +38,8 @@ public class SignUp1Activity extends ActivityHelper {
         surname = (EditText) findViewById(R.id.activity_sign_up1_surname_editText);
         nameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_name_text_input_layout);
         surnameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_surname_text_input_layout);
-        nextButton.setEnabled(false);
-        //nextButton.setTextColor(getResources().getColor(R.color.colorDisabledButtonText));
+        //mailBoxButton.setEnabled(false); //TODO enable this after testing
+        //mailBoxButton.setTextColor(getResources().getColor(R.color.colorDisabledButtonText));
 
 
         actionBarBack.setOnClickListener(new View.OnClickListener() {

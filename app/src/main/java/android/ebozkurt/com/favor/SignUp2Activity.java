@@ -31,6 +31,7 @@ public class SignUp2Activity extends ActivityHelper {
         emailTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_email_text_input_layout);
         birthdateTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_birthdate_text_input_layout);
         nextButton = (Button) findViewById(R.id.activity_sign_up2_next_button);
+        //mailBoxButton.setEnabled(false); //TODO enable this after testing
 
         /*
         final CharSequence birthdateHintShort = getString(R.string.birth_date);
