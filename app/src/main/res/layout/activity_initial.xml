@@ -10,17 +10,13 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
 
-        android:layout_marginTop="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="0dp"
         app:layout_constraintRight_toRightOf="parent">
 
         <Button
@@ -44,7 +40,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="0dp"
         android:background="@color/dark_aquamarine"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

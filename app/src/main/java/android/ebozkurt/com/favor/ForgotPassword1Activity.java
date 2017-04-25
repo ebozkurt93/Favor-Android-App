@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ForgotPassword1Activity extends AppCompatActivity {
 
     TextView topText;
@@ -16,6 +19,11 @@ public class ForgotPassword1Activity extends AppCompatActivity {
     TextView topRightText;
     ImageButton backImageButton;
     EditText email; //TODO check validity of email address
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class SignUp2Activity extends ActivityHelper {
 
     ImageButton actionBarBack;
     EditText email, birthdate;
     TextInputLayout emailTextInputLayout, birthdateTextInputLayout;
     Button nextButton;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ResetPasswordActivity extends AppCompatActivity {
 
     TextView actionBarMiddleTextView, actionBarRightTextView;
@@ -19,6 +22,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
     EditText passwordTextView;
     Button generatePasswordButton;
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
