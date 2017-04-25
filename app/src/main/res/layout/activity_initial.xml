@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,45 +9,48 @@
     tools:context="android.ebozkurt.com.favor.InitialActivity">
 
 
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button"
-                style="@style/InitialSocialMediaButtons"
-                android:layout_marginTop="224dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Continue With Facebook"/>
-
-            <Button
-                android:id="@+id/button2"
-                style="@style/InitialSocialMediaButtons"
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Continue With Google"/>
-
-
-
-        </LinearLayout>
-
-    </FrameLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            style="@style/InitialSocialMediaButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue With Facebook"/>
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/InitialSocialMediaButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Continue With Google"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
         android:background="@color/dark_aquamarine"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
 
         <Button
@@ -75,4 +78,4 @@
             android:layout_weight="1"
             android:text="@string/sign_up"/>
     </LinearLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
