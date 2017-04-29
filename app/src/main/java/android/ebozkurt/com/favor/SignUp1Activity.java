@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -23,6 +26,8 @@ public class SignUp1Activity extends ActivityHelper {
     EditText name, surname;
     TextInputLayout nameLayout, surnameLayout;
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;  //not all of them are needed
+    TextView termsOfConditions;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -50,7 +55,10 @@ public class SignUp1Activity extends ActivityHelper {
         actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
         actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);
         actionBarBackground4 = (View) findViewById(R.id.sign_up_action_bar_background_view4);
-
+        String formattedTermsOfConditions = String.format(getResources().getString(R.string.by_proceeding_you), getResources().getString(R.string.app_name));
+        termsOfConditions = (TextView) findViewById(R.id.activity_sign_up1_terms_and_conditions_textView);
+        termsOfConditions.setText(Html.fromHtml(formattedTermsOfConditions));
+        termsOfConditions.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         actionBarBack.setOnClickListener(new View.OnClickListener() {

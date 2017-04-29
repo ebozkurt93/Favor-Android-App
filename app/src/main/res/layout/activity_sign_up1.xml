@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/colorPrimary"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:baselineAligned="false">
     <!-- add action bar here-->
     <include
         android:id="@+id/sign_up_action_bar_include"
@@ -15,7 +16,7 @@
         style="@style/DescriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:text="@string/hello_what_is"
         />
 
@@ -23,10 +24,9 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/activity_sign_up1_name_text_input_layout"
         style="@style/SignUpTextInputLayout"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp">
+        android:layout_marginTop="44dp">
 
         <EditText
             android:id="@+id/activity_sign_up1_name_editText"
@@ -42,7 +42,7 @@
         style="@style/SignUpTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp">
+        android:layout_marginTop="22dp">
 
         <EditText
             android:id="@+id/activity_sign_up1_surname_editText"
@@ -61,6 +61,82 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/signup_button_background"
-        android:text="@string/next"/>
+        android:text="@string/next"
+        android:textSize="17sp"/>
+<!--         android:drawableStart="@drawable/continue_with_divider"
+        android:drawableEnd="@drawable/continue_with_divider" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp">
+
+        <View
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/activity_sign_up1_continue_with_text"
+            style="@style/DescriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="center_horizontal"
+            android:text="Continue With"/>
+
+        <View
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:elevation="5dp"
+            android:src="@drawable/google_vector"
+            android:background="@drawable/social_media_circle_background"
+            android:backgroundTint="@color/white"/>
+
+        <ImageButton
+            android:layout_marginLeft="24dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:elevation="5dp"
+            android:padding="15dp"
+            android:src="@drawable/facebook_vector"
+            android:scaleType="fitCenter"
+            android:background="@drawable/social_media_circle_background"
+            android:backgroundTint="#3b5998"/>
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/activity_sign_up1_terms_and_conditions_textView"
+        style="@style/LoginTexts.NoField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:text="@string/by_proceeding_you"/>
 
 </LinearLayout>
