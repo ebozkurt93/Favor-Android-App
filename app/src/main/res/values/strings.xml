@@ -16,7 +16,6 @@
     <string name="passwords_must_be">Passwords must be at least 6 characters and contain at least one letter and one number. Passwords are case sensitive.</string>
 
     <!-- TODO check these 2 resources and update them-->
-    <string name="birth_date_you_must_be_over_18">Birth Date <i>(You Must Be Over 18)</i></string>
     <string name="by_proceeding_you"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s]]></string>
     <!--  <string name="sign_up_3_terms_of_service">By proceeding, you accept the &lt;i&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Terms of Service&lt;/a&gt;&lt;/i&gt; and &lt;i&gt;&lt;a href= &quot;http://facebook.com&quot;&gt;Conditions&lt;/a&gt;&lt;/i&gt; to use %1$s</string> -->
     <string name="password">Password</string>
@@ -33,4 +32,5 @@
     <string name="please_generate_your_new_password">Please generate your new password.</string>
     <string name="generate_new_password">Generate New Password</string>
     <string name="new_password">New Password</string>
+    <string name="please_create_your_password">Please create your password.</string>
 </resources>

@@ -21,6 +21,7 @@ public class SignUp2Activity extends ActivityHelper {
     EditText email, birthdate;
     TextInputLayout emailTextInputLayout, birthdateTextInputLayout;
     Button nextButton;
+    View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -32,6 +33,14 @@ public class SignUp2Activity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up2);
         ActivityHelper.initialize(this);
+
+        actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
+        actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
+        actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);
+        actionBarBackground4 = (View) findViewById(R.id.sign_up_action_bar_background_view4);
+        actionBarBackground1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        actionBarBackground2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         email = (EditText) findViewById(R.id.activity_sign_up2_email_editText);
@@ -108,6 +117,6 @@ public class SignUp2Activity extends ActivityHelper {
             }
         });
 
-
+        emailTextInputLayout.setError("demo error");
     }
 }
