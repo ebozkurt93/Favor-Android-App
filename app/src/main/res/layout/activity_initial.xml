@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="android.ebozkurt.com.favor.InitialActivity">
 
-
+<!--
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,12 +35,12 @@
             android:text="Continue With Google"/>
 
     </LinearLayout>
-
+-->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@color/dark_aquamarine"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="13dp"
             android:layout_marginTop="13dp"
-            android:background="@color/white"
+            android:background="@color/colorAccent"
             android:clickable="false">
         </View>
 

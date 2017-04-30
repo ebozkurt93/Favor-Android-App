@@ -1,141 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/colorPrimary"
-              android:orientation="vertical"
-              android:baselineAligned="false">
-    <!-- add action bar here-->
-    <include
-        android:id="@+id/sign_up_action_bar_include"
-        layout="@layout/sign_up1_action_bar"/>
 
-    <TextView
-        android:id="@+id/activity_sign_up1_top_text"
-        style="@style/DescriptionText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/hello_what_is"
-        />
-
-    <!-- app:hintTextAppearance="@style/TextLabelHint" berkine göster -->
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/activity_sign_up1_name_text_input_layout"
-        style="@style/SignUpTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp">
-
-        <EditText
-            android:id="@+id/activity_sign_up1_name_editText"
-            style="@style/TextfieldText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:inputType="textVisiblePassword|textCapWords"/>
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/activity_sign_up1_surname_text_input_layout"
-        style="@style/SignUpTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp">
-
-        <EditText
-            android:id="@+id/activity_sign_up1_surname_editText"
-            style="@style/TextfieldText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/surname"
-            android:inputType="textVisiblePassword|textCapWords"/>
-    </android.support.design.widget.TextInputLayout>
-
-
-    <Button
-        android:id="@+id/activity_sign_up1_next_button"
-        style="@style/LoginSignupButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/signup_button_background"
-        android:text="@string/next"/>
-    <!--         android:drawableStart="@drawable/continue_with_divider"
-        android:drawableEnd="@drawable/continue_with_divider" -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp">
-
-        <View
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white"/>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorPrimary">
+    <!-- Here you put the rest of your current view-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:baselineAligned="false"
+                  android:orientation="vertical">
+        <!-- add action bar here-->
+        <include
+            android:id="@+id/sign_up_action_bar_include"
+            layout="@layout/sign_up1_action_bar"/>
 
         <TextView
-            android:id="@+id/activity_sign_up1_continue_with_text"
+            android:id="@+id/activity_sign_up1_top_text"
             style="@style/DescriptionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".9"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:gravity="center_horizontal"
-            android:text="Continue With"/>
+            android:layout_marginTop="28dp"
+            android:text="@string/hello_what_is"
+            />
 
-        <View
-            android:layout_weight="1"
-            android:layout_gravity="center"
+        <!-- app:hintTextAppearance="@style/TextLabelHint" berkine göster -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_sign_up1_name_text_input_layout"
+            style="@style/SignUpTextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp">
+
+            <EditText
+                android:id="@+id/activity_sign_up1_name_editText"
+                style="@style/TextfieldText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="textVisiblePassword|textCapWords"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_sign_up1_surname_text_input_layout"
+            style="@style/SignUpTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp">
+
+            <EditText
+                android:id="@+id/activity_sign_up1_surname_editText"
+                style="@style/TextfieldText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/surname"
+                android:inputType="textVisiblePassword|textCapWords"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/activity_sign_up1_next_button"
+            style="@style/LoginSignupButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/login_signup_button_background"
+            android:text="@string/next"/>
+        <!--         android:drawableStart="@drawable/continue_with_divider"
+            android:drawableEnd="@drawable/continue_with_divider" -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/activity_sign_up1_continue_with_text"
+                style="@style/DescriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".9"
+                android:gravity="center_horizontal"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="Continue With"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/social_media_circle_background"
+                android:backgroundTint="@color/white"
+                android:elevation="6dp"
+                android:src="@drawable/google_vector"/>
+
+            <ImageButton
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="24dp"
+                android:background="@drawable/social_media_circle_background"
+                android:backgroundTint="@color/facebook_blue"
+                android:elevation="6dp"
+                android:padding="15dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/facebook_vector"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/activity_sign_up1_terms_and_conditions_textView"
+            style="@style/LoginTexts.NoField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:text="@string/by_proceeding_you"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center_horizontal">
-
-        <ImageButton
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:elevation="5dp"
-            android:src="@drawable/google_vector"
-            android:background="@drawable/social_media_circle_background"
-            android:backgroundTint="@color/white"/>
-
-        <ImageButton
-            android:layout_marginLeft="24dp"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:elevation="5dp"
-            android:padding="15dp"
-            android:src="@drawable/facebook_vector"
-            android:scaleType="fitCenter"
-            android:background="@drawable/social_media_circle_background"
-            android:backgroundTint="#3b5998"/>
-
-    </LinearLayout>
-
-
-
-    <TextView
-        android:id="@+id/activity_sign_up1_terms_and_conditions_textView"
-        style="@style/LoginTexts.NoField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:textSize="14sp"
-        android:textColor="@color/white"
-        android:text="@string/by_proceeding_you"/>
-
-</LinearLayout>
+</ScrollView>

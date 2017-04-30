@@ -10,6 +10,7 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -50,7 +51,6 @@ public class SignUp1Activity extends ActivityHelper {
         nameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_name_text_input_layout);
         surnameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_surname_text_input_layout);
         nextButton.setEnabled(false); //TODO enable this after testing
-        //mailBoxButton.setTextColor(getResources().getColor(R.color.colorDisabledButtonText));
         actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
         actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
         actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);
@@ -59,6 +59,10 @@ public class SignUp1Activity extends ActivityHelper {
         termsOfConditions = (TextView) findViewById(R.id.activity_sign_up1_terms_and_conditions_textView);
         termsOfConditions.setText(Html.fromHtml(formattedTermsOfConditions));
         termsOfConditions.setMovementMethod(LinkMovementMethod.getInstance());
+
+        //for preventing keyboard auto open
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 
 
         actionBarBack.setOnClickListener(new View.OnClickListener() {
