@@ -16,8 +16,8 @@
         style="@style/DescriptionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/please_create_your_password"
+        android:layout_marginTop="19dp"
+        android:text="@string/nice_to_meet"
         />
 
     <android.support.design.widget.TextInputLayout
@@ -25,7 +25,9 @@
         style="@style/SignUpTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp">
+        android:layout_marginTop="39dp"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/SignUpTextInputLayoutError">
 
         <EditText
             android:id="@+id/activity_sign_up2_email_editText"
@@ -39,9 +41,10 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/activity_sign_up2_birthdate_text_input_layout"
         style="@style/SignUpTextInputLayout"
-        android:layout_marginTop="44dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:errorEnabled="true">
 
         <EditText
             android:id="@+id/activity_sign_up2_birthdate_editText"
@@ -59,7 +62,7 @@
         android:background="@drawable/login_signup_button_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:text="@string/create_password"/>
 
 </LinearLayout>

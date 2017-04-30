@@ -2,14 +2,19 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -19,6 +24,8 @@ public class SignUp3Activity extends AppCompatActivity {
     ImageButton actionBarBack;
     Button signUp;
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
+    TextInputLayout passwordTextInputLayout;
+    EditText passwordEditText;
 
 
     @Override
@@ -40,7 +47,11 @@ public class SignUp3Activity extends AppCompatActivity {
         actionBarBackground2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
         actionBarBackground3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
 
+        passwordEditText = (EditText) findViewById(R.id.activity_sign_up3_password_editText);
+        passwordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up3_password_text_input_layout);
 
+        TextDrawable textDrawable = new TextDrawable("D");
+        passwordTextInputLayout.setPasswordVisibilityToggleDrawable(textDrawable);
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         /*

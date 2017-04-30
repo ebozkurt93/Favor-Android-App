@@ -1,8 +1,12 @@
 package android.ebozkurt.com.favor;
 
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.TransitionDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
@@ -106,7 +110,14 @@ public class SignUp1Activity extends ActivityHelper {
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                actionBarBackground1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+                ObjectAnimator animator = ObjectAnimator.ofInt(actionBarBackground1, "backgroundColor", getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark)).setDuration(1000);
+                animator.setEvaluator(new ArgbEvaluator());
+                animator.start();
+                /*
+                TransitionDrawable transitionDrawable = (TransitionDrawable) actionBarBackground1.getBackground();
+                transitionDrawable.startTransition(5000); */
+                //actionBarBackground1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             }
         });
 

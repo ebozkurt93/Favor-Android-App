@@ -15,7 +15,7 @@
         style="@style/LoginTexts.NoField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="19dp"
         android:text="@string/congratulations_you_are"
         android:textColor="#898989"
         />
@@ -27,7 +27,7 @@
         style="@style/LoginSignupButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="92dp"
         android:text="@string/go_to_mailbox"/>
 
 </LinearLayout>
