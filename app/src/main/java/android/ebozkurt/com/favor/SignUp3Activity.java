@@ -88,8 +88,6 @@ public class SignUp3Activity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                Log.i("dev", s.toString());
-
                 if (s.length() >= 6) {
                     int digitCounter = 0;
                     int letterCounter = 0;
@@ -103,7 +101,6 @@ public class SignUp3Activity extends AppCompatActivity {
                         }
                     }
                     if (digitCounter > 0 && letterCounter > 0) {
-                        Log.i(Integer.toString(digitCounter), Integer.toString(letterCounter));
                         signUp.setEnabled(true);
                     }
 

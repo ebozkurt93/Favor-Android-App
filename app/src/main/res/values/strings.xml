@@ -34,4 +34,5 @@
     <string name="new_password">New Password</string>
     <string name="please_create_your_password">Please create your password.</string>
     <string name="you_must_be_over">You must be over 18.</string>
+    <string name="invalid_age">Invalid age.</string>
 </resources>

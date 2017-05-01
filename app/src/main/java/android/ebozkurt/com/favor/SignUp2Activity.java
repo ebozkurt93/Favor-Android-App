@@ -169,8 +169,8 @@ public class SignUp2Activity extends ActivityHelper {
                 //get birthdate text and check if valid
                 String birthdateText = birthdate.getText().toString();
                 String[] divided = birthdateText.split("\\.+|\\/+|-+|,+|\\s+");
-                if (divided.length == 3 && DateValidator.isThisDateValid(divided[0]+"/"+divided[1]+"/"+divided[2], "dd/MM/yyyy")) {
-                   // DateValidator.isThisDateValid(divided[0]+"/"+divided[1]+"/"+divided[2], "dd/MM/yyyy");
+                if (divided.length == 3 && DateValidator.isThisDateValid(divided[0] + "/" + divided[1] + "/" + divided[2], "dd/MM/yyyy")) {
+                    // DateValidator.isThisDateValid(divided[0]+"/"+divided[1]+"/"+divided[2], "dd/MM/yyyy");
 
                     int day = Integer.parseInt(divided[0]);
                     int month = Integer.parseInt(divided[1]);
@@ -196,16 +196,18 @@ public class SignUp2Activity extends ActivityHelper {
 
                     Integer ageInt = new Integer(age);
 
-                    if (ageInt <= 18) {
+                    if (ageInt < 18) {
                         birthdateTextInputLayout.setError(getString(R.string.you_must_be_over));
+                    } else if (ageInt >= 100) {
+                        birthdateTextInputLayout.setError(getString(R.string.invalid_age));
                     } else {
                         //todo get email and check if this email is already registered
+                        //todo show some animation here
 
                         //
                         Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
                         startActivity(i);
                     }
-
 
                 } else {
                     Toast.makeText(SignUp2Activity.this, "Not valid date", Toast.LENGTH_SHORT).show();
