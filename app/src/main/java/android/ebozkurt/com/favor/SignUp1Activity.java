@@ -54,7 +54,7 @@ public class SignUp1Activity extends ActivityHelper {
         surname = (EditText) findViewById(R.id.activity_sign_up1_surname_editText);
         nameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_name_text_input_layout);
         surnameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_surname_text_input_layout);
-        nextButton.setEnabled(false); //TODO enable this after testing
+        nextButton.setEnabled(false);
         actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
         actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
         actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);

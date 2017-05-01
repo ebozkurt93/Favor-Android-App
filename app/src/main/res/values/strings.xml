@@ -8,7 +8,7 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="next">Next</string>
-    <string name="nice_to_meet">Nice to meet you! Information you share below will not be shown to other users.</string>
+    <string name="nice_to_meet">Nice to meet you! Information shared below is not shown to other users.</string>
     <string name="email">Email</string>
     <string name="birth_date">Birth Date</string>
     <string name="create_password">Create Password</string>
@@ -17,7 +17,6 @@
 
     <!-- TODO check these 2 resources and update them-->
     <string name="by_proceeding_you"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s.]]></string>
-    <!--  <string name="sign_up_3_terms_of_service">By proceeding, you accept the &lt;i&gt;&lt;a href=&quot;http://www.google.com&quot;&gt;Terms of Service&lt;/a&gt;&lt;/i&gt; and &lt;i&gt;&lt;a href= &quot;http://facebook.com&quot;&gt;Conditions&lt;/a&gt;&lt;/i&gt; to use %1$s</string> -->
     <string name="password">Password</string>
     <string name="congratulations_you_are">Congratulations! You are signed up. You can simply click on the button below and go to your mailbox to confirm your account and start using %1$s.</string>
     <string name="go_to_mailbox">Go To Mailbox</string>
@@ -33,4 +32,5 @@
     <string name="generate_new_password">Generate New Password</string>
     <string name="new_password">New Password</string>
     <string name="please_create_your_password">Please create your password.</string>
+    <string name="you_must_be_over">You must be over 18.</string>
 </resources>

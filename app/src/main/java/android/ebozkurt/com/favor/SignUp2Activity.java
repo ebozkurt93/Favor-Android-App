@@ -3,24 +3,27 @@ package android.ebozkurt.com.favor;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.Calendar;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignUp2Activity extends ActivityHelper {
 
     ImageButton actionBarBack;
+    TextView cancelTextView;
     EditText email, birthdate;
     TextInputLayout emailTextInputLayout, birthdateTextInputLayout;
     Button nextButton;
@@ -46,20 +49,26 @@ public class SignUp2Activity extends ActivityHelper {
 
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
+        cancelTextView = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
+        cancelTextView.setText(R.string.cancel);
+        cancelTextView.setVisibility(View.VISIBLE);
         email = (EditText) findViewById(R.id.activity_sign_up2_email_editText);
         birthdate = (EditText) findViewById(R.id.activity_sign_up2_birthdate_editText);
         emailTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_email_text_input_layout);
         birthdateTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_birthdate_text_input_layout);
         nextButton = (Button) findViewById(R.id.activity_sign_up2_next_button);
-        //mailBoxButton.setEnabled(false); //TODO enable this after testing
+        nextButton.setEnabled(false);
 
 
+
+/*
         if (emailTextInputLayout.getError() == null) {
-            //email.setTextAppearance(R.style.SignUpTextInputLayout);
+        //email.setTextAppearance(R.style.TextfieldText_Error);
         } else {
+            emailTextInputLayout.setErrorTextAppearance(R.style.SignUpTextInputLayoutError);
             //email.setTextAppearance(R.style.SignUpTextInputLayoutError);
         }
-
+*/
         /*
         final CharSequence birthdateHintShort = getString(R.string.birth_date);
         final CharSequence birthdateHintLong = getString(R.string.birth_date_you_must_be_over_18);
@@ -70,6 +79,16 @@ public class SignUp2Activity extends ActivityHelper {
             public void onClick(View v) {
                 onBackPressed();
 
+            }
+        });
+
+        cancelTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignUp2Activity.this, InitialActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -97,6 +116,8 @@ public class SignUp2Activity extends ActivityHelper {
                 if (email.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
                 }
+
+                enableButtonifOK();
             }
 
             @Override
@@ -104,6 +125,26 @@ public class SignUp2Activity extends ActivityHelper {
 
             }
         });
+
+        birthdate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                birthdateTextInputLayout.setError(null);
+                enableButtonifOK();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 /*
         birthdate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -124,14 +165,61 @@ public class SignUp2Activity extends ActivityHelper {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
-                startActivity(i);
+
+                //get birthdate text and check if valid
+                String birthdateText = birthdate.getText().toString();
+                String[] divided = birthdateText.split("\\.+|\\/+|-+|,+|\\s+");
+                if (divided.length == 3 && DateValidator.isThisDateValid(divided[0]+"/"+divided[1]+"/"+divided[2], "dd/MM/yyyy")) {
+                   // DateValidator.isThisDateValid(divided[0]+"/"+divided[1]+"/"+divided[2], "dd/MM/yyyy");
+
+                    int day = Integer.parseInt(divided[0]);
+                    int month = Integer.parseInt(divided[1]);
+                    int year = Integer.parseInt(divided[2]);
+
+                    Log.i("dev", Arrays.toString(divided));
+                   /* int lengthYear = String.valueOf(year).length();
+                   if (lengthYear == 2 && year > 20) {
+                        year =  + divided[2]);
+
+                    }*/
+
+                    Calendar dob = Calendar.getInstance();
+                    Calendar today = Calendar.getInstance();
+                    dob.set(year, month, day);
+
+
+                    int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+                    if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
+                        age--;
+                    }
+
+                    Integer ageInt = new Integer(age);
+
+                    if (ageInt <= 18) {
+                        birthdateTextInputLayout.setError(getString(R.string.you_must_be_over));
+                    } else {
+                        //todo get email and check if this email is already registered
+
+                        //
+                        Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
+                        startActivity(i);
+                    }
+
+
+                } else {
+                    Toast.makeText(SignUp2Activity.this, "Not valid date", Toast.LENGTH_SHORT).show();
+                    nextButton.setEnabled(false);
+                }
             }
         });
 
-        //todo remove this
-        emailTextInputLayout.setError("demo error");
-        birthdateTextInputLayout.setError("demo error 2");
+    }
+
+    public void enableButtonifOK() {
+        if (email.length() > 0 && birthdate.length() > 0 && emailTextInputLayout.getError() == null) {
+            nextButton.setEnabled(true);
+        } else nextButton.setEnabled(false);
     }
 
 }

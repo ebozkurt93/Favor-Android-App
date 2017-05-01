@@ -43,8 +43,8 @@
         style="@style/SignUpTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/SignUpTextInputLayoutError">
 
         <EditText
             android:id="@+id/activity_sign_up2_birthdate_editText"
@@ -62,7 +62,6 @@
         android:background="@drawable/login_signup_button_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/create_password"/>
 
 </LinearLayout>
