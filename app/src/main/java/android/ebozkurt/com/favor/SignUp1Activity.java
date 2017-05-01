@@ -5,8 +5,6 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.TransitionDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
@@ -44,10 +42,8 @@ public class SignUp1Activity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up1);
         ActivityHelper.initialize(this);
-/*
-        ActionBar actionBar = getSupportActionBar();
-        View customView = LayoutInflater.from(this).inflate(R.layout.sign_up1_action_bar, null);
-        */
+
+
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         nextButton = (Button) findViewById(R.id.activity_sign_up1_next_button);
         name = (EditText) findViewById(R.id.activity_sign_up1_name_editText);
@@ -66,7 +62,6 @@ public class SignUp1Activity extends ActivityHelper {
 
         //for preventing keyboard auto open
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
 
 
         actionBarBack.setOnClickListener(new View.OnClickListener() {

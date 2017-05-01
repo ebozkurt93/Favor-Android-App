@@ -96,6 +96,11 @@
         <item name="android:textColor">@color/errorText</item>
         <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
     </style>
+    <style name="SignUpTextInputLayoutErrorInfo">
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
+    </style>
 
     <style name="TextfieldText">
         <item name="android:textSize">16sp</item>

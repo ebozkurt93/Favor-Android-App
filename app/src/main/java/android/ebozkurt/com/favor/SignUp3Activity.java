@@ -6,8 +6,11 @@ import android.graphics.drawable.Drawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,7 @@ public class SignUp3Activity extends AppCompatActivity {
 
     //TextView termsOfConditions;
     ImageButton actionBarBack;
+    TextView actionBarCancelTextView;
     Button signUp;
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
     TextInputLayout passwordTextInputLayout;
@@ -50,8 +54,11 @@ public class SignUp3Activity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.activity_sign_up3_password_editText);
         passwordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up3_password_text_input_layout);
 
-        TextDrawable textDrawable = new TextDrawable("D");
-        passwordTextInputLayout.setPasswordVisibilityToggleDrawable(textDrawable);
+        actionBarCancelTextView = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
+        actionBarCancelTextView.setText(R.string.cancel);
+        actionBarCancelTextView.setVisibility(View.VISIBLE);
+
+        passwordTextInputLayout.setError(getString(R.string.passwords_must_be));
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         /*
@@ -61,7 +68,7 @@ public class SignUp3Activity extends AppCompatActivity {
         termsOfConditions.setMovementMethod(LinkMovementMethod.getInstance());
 */
         signUp = (Button) findViewById(R.id.activity_sign_up3_sign_up_button);
-        //signUp.setEnabled(false); //TODO enable this after testing
+        signUp.setEnabled(false);
         //termsOfConditions.setText(formattedTermsOfConditions);
 
 
@@ -69,6 +76,43 @@ public class SignUp3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        passwordEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                Log.i("dev", s.toString());
+
+                if (s.length() >= 6) {
+                    int digitCounter = 0;
+                    int letterCounter = 0;
+
+                    for (int i = 0; i < s.length(); i++) {
+                        if(Character.isLetter(s.charAt(i))) {
+                            letterCounter++;
+                        }
+                        else if(Character.isDigit(s.charAt(i))) {
+                            digitCounter++;
+                        }
+                    }
+                    if (digitCounter > 0 && letterCounter > 0) {
+                        Log.i(Integer.toString(digitCounter), Integer.toString(letterCounter));
+                        signUp.setEnabled(true);
+                    }
+
+                } else signUp.setEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
