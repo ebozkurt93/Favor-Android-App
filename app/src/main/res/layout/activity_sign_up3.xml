@@ -20,24 +20,56 @@
         android:text="@string/please_create_your_password"
         />
 
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/activity_sign_up3_password_text_input_layout"
         style="@style/SignUpTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:errorTextAppearance="@style/SignUpTextInputLayoutErrorInfo"
         android:layout_marginTop="41dp"
-        app:passwordToggleContentDescription="demo"
-        app:passwordToggleEnabled="true"
-        app:errorTextAppearance="@style/SignUpTextInputLayoutErrorInfo">
+        app:passwordToggleEnabled="true">
 
-        <EditText
-            android:id="@+id/activity_sign_up3_password_editText"
-            style="@style/LoginTexts"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="16"
-            android:hint="@string/password"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/activity_sign_up3_password_editText"
+                style="@style/TextfieldText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:singleLine="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"/>
+
+            <TextView
+                android:id="@+id/activity_sign_up3_password_toggle_editText"
+                style="@style/TextfieldText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/hide"
+                app:layout_constraintBaseline_toBaselineOf="@+id/activity_sign_up3_password_editText"
+                app:layout_constraintRight_toRightOf="@+id/activity_sign_up3_password_editText"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
     </android.support.design.widget.TextInputLayout>
 
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -18,6 +19,7 @@ public class InitialActivity extends AppCompatActivity {
     private static final String TAG = "InitialActivity";
 
     Button login, signup;
+    LinearLayout linearLayout;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -33,6 +35,9 @@ public class InitialActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.activity_initial_login_button);
         signup = (Button) findViewById(R.id.activity_initial_signup_button);
+        linearLayout = (LinearLayout) findViewById(R.id.activity_initial_linear_layout);
+        linearLayout.bringToFront();
+
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +57,11 @@ public class InitialActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void layoutClick (View v) {
+        Intent i = new Intent(InitialActivity.this, SignUp3Activity.class);
+        startActivity(i);
     }
 
 
