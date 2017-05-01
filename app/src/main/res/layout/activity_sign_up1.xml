@@ -66,7 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@drawable/login_signup_button_background"
             android:text="@string/next"/>
         <!--         android:drawableStart="@drawable/continue_with_divider"
             android:drawableEnd="@drawable/continue_with_divider" -->

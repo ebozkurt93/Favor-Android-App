@@ -43,7 +43,7 @@ public class InitialActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(InitialActivity.this, SignUp1Activity.class);
+                Intent i = new Intent(InitialActivity.this, LoginActivity.class);
                 //Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
                 startActivity(i);
 
@@ -53,14 +53,14 @@ public class InitialActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(InitialActivity.this, LoginActivity.class);
+                Intent i = new Intent(InitialActivity.this, SignUp1Activity.class);
                 startActivity(i);
             }
         });
     }
 
     public void layoutClick (View v) {
-        Intent i = new Intent(InitialActivity.this, SignUp3Activity.class);
+        Intent i = new Intent(InitialActivity.this, ResetPasswordActivity.class);
         startActivity(i);
     }
 

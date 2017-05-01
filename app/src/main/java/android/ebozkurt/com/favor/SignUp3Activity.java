@@ -66,7 +66,7 @@ public class SignUp3Activity extends AppCompatActivity {
         passwordEditText.setTransformationMethod(null);
 
         passwordTextInputLayout.setError(getString(R.string.passwords_must_be));
-        passwordTextInputLayout.setErrorTextAppearance(R.style.SignUpTextInputLayoutErrorInfo);
+        //passwordTextInputLayout.setErrorTextAppearance(R.style.SignUpTextInputLayoutErrorInfo);
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         /*
@@ -117,10 +117,10 @@ public class SignUp3Activity extends AppCompatActivity {
                     for (int i = 0; i < s.length(); i++) {
                         if (Character.isLetter(s.charAt(i))) {
                             letterCounter++;
-                            Log.i("letter counter", Integer.toString(letterCounter));
+                            //Log.i("letter counter", Integer.toString(letterCounter));
                         } else if (Character.isDigit(s.charAt(i))) {
                             digitCounter++;
-                            Log.i("digit counter", Integer.toString(digitCounter));
+                            //Log.i("digit counter", Integer.toString(digitCounter));
 
                         }
                     }

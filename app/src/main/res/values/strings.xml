@@ -19,7 +19,7 @@
     <!-- TODO check these 2 resources and update them-->
     <string name="by_proceeding_you"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s.]]></string>
     <string name="password">Password</string>
-    <string name="congratulations_you_are">Congratulations! You are signed up. You can simply click on the button below and go to your mailbox to confirm your account and start using %1$s.</string>
+    <string name="congratulations_you_are">Congratulations! You are signed up. Please check your mailbox to confirm your account and start using %1$s.</string>
     <string name="go_to_mailbox">Go To Mailbox</string>
     <string name="close">Close</string>
     <string name="welcome_back">Welcome Back!</string>
@@ -28,13 +28,14 @@
     <string name="send_mail">Send Mail</string>
     <string name="time_for_a_new_password">Time for a new password? We will send you an email with further instructions.</string>
     <string name="cancel">Cancel</string>
-    <string name="mail_sent_you">Mail sent! You can go to your mailbox and generate your new password by simply clicking on the button below;</string>
-    <string name="please_generate_your_new_password">Please generate your new password.</string>
-    <string name="generate_new_password">Generate New Password</string>
+    <string name="mail_sent_you">Mail sent! You can go to your mailbox and generate your new password.</string>
+    <string name="please_create_your_new_password">Please create your new password.</string>
+    <string name="create_new_password">Create New Password</string>
     <string name="new_password">New Password</string>
     <string name="please_create_your_password">Please create your password.</string>
     <string name="you_must_be_over">You must be over 18.</string>
     <string name="invalid_age">Invalid age.</string>
     <string name="hide">Hide</string>
     <string name="show">Show</string>
+    <string name="please_write_your_email_below">Please write your email below</string>
 </resources>

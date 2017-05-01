@@ -59,7 +59,6 @@
     <Button
         android:id="@+id/activity_sign_up2_next_button"
         style="@style/LoginSignupButtons"
-        android:background="@drawable/login_signup_button_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create_password"/>

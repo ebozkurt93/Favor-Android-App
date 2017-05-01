@@ -48,7 +48,7 @@
     <style name="LoginSignupButtons">
         <item name="android:layout_marginStart">28dp</item>
         <item name="android:layout_marginEnd">28dp</item>
-        <item name="android:background">#9b9b9b</item>
+        <item name="android:background">@drawable/login_signup_button_background</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>

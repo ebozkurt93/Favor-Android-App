@@ -2,8 +2,12 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +22,8 @@ public class ForgotPassword1Activity extends AppCompatActivity {
     Button sendMailButton;
     TextView topRightText;
     ImageButton backImageButton;
-    EditText email; //TODO check validity of email address
+    EditText emailEditText; //TODO check validity of email address
+    TextInputLayout emailTextInputLayout;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -38,6 +43,34 @@ public class ForgotPassword1Activity extends AppCompatActivity {
         backImageButton = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         backImageButton.setVisibility(View.INVISIBLE);
         sendMailButton = (Button) findViewById(R.id.activity_forgot_password1_send_mail_button);
+        sendMailButton.setEnabled(false);
+
+        emailEditText = (EditText) findViewById(R.id.activity_forgot_password1_email_editText);
+        emailTextInputLayout = (TextInputLayout) findViewById(R.id.activity_forgot_password1_email_text_input_layout);
+
+        emailEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
+                    emailTextInputLayout.setError(null);
+                    sendMailButton.setEnabled(true);
+                }
+                if (emailEditText.getText().length() == 0) {
+                    emailTextInputLayout.setError(null);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         sendMailButton.setOnClickListener(new View.OnClickListener() {
