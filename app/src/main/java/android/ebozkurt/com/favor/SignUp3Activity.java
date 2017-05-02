@@ -150,6 +150,7 @@ public class SignUp3Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

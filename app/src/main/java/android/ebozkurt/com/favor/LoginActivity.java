@@ -14,6 +14,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -64,6 +65,9 @@ public class LoginActivity extends AppCompatActivity {
         passwordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_login_password_text_input_layout);
         passwordToggleTextView = (TextView) findViewById(R.id.activity_login_password_toggle_editText);
         passwordToggleTextView.setVisibility(View.INVISIBLE);
+
+        //for preventing keyboard auto open
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         backImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

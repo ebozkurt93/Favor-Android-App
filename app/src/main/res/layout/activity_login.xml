@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="113dp"
-            app:errorTextAppearance="@style/SignUpTextInputLayoutError"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/SignUpTextInputLayoutError">
 
             <EditText
                 android:id="@+id/activity_login_email_editText"
@@ -42,8 +42,8 @@
             style="@style/SignUpTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorTextAppearance="@style/SignUpTextInputLayoutError"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/SignUpTextInputLayoutError">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -142,6 +142,10 @@
                 android:padding="15dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/facebook_vector"/>
+
+            <View
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"/>
 
             <ImageButton
                 android:layout_width="56dp"

@@ -121,11 +121,14 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/facebook_vector"/>
 
+            <View
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"/>
+
             <ImageButton
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_margin="5dp"
-                android:layout_marginLeft="24dp"
                 android:background="@drawable/social_media_circle_background"
                 android:backgroundTint="@color/white"
                 android:elevation="6dp"
