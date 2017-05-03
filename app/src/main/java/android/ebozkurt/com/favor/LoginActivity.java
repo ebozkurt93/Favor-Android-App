@@ -2,6 +2,9 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.PasswordChecker;
+import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -115,8 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (emailEditText.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
                 }
-
-                enableButtonifOK();
             }
 
             @Override
@@ -136,7 +137,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (s.length() >= 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-                enableButtonifOK();
+                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                    signInButton.setEnabled(true);
+                } else signInButton.setEnabled(false);
             }
 
             @Override
@@ -149,55 +152,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("dev", "onClick: ");
-                passwordToggleState();
+                PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
             }
         });
     }
-
-    public void passwordToggleState() {
-        int i = passwordEditText.getSelectionStart();
-        if (passwordEditText.getTransformationMethod() == null) {
-            passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-            passwordToggleTextView.setText(R.string.show);
-        } else {
-            passwordEditText.setTransformationMethod(null);
-            passwordToggleTextView.setText(R.string.hide);
-        }
-        passwordEditText.setSelection(i);
-    }
-
-
-         /*
-        //for password mode
-        passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-        //for clear mode
-        passwordEditText.setTransformationMethod(null);
-        */
-
-    public void enableButtonifOK() {
-        //s ppassword edit text
-        CharSequence s = passwordEditText.getText().toString();
-        if (s.length() >= 6) {
-            int digitCounter = 0;
-            int letterCounter = 0;
-
-            for (int i = 0; i < s.length(); i++) {
-                if (Character.isLetter(s.charAt(i))) {
-                    letterCounter++;
-                    Log.i("letter counter", Integer.toString(letterCounter));
-                } else if (Character.isDigit(s.charAt(i))) {
-                    digitCounter++;
-                    Log.i("digit counter", Integer.toString(digitCounter));
-
-                }
-            }
-            if (digitCounter > 0 && letterCounter > 0 && Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches() && emailEditText.length() > 0) {
-                signInButton.setEnabled(true);
-            } else signInButton.setEnabled(false);
-
-        } else signInButton.setEnabled(false);
-    }
-
-
 }
 

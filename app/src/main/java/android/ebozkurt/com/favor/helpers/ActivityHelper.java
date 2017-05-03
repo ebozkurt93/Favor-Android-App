@@ -1,11 +1,8 @@
-package android.ebozkurt.com.favor;
+package android.ebozkurt.com.favor.helpers;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
-
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class ActivityHelper extends AppCompatActivity {

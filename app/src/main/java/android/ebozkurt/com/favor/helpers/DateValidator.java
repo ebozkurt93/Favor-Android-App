@@ -1,4 +1,4 @@
-package android.ebozkurt.com.favor;
+package android.ebozkurt.com.favor.helpers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

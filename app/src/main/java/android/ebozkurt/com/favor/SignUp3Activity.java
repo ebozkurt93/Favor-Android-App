@@ -2,14 +2,14 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.PasswordChecker;
+import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import java.lang.reflect.Field;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -109,25 +107,8 @@ public class SignUp3Activity extends AppCompatActivity {
                 if (s.length() >= 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-
-                if (s.length() >= 6) {
-                    int digitCounter = 0;
-                    int letterCounter = 0;
-
-                    for (int i = 0; i < s.length(); i++) {
-                        if (Character.isLetter(s.charAt(i))) {
-                            letterCounter++;
-                            //Log.i("letter counter", Integer.toString(letterCounter));
-                        } else if (Character.isDigit(s.charAt(i))) {
-                            digitCounter++;
-                            //Log.i("digit counter", Integer.toString(digitCounter));
-
-                        }
-                    }
-                    if (digitCounter > 0 && letterCounter > 0) {
-                        signUp.setEnabled(true);
-                    } else signUp.setEnabled(false);
-
+                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                    signUp.setEnabled(true);
                 } else signUp.setEnabled(false);
             }
 
@@ -141,7 +122,7 @@ public class SignUp3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("dev", "onClick: ");
-                passwordToggleState();
+                PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
             }
         });
 
@@ -155,27 +136,5 @@ public class SignUp3Activity extends AppCompatActivity {
         });
     }
 
-    public void passwordToggleState() {
-        int i = passwordEditText.getSelectionStart();
-        if (passwordEditText.getTransformationMethod() == null) {
-            passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-            passwordToggleTextView.setText(R.string.show);
-        } else {
-            passwordEditText.setTransformationMethod(null);
-            passwordToggleTextView.setText(R.string.hide);
-        }
-        passwordEditText.setSelection(i);
-
-
-
-         /*
-        //for password mode
-        passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-        //for clear mode
-        passwordEditText.setTransformationMethod(null);
-        */
-
-
-    }
 
 }

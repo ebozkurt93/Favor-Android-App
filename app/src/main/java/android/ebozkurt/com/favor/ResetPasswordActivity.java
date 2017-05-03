@@ -2,14 +2,15 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.PasswordChecker;
+import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +68,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 if (s.length() > 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-                enableButtonifOK();
+                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                    generatePasswordButton.setEnabled(true);
+                } else generatePasswordButton.setEnabled(false);
+
             }
 
             @Override
@@ -79,7 +83,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         passwordToggleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passwordToggleState();
+                PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
             }
         });
 
@@ -101,50 +105,4 @@ public class ResetPasswordActivity extends AppCompatActivity {
         });
     }
 
-    public void enableButtonifOK() {
-        //s ppassword edit text
-        CharSequence s = passwordEditText.getText().toString();
-        if (s.length() >= 6) {
-            int digitCounter = 0;
-            int letterCounter = 0;
-
-            for (int i = 0; i < s.length(); i++) {
-                if (Character.isLetter(s.charAt(i))) {
-                    letterCounter++;
-                    //Log.i("letter counter", Integer.toString(letterCounter));
-                } else if (Character.isDigit(s.charAt(i))) {
-                    digitCounter++;
-                    //Log.i("digit counter", Integer.toString(digitCounter));
-
-                }
-            }
-            if (digitCounter > 0 && letterCounter > 0) {
-                generatePasswordButton.setEnabled(true);
-            } else generatePasswordButton.setEnabled(false);
-
-        } else generatePasswordButton.setEnabled(false);
-    }
-
-    public void passwordToggleState() {
-        int i = passwordEditText.getSelectionStart();
-        if (passwordEditText.getTransformationMethod() == null) {
-            passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-            passwordToggleTextView.setText(R.string.show);
-        } else {
-            passwordEditText.setTransformationMethod(null);
-            passwordToggleTextView.setText(R.string.hide);
-        }
-        passwordEditText.setSelection(i);
-
-
-
-         /*
-        //for password mode
-        passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-        //for clear mode
-        passwordEditText.setTransformationMethod(null);
-        */
-
-
-    }
 }
