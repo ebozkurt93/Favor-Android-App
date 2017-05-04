@@ -42,7 +42,7 @@
         android:layout_height="592dp"
         android:text="Clıck me"
         android:textSize="30sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:background="@android:color/transparent"
         android:onClick="layoutClick"
         android:layout_marginLeft="8dp"

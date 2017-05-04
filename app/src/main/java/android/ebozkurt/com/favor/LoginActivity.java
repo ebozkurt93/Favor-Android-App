@@ -104,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
         emailEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -137,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (s.length() >= 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1) && Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
                     signInButton.setEnabled(true);
                 } else signInButton.setEnabled(false);
             }
@@ -147,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
 
         passwordToggleTextView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,7 +13,8 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:baselineAligned="false"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  android:weightSum="1">
         <!-- add action bar here-->
         <include
             android:id="@+id/sign_up_action_bar_include"
@@ -43,11 +44,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/SignUpTextInputLayoutError">
+            app:errorTextAppearance="@style/SignUpTextInputLayoutError"
+            android:layout_weight="0.19">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <EditText
                     android:id="@+id/activity_login_password_editText"
