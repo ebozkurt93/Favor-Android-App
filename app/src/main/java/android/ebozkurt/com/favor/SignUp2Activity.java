@@ -97,7 +97,8 @@ public class SignUp2Activity extends ActivityHelper {
                 Intent i = new Intent(SignUp2Activity.this, InitialActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                finish();
+                //slide down
+                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
             }
         });
 

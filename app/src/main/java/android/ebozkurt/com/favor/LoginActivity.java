@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 // i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 //todo continue here
+                //slide up
                 overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
 
             }
