@@ -40,7 +40,6 @@ public class ForgotPassword1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password1);
         ActivityHelper.initialize(this);
-
         shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 
 

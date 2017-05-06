@@ -13,6 +13,8 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:baselineAligned="false"
+                  android:focusable="true"
+                  android:focusableInTouchMode="true"
                   android:orientation="vertical"
                   android:weightSum="1">
         <!-- add action bar here-->
@@ -25,7 +27,7 @@
             style="@style/SignUpTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="113dp"
+            android:layout_marginTop="32dp"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/SignUpTextInputLayoutError">
 
@@ -146,7 +148,7 @@
                 android:src="@drawable/facebook_vector"/>
 
             <View
-                android:layout_width="24dp"
+                android:layout_width="36dp"
                 android:layout_height="wrap_content"/>
 
             <ImageButton

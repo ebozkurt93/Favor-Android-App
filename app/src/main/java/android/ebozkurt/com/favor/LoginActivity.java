@@ -92,6 +92,9 @@ public class LoginActivity extends AppCompatActivity {
                 Intent i = new Intent(LoginActivity.this, ForgotPassword1Activity.class);
                 // i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
+                //todo continue here
+                overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+
             }
         });
 
@@ -113,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
 
 
         emailEditText.addTextChangedListener(new TextWatcher() {
