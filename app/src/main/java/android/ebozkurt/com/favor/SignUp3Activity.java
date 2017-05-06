@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,7 @@ import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class SignUp3Activity extends AppCompatActivity {
+public class SignUp3Activity extends ActivityHelper {
 
     //TextView termsOfConditions;
     ImageButton actionBarBack;
@@ -82,6 +81,7 @@ public class SignUp3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.right1, R.anim.right2);
             }
         });
 
@@ -92,7 +92,7 @@ public class SignUp3Activity extends AppCompatActivity {
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 //slide down
-                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                overridePendingTransition(R.anim.down1, R.anim.down2);
             }
         });
 

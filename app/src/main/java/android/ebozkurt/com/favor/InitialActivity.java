@@ -1,6 +1,5 @@
 package android.ebozkurt.com.favor;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
@@ -12,7 +11,7 @@ import android.widget.LinearLayout;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class InitialActivity extends AppCompatActivity {
+public class InitialActivity extends ActivityHelper {
 
     private static final String TAG = "InitialActivity";
 
@@ -44,7 +43,7 @@ public class InitialActivity extends AppCompatActivity {
                 Intent i = new Intent(InitialActivity.this, LoginActivity.class);
                 //Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
                 startActivity(i);
-
+                overridePendingTransition(R.anim.left1, R.anim.left2);
             }
         });
 
@@ -53,6 +52,7 @@ public class InitialActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(InitialActivity.this, SignUp1Activity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.left1, R.anim.left2);
             }
         });
     }

@@ -87,6 +87,7 @@ public class SignUp2Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.right1, R.anim.right2);
 
             }
         });
@@ -98,7 +99,7 @@ public class SignUp2Activity extends ActivityHelper {
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 //slide down
-                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                overridePendingTransition(R.anim.down1, R.anim.down2);
             }
         });
 

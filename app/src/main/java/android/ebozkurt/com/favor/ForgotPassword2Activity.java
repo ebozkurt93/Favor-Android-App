@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ForgotPassword2Activity extends AppCompatActivity {
+public class ForgotPassword2Activity extends ActivityHelper {
     TextView topText;
     TextView topRightText;
     ImageButton topBackButton;
@@ -45,7 +45,7 @@ public class ForgotPassword2Activity extends AppCompatActivity {
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 //slide down
-                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                overridePendingTransition(R.anim.down1, R.anim.down2);
             }
         });
 

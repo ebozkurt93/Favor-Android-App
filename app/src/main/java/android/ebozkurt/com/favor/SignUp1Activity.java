@@ -69,7 +69,7 @@ public class SignUp1Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-
+                overridePendingTransition(R.anim.right1, R.anim.right2);
             }
         });
 

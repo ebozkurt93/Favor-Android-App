@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ResetPasswordActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends ActivityHelper {
 
     TextView actionBarMiddleTextView, actionBarRightTextView;
     ImageButton actionBarImageButton;

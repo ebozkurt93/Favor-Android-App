@@ -13,7 +13,6 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -28,7 +27,7 @@ import android.widget.Toast;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends ActivityHelper {
 
     ImageButton backImageButton;
     TextView actionBarCenterText, actionBarRightText;
@@ -83,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.right1, R.anim.right2);
             }
         });
 
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
                 //todo continue here
                 //slide up
-                overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+                overridePendingTransition(R.anim.up1, R.anim.up2);
 
             }
         });

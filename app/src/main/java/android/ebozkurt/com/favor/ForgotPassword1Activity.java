@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ForgotPassword1Activity extends AppCompatActivity {
+public class ForgotPassword1Activity extends ActivityHelper {
 
     Animation shake;
 
@@ -95,7 +95,7 @@ public class ForgotPassword1Activity extends AppCompatActivity {
             public void onClick(View v) {
                 onBackPressed();
                 //slide down
-                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                overridePendingTransition(R.anim.down1, R.anim.down2);
             }
         });
     }

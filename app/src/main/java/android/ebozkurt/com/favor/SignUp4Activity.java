@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class SignUp4Activity extends AppCompatActivity {
+public class SignUp4Activity extends ActivityHelper {
 
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
     TextView topText;
@@ -64,7 +64,7 @@ public class SignUp4Activity extends AppCompatActivity {
                 Intent i = new Intent(SignUp4Activity.this, InitialActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                overridePendingTransition(R.anim.down1, R.anim.down2);
             }
         });
 
