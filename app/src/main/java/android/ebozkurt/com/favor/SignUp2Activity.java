@@ -11,6 +11,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -31,6 +33,8 @@ public class SignUp2Activity extends ActivityHelper {
     Button nextButton;
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
 
+    Animation shake;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -41,6 +45,9 @@ public class SignUp2Activity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up2);
         ActivityHelper.initialize(this);
+
+        shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+
 
         actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
         actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
@@ -205,6 +212,8 @@ public class SignUp2Activity extends ActivityHelper {
                     } else {
                         //todo get email and check if this email is already registered
                         //todo show some animation here
+                        //nextButton.setAnimation(shake);
+
 
                         //
                         Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);

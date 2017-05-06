@@ -12,6 +12,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -39,6 +41,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
         ActivityHelper.initialize(this);
+
+
 
         actionBarMiddleTextView = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         actionBarMiddleTextView.setText(R.string.new_password);
@@ -91,6 +95,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ResetPasswordActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                //generatePasswordButton.startAnimation(shake);
             }
         });
 

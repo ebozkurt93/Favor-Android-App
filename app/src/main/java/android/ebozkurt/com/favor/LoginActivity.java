@@ -18,6 +18,8 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -35,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout emailTextInputLayout, passwordTextInputLayout;
     EditText emailEditText, passwordEditText;
     TextView passwordToggleTextView;
+
+    Animation shake;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -54,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         actionBarRightText.setTypeface(null, Typeface.ITALIC);
         signInButton = (Button) findViewById(R.id.activity_login_sign_in_button);
         signInButton.setEnabled(false);
+
+        shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+
 
         termsOfConditions = (TextView) findViewById(R.id.activity_login_terms_and_conditions_textView);
         String formattedTermsOfConditions = String.format(getResources().getString(R.string.by_proceeding_you), getResources().getString(R.string.app_name));
@@ -92,6 +99,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                //todo if there is error
+                //        shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+
             }
         });
 

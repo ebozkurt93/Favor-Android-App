@@ -10,6 +10,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,6 +20,8 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ForgotPassword1Activity extends AppCompatActivity {
+
+    Animation shake;
 
     TextView topText;
     Button sendMailButton;
@@ -36,6 +40,9 @@ public class ForgotPassword1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password1);
         ActivityHelper.initialize(this);
+
+        shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+
 
         topText = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         topText.setText(R.string.forgot_password);
@@ -79,6 +86,8 @@ public class ForgotPassword1Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ForgotPassword1Activity.this, ForgotPassword2Activity.class);
                 startActivity(i);
+                //todo if error
+                //sendMailButton.setAnimation(shake);
             }
         });
 

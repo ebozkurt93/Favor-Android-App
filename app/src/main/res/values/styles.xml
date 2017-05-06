@@ -49,12 +49,13 @@
         <item name="android:layout_marginStart">28dp</item>
         <item name="android:layout_marginEnd">28dp</item>
         <item name="android:background">@drawable/login_signup_button_background</item>
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+
         <item name="android:textSize">17sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
         <item name="android:textColor">@color/login_signup_button_state_text_color</item>
         <item name="android:stateListAnimator">@animator/login_signup_button_animator</item>
-
     </style>
 
     <!-- Zeplin Styles -->
