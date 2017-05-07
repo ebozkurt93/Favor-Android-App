@@ -2,39 +2,47 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/colorPrimary">
     <!-- Here you put the rest of your current view-->
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:focusable="true"
-                  android:focusableInTouchMode="true"
-                  android:baselineAligned="false"
-                  android:orientation="vertical">
-        <!-- add action bar here-->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <include
             android:id="@+id/sign_up_action_bar_include"
-            layout="@layout/sign_up1_action_bar"/>
+            layout="@layout/sign_up1_action_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"/>
 
         <TextView
             android:id="@+id/activity_sign_up1_top_text"
             style="@style/DescriptionText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
             android:text="@string/hello_what_is"
-            />
+            app:layout_constraintLeft_toLeftOf="@+id/sign_up_action_bar_include"
+            app:layout_constraintRight_toRightOf="@+id/sign_up_action_bar_include"
+            android:layout_marginTop="19dp"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_action_bar_include"
+            app:layout_constraintHorizontal_bias="0.0"/>
 
-        <!-- app:hintTextAppearance="@style/TextLabelHint" berkine göster -->
         <android.support.design.widget.TextInputLayout
             android:id="@+id/activity_sign_up1_name_text_input_layout"
             style="@style/SignUpTextInputLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp">
+            app:layout_constraintLeft_toLeftOf="@+id/activity_sign_up1_top_text"
+            app:layout_constraintRight_toRightOf="@+id/activity_sign_up1_top_text"
+            android:layout_marginTop="91dp"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_action_bar_include">
 
             <EditText
                 android:id="@+id/activity_sign_up1_name_editText"
@@ -45,12 +53,28 @@
                 android:inputType="textVisiblePassword|textCapWords"/>
         </android.support.design.widget.TextInputLayout>
 
+
+        <Button
+            android:id="@+id/activity_sign_up1_next_button"
+            style="@style/LoginSignupButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_sign_up1_top_text"
+            app:layout_constraintRight_toRightOf="@+id/activity_sign_up1_top_text"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/activity_sign_up1_surname_text_input_layout"/>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/activity_sign_up1_surname_text_input_layout"
             style="@style/SignUpTextInputLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp">
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_sign_up1_name_text_input_layout"
+            app:layout_constraintRight_toRightOf="@+id/activity_sign_up1_name_text_input_layout"
+            android:layout_marginTop="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/activity_sign_up1_name_text_input_layout">
 
             <EditText
                 android:id="@+id/activity_sign_up1_surname_editText"
@@ -61,22 +85,18 @@
                 android:inputType="textVisiblePassword|textCapWords"/>
         </android.support.design.widget.TextInputLayout>
 
-
-        <Button
-            android:id="@+id/activity_sign_up1_next_button"
-            style="@style/LoginSignupButtons"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/next"/>
-        <!--         android:drawableStart="@drawable/continue_with_divider"
-            android:drawableEnd="@drawable/continue_with_divider" -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/activity_sign_up1_next_button"
+            android:layout_marginRight="28dp"
+            app:layout_constraintRight_toRightOf="@+id/activity_sign_up1_surname_text_input_layout"
+            android:layout_marginLeft="28dp"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_sign_up1_surname_text_input_layout"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="24dp">
+            android:layout_marginEnd="28dp"
+            android:id="@+id/linearLayout2">
 
             <View
                 android:layout_width="match_parent"
@@ -105,12 +125,15 @@
 
         </LinearLayout>
 
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:layout_marginTop="36dp"
-            android:gravity="center_horizontal">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/linearLayout3">
 
             <ImageButton
                 android:layout_width="56dp"
@@ -139,17 +162,22 @@
 
         </LinearLayout>
 
-
         <TextView
             android:id="@+id/activity_sign_up1_terms_and_conditions_textView"
             style="@style/LoginTexts.NoField"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
             android:text="@string/by_proceeding_you"
             android:textColor="@color/colorAccent"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="33dp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.0"/>
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
