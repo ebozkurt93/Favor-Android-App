@@ -6,12 +6,17 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.PaintDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -104,19 +109,23 @@ public class SignUp1Activity extends ActivityHelper {
             }
         });
 
-        name.setOnClickListener(new View.OnClickListener() {
+        name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    /*
+                    Paint viewPaint = ((PaintDrawable) actionBarBackground1.getBackground()).getPaint();
+                    int colorARGB = viewPaint.getColor();
 
-                ObjectAnimator animator = ObjectAnimator.ofInt(actionBarBackground1, "backgroundColor", getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark)).setDuration(1000);
-                animator.setEvaluator(new ArgbEvaluator());
-                animator.start();
-                /*
-                TransitionDrawable transitionDrawable = (TransitionDrawable) actionBarBackground1.getBackground();
-                transitionDrawable.startTransition(5000); */
-                //actionBarBackground1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    if ((Integer.toString(colorARGB)).equals() == getResources().getString(R.color.colorPrimary)) {
+                        ObjectAnimator animator = ObjectAnimator.ofInt(actionBarBackground1, "backgroundColor", getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark)).setDuration(1000);
+                        animator.setEvaluator(new ArgbEvaluator());
+                        animator.start();
+                    } */
+                }
             }
         });
+
 
         surname.addTextChangedListener(new TextWatcher() {
             @Override

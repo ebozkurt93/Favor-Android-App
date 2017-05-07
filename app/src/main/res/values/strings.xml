@@ -38,4 +38,5 @@
     <string name="hide">Hide</string>
     <string name="show">Show</string>
     <string name="please_write_your_email_below">Please write your email below</string>
+    <string name="welcome">Welcome.</string>
 </resources>
