@@ -77,6 +77,7 @@ public class SignUp1Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SignUp1Activity.this, SignUp2Activity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
             }
         });

@@ -131,6 +131,7 @@ public class SignUp3Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
                 finish();
             }

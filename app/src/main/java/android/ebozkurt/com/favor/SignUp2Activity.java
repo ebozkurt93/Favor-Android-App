@@ -219,6 +219,7 @@ public class SignUp2Activity extends ActivityHelper {
 
                         //
                         Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(i);
                     }
 

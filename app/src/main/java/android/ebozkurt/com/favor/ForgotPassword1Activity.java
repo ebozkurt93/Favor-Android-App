@@ -84,6 +84,7 @@ public class ForgotPassword1Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ForgotPassword1Activity.this, ForgotPassword2Activity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
                 //todo if error
                 //sendMailButton.setAnimation(shake);
