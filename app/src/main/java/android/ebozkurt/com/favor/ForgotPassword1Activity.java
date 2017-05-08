@@ -65,10 +65,12 @@ public class ForgotPassword1Activity extends ActivityHelper {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
                     emailTextInputLayout.setError(null);
+                    emailTextInputLayout.setErrorEnabled(false);
                     sendMailButton.setEnabled(true);
                 }
                 if (emailEditText.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
 
             }

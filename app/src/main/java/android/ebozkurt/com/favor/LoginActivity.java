@@ -129,9 +129,11 @@ public class LoginActivity extends ActivityHelper {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
                     emailTextInputLayout.setError(null);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
                 if (emailEditText.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
             }
 

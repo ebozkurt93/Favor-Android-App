@@ -123,9 +123,11 @@ public class SignUp2Activity extends ActivityHelper {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
                     emailTextInputLayout.setError(null);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
                 if (email.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
+                    emailTextInputLayout.setErrorEnabled(false);
                 }
 
                 enableButtonifOK();
@@ -146,6 +148,7 @@ public class SignUp2Activity extends ActivityHelper {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 birthdateTextInputLayout.setError(null);
+                birthdateTextInputLayout.setErrorEnabled(false);
                 enableButtonifOK();
             }
 
