@@ -67,7 +67,7 @@ public class SignUp1Activity extends ActivityHelper {
         termsOfConditions.setMovementMethod(LinkMovementMethod.getInstance());
 
         //for preventing keyboard auto open
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        //this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 
         actionBarBack.setOnClickListener(new View.OnClickListener() {
@@ -112,16 +112,11 @@ public class SignUp1Activity extends ActivityHelper {
         name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    /*
-                    Paint viewPaint = ((PaintDrawable) actionBarBackground1.getBackground()).getPaint();
-                    int colorARGB = viewPaint.getColor();
+                if (hasFocus) {
 
-                    if ((Integer.toString(colorARGB)).equals() == getResources().getString(R.color.colorPrimary)) {
-                        ObjectAnimator animator = ObjectAnimator.ofInt(actionBarBackground1, "backgroundColor", getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark)).setDuration(1000);
-                        animator.setEvaluator(new ArgbEvaluator());
-                        animator.start();
-                    } */
+                    ObjectAnimator animator = ObjectAnimator.ofInt(actionBarBackground1, "backgroundColor", getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark)).setDuration(1000);
+                    animator.setEvaluator(new ArgbEvaluator());
+                    animator.start();
                 }
             }
         });

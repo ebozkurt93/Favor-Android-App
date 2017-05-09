@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
@@ -14,13 +15,16 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -32,8 +36,11 @@ public class SignUp2Activity extends ActivityHelper {
     TextInputLayout emailTextInputLayout, birthdateTextInputLayout;
     Button nextButton;
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
+    DatePickerDialog.OnDateSetListener date;
 
     Animation shake;
+
+    Calendar myCalendar;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -67,6 +74,10 @@ public class SignUp2Activity extends ActivityHelper {
         birthdateTextInputLayout = (TextInputLayout) findViewById(R.id.activity_sign_up2_birthdate_text_input_layout);
         nextButton = (Button) findViewById(R.id.activity_sign_up2_next_button);
         nextButton.setEnabled(false);
+
+        myCalendar = Calendar.getInstance();
+
+
 
 
 
@@ -175,6 +186,41 @@ public class SignUp2Activity extends ActivityHelper {
         });
 */
 
+        date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+
+        birthdate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                DatePickerDialog dialog = new DatePickerDialog(SignUp2Activity.this, R.style.MyDatePickerDialogTheme, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                if (birthdate.getText().length() == 10) {
+                    String birthdateText = birthdate.getText().toString();
+                    String[] divided = birthdateText.split("\\.+|\\/+|-+|,+|\\s+");
+                    int day = Integer.parseInt(divided[0]);
+                    int month = Integer.parseInt(divided[1]);
+                    int year = Integer.parseInt(divided[2]);
+                    dialog.updateDate(year, month, day);
+                } else dialog.updateDate(1994, 1, 1);
+                dialog.show();
+            }
+        });
+
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,6 +285,14 @@ public class SignUp2Activity extends ActivityHelper {
         if (email.length() > 0 && birthdate.length() > 0 && emailTextInputLayout.getError() == null) {
             nextButton.setEnabled(true);
         } else nextButton.setEnabled(false);
+    }
+
+    private void updateLabel() {
+
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        birthdate.setText(sdf.format(myCalendar.getTime()));
     }
 
 }

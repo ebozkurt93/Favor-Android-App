@@ -44,6 +44,7 @@
         android:textSize="30sp"
         android:background="@android:color/transparent"
         android:onClick="layoutClick"
+        android:visibility="gone"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
