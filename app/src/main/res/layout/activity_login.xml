@@ -19,71 +19,66 @@
         <include
             android:id="@+id/sign_up_action_bar_include"
             layout="@layout/sign_up1_action_bar"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/activity_sign_up1_top_text"
             style="@style/DescriptionText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
             android:text="@string/welcome"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="19dp"
             app:layout_constraintTop_toBottomOf="@+id/sign_up_action_bar_include"/>
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/activity_login_password_text_input_layout"
             style="@style/SignUpTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             app:errorEnabled="false"
-            app:errorTextAppearance="@style/SignUpTextInputLayoutError"
-            android:layout_weight="0.19"
+            app:errorTextAppearance="@style/SignUpTextInputLayoutErrorInfo"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/activity_login_email_text_input_layout">
+            app:layout_constraintTop_toBottomOf="@+id/activity_login_email_text_input_layout"
+            app:passwordToggleEnabled="false">
 
-            <android.support.constraint.ConstraintLayout
+
+            <EditText
+                android:id="@+id/activity_login_password_editText"
+                style="@style/TextfieldText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/activity_login_password_editText"
-                    style="@style/TextfieldText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:maxLength="16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"/>
-
-                <TextView
-                    android:id="@+id/activity_login_password_toggle_editText"
-                    style="@style/TextfieldText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="right"
-                    android:text="@string/hide"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/activity_login_password_editText"
-                    app:layout_constraintRight_toRightOf="@+id/activity_login_password_editText"/>
-
-
-            </android.support.constraint.ConstraintLayout>
-
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLength="16"/>
 
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/activity_login_password_toggle_editText"
+            style="@style/PasswordHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="21dp"
+            android:gravity="right"
+            android:text="@string/hide"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_login_password_text_input_layout"
+            app:layout_constraintRight_toRightOf="@+id/activity_login_password_text_input_layout"
+            app:layout_constraintTop_toTopOf="@+id/activity_login_password_text_input_layout"/>
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/activity_login_email_text_input_layout"
@@ -113,24 +108,24 @@
             style="@style/LoginSignupButtons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="@string/sign_in"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@+id/activity_login_password_text_input_layout"/>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginRight="28dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/activity_login_sign_in_button"
-            android:layout_marginStart="28dp"
             android:layout_marginEnd="28dp"
-            android:id="@+id/linearLayout">
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_login_sign_in_button">
 
             <View
                 android:layout_width="match_parent"
@@ -160,14 +155,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
             android:gravity="center_horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            android:id="@+id/linearLayout4">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <ImageButton
                 android:layout_width="56dp"
@@ -202,14 +197,14 @@
             style="@style/LoginTexts.NoField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="33dp"
             android:text="@string/by_proceeding_you"
             android:textColor="@color/colorAccent"
             android:textSize="14sp"
-            android:layout_marginLeft="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginRight="0dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="33dp"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"/>
 
     </android.support.constraint.ConstraintLayout>

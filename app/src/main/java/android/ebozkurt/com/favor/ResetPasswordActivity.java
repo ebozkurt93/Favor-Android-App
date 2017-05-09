@@ -105,7 +105,7 @@ public class ResetPasswordActivity extends ActivityHelper {
                 Intent i = new Intent(ResetPasswordActivity.this, InitialActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                finish();
+                overridePendingTransition(R.anim.down1, R.anim.down2);
             }
         });
     }

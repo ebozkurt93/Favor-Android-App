@@ -58,7 +58,7 @@ public class InitialActivity extends ActivityHelper {
     }
 
     public void layoutClick (View v) {
-        Intent i = new Intent(InitialActivity.this, SignUp3Activity.class);
+        Intent i = new Intent(InitialActivity.this, ResetPasswordActivity.class);
         startActivity(i);
     }
 
