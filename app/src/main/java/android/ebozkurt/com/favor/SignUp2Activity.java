@@ -212,6 +212,9 @@ public class SignUp2Activity extends ActivityHelper {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(birthdate.getWindowToken(), 0);
 
+                if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() && email.length() > 0) {
+                    emailTextInputLayout.setError(getString(R.string.invalid_email_address));
+                }
 
                 DatePickerDialog dialog = new DatePickerDialog(SignUp2Activity.this, R.style.MyDatePickerDialogTheme, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
@@ -291,7 +294,7 @@ public class SignUp2Activity extends ActivityHelper {
     }
 
     public void enableButtonifOK() {
-        if (email.length() > 0 && birthdate.length() > 0 && emailTextInputLayout.getError() == null) {
+        if (email.length() > 0 && birthdate.length() > 0 && emailTextInputLayout.getError() == null && Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
             nextButton.setEnabled(true);
         } else nextButton.setEnabled(false);
     }
