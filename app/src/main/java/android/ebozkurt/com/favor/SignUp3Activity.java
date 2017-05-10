@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -77,6 +78,7 @@ public class SignUp3Activity extends ActivityHelper {
         //termsOfConditions.setText(formattedTermsOfConditions);
 
 
+
         actionBarBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,10 +121,10 @@ public class SignUp3Activity extends ActivityHelper {
             }
         });
 
+
         passwordToggleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("dev", "onClick: ");
                 PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
             }
         });

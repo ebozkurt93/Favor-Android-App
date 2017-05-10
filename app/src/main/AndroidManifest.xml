@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".SignUp2Activity">
         </activity>
-        <activity android:name=".SignUp3Activity">
+        <activity android:name=".SignUp3Activity" android:windowSoftInputMode="stateAlwaysVisible">
         </activity>
         <activity android:name=".SignUp4Activity">
         </activity>

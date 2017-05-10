@@ -12,8 +12,10 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -206,6 +208,11 @@ public class SignUp2Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(birthdate.getWindowToken(), 0);
+
+
                 DatePickerDialog dialog = new DatePickerDialog(SignUp2Activity.this, R.style.MyDatePickerDialogTheme, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
@@ -216,7 +223,9 @@ public class SignUp2Activity extends ActivityHelper {
                     int month = Integer.parseInt(divided[1]);
                     int year = Integer.parseInt(divided[2]);
                     dialog.updateDate(year, month, day);
-                } else dialog.updateDate(1994, 1, 1);
+                } else dialog.updateDate(1994, 0, 1);
+
+                dialog.setTitle("");
                 dialog.show();
             }
         });
