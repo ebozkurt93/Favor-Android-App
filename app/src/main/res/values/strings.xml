@@ -39,4 +39,9 @@
     <string name="show">Show</string>
     <string name="please_write_your_email_below">Please write your email below</string>
     <string name="welcome">Welcome.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_to_know">Get To Know New People</string>
+    <string name="do_favors_in_exchange">Do favors in exchange of points, spend your points by requesting favors from people around...</string>
 </resources>

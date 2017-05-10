@@ -3,7 +3,7 @@
     <color name="colorPrimary">@color/teal</color>
     <color name="colorPrimaryDark">@color/dark_aquamarine</color>
     <color name="colorAccent">@color/white</color>
-    <color name="disabledText">@color/light_blue_grey</color>
+    <color name="disabledButtonText">@color/light_blue_grey</color>
     <color name="errorText">@color/black</color>
 
 

@@ -153,6 +153,25 @@
         <!--<item name="android:minDate">01/01/2000</item> -->
     </style>
 
+    <style name="InitialScreenViewPagerDescription">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingEnd">28dp</item>
+        <item name="android:paddingStart">28dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="InitialScreenViewPagerTitle">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingEnd">28dp</item>
+        <item name="android:paddingStart">28dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
 
 
 
