@@ -97,13 +97,13 @@ public class InitialActivity extends ActivityHelper {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return InitialViewPager1Fragment.newInstance(0, context.getResources().getString(R.string.get_to_know), context.getResources().getString(R.string.do_favors_in_exchange));
+                    return InitialViewPager1Fragment.newInstance(0, context.getResources().getString(R.string.get_to_know), context.getResources().getString(R.string.do_favors_in_exchange), R.color.colorPrimary);
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return InitialViewPager1Fragment.newInstance(1, "Page # 2", "fgfghfgh");
+                    return InitialViewPager1Fragment.newInstance(1, "Page # 2", "fgfghfgh", R.color.colorPrimaryDark);
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return InitialViewPager1Fragment.newInstance(2, "Page # 3", "zxcvbnmöç");
+                    return InitialViewPager1Fragment.newInstance(2, "Page # 3", "zxcvbnmöç", R.color.disabledButtonText);
                 case 3:
-                    return InitialViewPager1Fragment.newInstance(3, "Page # 4", "page 4");
+                    return InitialViewPager1Fragment.newInstance(3, "Page # 4", "page 4", R.color.facebook_blue);
 
                 default:
                     return null;

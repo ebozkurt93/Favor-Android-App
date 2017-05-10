@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/fragment_initial_view_pager1_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/colorPrimary"
@@ -22,7 +22,9 @@
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@+id/fragment_initial_view_pager1_title"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="55dp"/>
+            android:layout_marginTop="55dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"/>
 
         <TextView
             android:id="@+id/fragment_initial_view_pager1_title"

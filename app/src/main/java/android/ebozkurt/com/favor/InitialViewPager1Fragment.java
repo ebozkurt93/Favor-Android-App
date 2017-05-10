@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -14,15 +15,17 @@ public class InitialViewPager1Fragment extends Fragment {
     // Store instance variables
     private String title;
     private String description;
-    private int page;
+    private int image;
+    //private int page;
 
     // newInstance constructor for creating fragment with arguments
-    public static InitialViewPager1Fragment newInstance(int page, String title, String description) {
+    public static InitialViewPager1Fragment newInstance(int page, String title, String description, int image) {
         InitialViewPager1Fragment fragmentFirst = new InitialViewPager1Fragment();
         Bundle args = new Bundle();
         //args.putInt("PageNum", page);
         args.putString("Title", title);
         args.putString("Description", description);
+        args.putInt("Image", image);
         fragmentFirst.setArguments(args);
         return fragmentFirst;
     }
@@ -34,6 +37,7 @@ public class InitialViewPager1Fragment extends Fragment {
         //page = getArguments().getInt("PageNum", 0);
         title = getArguments().getString("Title");
         description = getArguments().getString("Description");
+        image = getArguments().getInt("Image");
     }
 
     // Inflate the view for the fragment based on layout XML
@@ -43,8 +47,10 @@ public class InitialViewPager1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_initial_view_pager1, container, false);
         TextView titleTextView = (TextView) view.findViewById(R.id.fragment_initial_view_pager1_title);
         TextView descriptionTextView = (TextView) view.findViewById(R.id.fragment_initial_view_pager1_description);
+        ImageView imageImageView = (ImageView) view.findViewById(R.id.fragment_initial_view_pager1_image);
         titleTextView.setText(title);
         descriptionTextView.setText(description);
+        imageImageView.setImageResource(image);
         return view;
     }
 }
