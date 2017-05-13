@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -227,7 +228,7 @@ public class SignUp2Activity extends ActivityHelper {
                     int year = Integer.parseInt(divided[2]);
                     dialog.updateDate(year, month, day);
                 } else dialog.updateDate(1994, 0, 1);
-
+                dialog.getDatePicker().setMaxDate(new Date().getTime());
                 dialog.setTitle("");
                 dialog.show();
             }

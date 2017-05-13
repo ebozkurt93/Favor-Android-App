@@ -67,7 +67,8 @@ public class ForgotPassword1Activity extends ActivityHelper {
                     emailTextInputLayout.setError(null);
                     emailTextInputLayout.setErrorEnabled(false);
                     sendMailButton.setEnabled(true);
-                }
+                } else sendMailButton.setEnabled(false);
+
                 if (emailEditText.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
                     emailTextInputLayout.setErrorEnabled(false);
