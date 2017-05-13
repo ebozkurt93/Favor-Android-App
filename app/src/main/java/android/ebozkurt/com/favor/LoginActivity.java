@@ -75,6 +75,9 @@ public class LoginActivity extends ActivityHelper {
         passwordToggleTextView = (TextView) findViewById(R.id.activity_login_password_toggle_editText);
         passwordToggleTextView.setVisibility(View.INVISIBLE);
 
+        PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
+
+
         //for preventing keyboard auto open
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -169,7 +172,6 @@ public class LoginActivity extends ActivityHelper {
         passwordToggleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("dev", "onClick: ");
                 PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
             }
         });
