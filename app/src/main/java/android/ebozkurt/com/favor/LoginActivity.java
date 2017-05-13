@@ -51,7 +51,7 @@ public class LoginActivity extends ActivityHelper {
         ActivityHelper.initialize(this);
         backImageButton = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         actionBarCenterText = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
-        actionBarCenterText.setText(R.string.login);
+        actionBarCenterText.setText(R.string.sign_in);
         actionBarRightText = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
         actionBarRightText.setText(R.string.forgot_password);
         actionBarRightText.setTypeface(null, Typeface.ITALIC);

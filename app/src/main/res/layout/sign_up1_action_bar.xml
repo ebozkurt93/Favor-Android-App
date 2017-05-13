@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="55dp"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary">
     <include layout="@layout/sign_up1_action_bar_background"/>
     <LinearLayout
                   android:orientation="horizontal"
@@ -34,10 +35,10 @@
             android:id="@id/sign_up1_action_bar_right_text_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="14sp"
+            android:layout_weight="1"
             android:gravity="center|right"
             android:paddingRight="16dp"
             android:textColor="@color/white"
-            android:layout_weight="1"/>
+            android:textSize="14sp"/>
     </LinearLayout>
 </RelativeLayout>

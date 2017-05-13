@@ -6,13 +6,10 @@ import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -132,10 +129,10 @@ public class SignUp3Activity extends ActivityHelper {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
-                finish();
             }
         });
     }
