@@ -10,6 +10,7 @@
         <item name="colorControlNormal">@color/white</item>
 
 
+
     </style>
 <!-- unlikely but may get deleted -->
     <style name="TextLabelHint" parent="TextAppearance.Design.Hint">
@@ -149,7 +150,8 @@
         <item name="android:calendarTextColor">@color/colorPrimaryDark</item>
         <item name="android:dayOfWeekBackground">@color/colorPrimaryDark</item>
         <item name="android:yearListSelectorColor">@color/colorPrimary</item>
-        <item name="android:datePickerMode">calendar</item>
+        <item name="android:datePickerMode">spinner</item> <!-- todo this doesn't work for nougat, find another solution, also style this -->
+
         <!--<item name="android:minDate">01/01/2000</item> -->
     </style>
 
