@@ -2,6 +2,7 @@ package android.ebozkurt.com.favor;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.DateValidator;
@@ -215,8 +216,7 @@ public class SignUp2Activity extends ActivityHelper {
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() && email.length() > 0) {
                     emailTextInputLayout.setError(getString(R.string.invalid_email_address));
-                }
-
+                }birthdate.setText(" ");
                 DatePickerDialog dialog = new DatePickerDialog(SignUp2Activity.this, R.style.MyDatePickerDialogTheme, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
@@ -231,6 +231,20 @@ public class SignUp2Activity extends ActivityHelper {
                 dialog.getDatePicker().setMaxDate(new Date().getTime());
                 dialog.setTitle("");
                 dialog.show();
+
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        birthdate.setText("");
+                    }
+                });
+
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        birthdate.setText("");
+                    }
+                });
             }
         });
 
