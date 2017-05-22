@@ -211,12 +211,14 @@ public class SignUp2Activity extends ActivityHelper {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(birthdate.getWindowToken(), 0);
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() && email.length() > 0) {
                     emailTextInputLayout.setError(getString(R.string.invalid_email_address));
-                }birthdate.setText(" ");
+                }
+                if (birthdate.getText().length() < 1)
+                    birthdate.setText(" ");
                 DatePickerDialog dialog = new DatePickerDialog(SignUp2Activity.this, R.style.MyDatePickerDialogTheme, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
@@ -231,20 +233,24 @@ public class SignUp2Activity extends ActivityHelper {
                 dialog.getDatePicker().setMaxDate(new Date().getTime());
                 dialog.setTitle("");
                 dialog.show();
-
+/*
                 dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        birthdate.setText("");
+                        if (birthdate.getText().length() < 1) {
+                            birthdate.setText("");
+                        }
                     }
                 });
 
                 dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        birthdate.setText("");
+                        if (birthdate.getText().length() < 1)
+                            birthdate.setText("");
                     }
                 });
+*/
             }
         });
 

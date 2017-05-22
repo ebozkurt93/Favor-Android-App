@@ -57,6 +57,8 @@ public class LoginActivity extends ActivityHelper {
         actionBarRightText.setTypeface(null, Typeface.ITALIC);
         signInButton = (Button) findViewById(R.id.activity_login_sign_in_button);
         signInButton.setEnabled(false);
+        signInButton.setClipToOutline(true);
+
 
         shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 
