@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,6 +28,7 @@ public class SignUp3Activity extends ActivityHelper {
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
     TextInputLayout passwordTextInputLayout;
     EditText passwordEditText;
+    //Animation shake;
 
 
     @Override
@@ -59,6 +62,9 @@ public class SignUp3Activity extends ActivityHelper {
         passwordToggleTextView.bringToFront();
         passwordToggleTextView.setVisibility(View.INVISIBLE);
         passwordEditText.setTransformationMethod(null);
+
+        //shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+
 
         passwordTextInputLayout.setError(getString(R.string.passwords_must_be));
         //passwordTextInputLayout.setErrorTextAppearance(R.style.SignUpTextInputLayoutErrorInfo);
@@ -130,9 +136,14 @@ public class SignUp3Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(i);
+                /*if (!PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                    signUp.startAnimation(shake);
+                } else {
+*/
+                    Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(i);
+              //  }
             }
         });
     }
