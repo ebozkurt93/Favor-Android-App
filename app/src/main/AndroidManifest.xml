@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".SignUp2Activity">
         </activity>
-        <activity android:name=".SignUp3Activity" android:windowSoftInputMode="stateAlwaysVisible">
+        <activity
+            android:name=".SignUp3Activity"
+            android:windowSoftInputMode="stateAlwaysVisible">
         </activity>
         <activity android:name=".SignUp4Activity">
         </activity>
@@ -32,6 +34,8 @@
         <activity android:name=".ForgotPassword2Activity">
         </activity>
         <activity android:name=".ResetPasswordActivity">
+        </activity>
+        <activity android:name=".BoonListActivity">
         </activity>
     </application>
 

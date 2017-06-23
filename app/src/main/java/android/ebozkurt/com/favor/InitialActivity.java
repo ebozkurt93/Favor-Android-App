@@ -55,7 +55,10 @@ public class InitialActivity extends ActivityHelper {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(InitialActivity.this, LoginActivity.class);
+                //Intent i = new Intent(InitialActivity.this, LoginActivity.class);
+                Intent i = new Intent(InitialActivity.this, BoonListActivity.class); //todo change this
+
+
                 //Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.left1, R.anim.left2);
