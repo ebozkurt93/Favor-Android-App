@@ -21,11 +21,11 @@ public class BoonListActivity extends AppCompatActivity {
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_boon_list_bottom_navigation_bar);
         //BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
 
-        AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.home, R.drawable.google_vector, R.color.colorPrimary);
-        AHBottomNavigationItem chat = new AHBottomNavigationItem(R.string.chat, R.drawable.google_vector, R.color.colorPrimary);
-        AHBottomNavigationItem create = new AHBottomNavigationItem(R.string.create, R.drawable.google_vector, R.color.colorPrimary);
-        AHBottomNavigationItem profile = new AHBottomNavigationItem(R.string.profile, R.drawable.google_vector, R.color.colorPrimary);
-        AHBottomNavigationItem more = new AHBottomNavigationItem(R.string.more, R.drawable.google_vector, R.color.colorPrimary);
+        AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.home, R.drawable.home, R.color.colorPrimary);
+        AHBottomNavigationItem chat = new AHBottomNavigationItem(R.string.chat, R.drawable.chat, R.color.colorPrimary);
+        AHBottomNavigationItem create = new AHBottomNavigationItem(R.string.create, R.drawable.create, R.color.colorPrimary);
+        AHBottomNavigationItem profile = new AHBottomNavigationItem(R.string.profile, R.drawable.profile, R.color.colorPrimary);
+        AHBottomNavigationItem more = new AHBottomNavigationItem(R.string.more, R.drawable.more, R.color.colorPrimary);
 
         bottomNavigationView.addItem(home);
         bottomNavigationView.addItem(chat);
@@ -33,9 +33,9 @@ public class BoonListActivity extends AppCompatActivity {
         bottomNavigationView.addItem(profile);
         bottomNavigationView.addItem(more);
         bottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
-      //  bottomNavigationView.setColored(true);
+        bottomNavigationView.setColored(true);
 //        bottomNavigationView.setForceTint(true);
         bottomNavigationView.setCurrentItem(0);
-        bottomNavigationView.setNotification("Berkin",3);
+        bottomNavigationView.setNotification("999",3);
     }
 }

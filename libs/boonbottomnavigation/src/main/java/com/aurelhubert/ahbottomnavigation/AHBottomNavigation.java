@@ -432,9 +432,11 @@ public class AHBottomNavigation extends FrameLayout {
 					setBackgroundColor(defaultBackgroundColor);
 				}
 			}
-
+/*
 			icon.setImageDrawable(AHHelper.getTintDrawable(items.get(i).getDrawable(context),
 					current ? itemActiveColor : itemInactiveColor, forceTint));
+*/
+
 			title.setTextColor(current ? itemActiveColor : itemInactiveColor);
 			title.setTextSize(TypedValue.COMPLEX_UNIT_PX, current ? activeSize : inactiveSize);
 			view.setOnClickListener(new OnClickListener() {
@@ -550,9 +552,10 @@ public class AHBottomNavigation extends FrameLayout {
 					setBackgroundColor(defaultBackgroundColor);
 				}
 			}
-
+/*
 			icon.setImageDrawable(AHHelper.getTintDrawable(items.get(i).getDrawable(context),
 					currentItem == i ? itemActiveColor : itemInactiveColor, forceTint));
+			*/
 			title.setTextColor(currentItem == i ? itemActiveColor : itemInactiveColor);
 			title.setAlpha(currentItem == i ? 1 : 0);
 			view.setOnClickListener(new OnClickListener() {
