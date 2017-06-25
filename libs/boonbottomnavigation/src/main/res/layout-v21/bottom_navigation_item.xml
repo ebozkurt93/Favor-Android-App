@@ -18,6 +18,16 @@
         android:layout_marginBottom="@dimen/bottom_navigation_margin_bottom"
         android:layout_marginTop="@dimen/bottom_navigation_margin_top_inactive"
         android:gravity="center"/>
+    
+    <ImageView
+        android:id="@+id/bottom_navigation_item_selectedindicator"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/bottomnavigationbar_dot_selected"
+        android:elevation="1dp"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical|center_horizontal"/>
 
     <TextView
         android:id="@+id/bottom_navigation_item_title"

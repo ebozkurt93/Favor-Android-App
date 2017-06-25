@@ -20,6 +20,7 @@ public class AHBottomNavigationItem {
 	private String title = "";
 	private Drawable drawable;
 	private int color = Color.GRAY;
+	private Drawable dot;
 
 	private
 	@StringRes
@@ -30,6 +31,8 @@ public class AHBottomNavigationItem {
 	private
 	@ColorRes
 	int colorRes = 0;
+	@DrawableRes
+	int dotRes = 0;
 
 	/**
 	 * Constructor
@@ -141,8 +144,25 @@ public class AHBottomNavigationItem {
 		this.drawable = null;
 	}
 
+
 	public void setDrawable(Drawable drawable) {
 		this.drawable = drawable;
 		this.drawableRes = 0;
+	}
+
+	public Drawable getDot(Context context) {
+		if (dotRes != 0) {
+			try {
+				return VectorDrawableCompat.create(context.getResources(), dotRes, null);
+			}catch (Resources.NotFoundException e){
+				return ContextCompat.getDrawable(context, dotRes);
+			}
+		}
+		return drawable;
+	}
+
+	public void setDot(Drawable dot) {
+		this.dot = dot;
+		this.dotRes = 0;
 	}
 }
