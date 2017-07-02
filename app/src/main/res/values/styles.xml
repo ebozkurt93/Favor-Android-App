@@ -173,6 +173,11 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="CreateEventTextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/createEventText</item>
+    </style>
+
 
 
 

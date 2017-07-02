@@ -49,4 +49,10 @@
     <string name="create">Create</string>
     <string name="profile">Profile</string>
     <string name="more">More</string>
+    <string name="create_event">Create %1$s</string>
+    <string name="ride">Ride</string>
+    <string name="delivery">Delivery</string>
+    <string name="teach">Teach</string>
+    <string name="borrow">Borrow</string>
+    <string name="socialize">Socialize</string>
 </resources>

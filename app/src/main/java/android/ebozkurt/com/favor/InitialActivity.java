@@ -48,11 +48,11 @@ public class InitialActivity extends ActivityHelper {
         linearLayout.bringToFront();
 
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(InitialActivity.this, LoginActivity.class);
+                Intent i = new Intent(InitialActivity.this, CreateEvent1Activity.class);
+                //todo fix this Intent i = new Intent(InitialActivity.this, LoginActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.left1, R.anim.left2);
             }
@@ -68,7 +68,7 @@ public class InitialActivity extends ActivityHelper {
         });
     }
 
-    public void layoutClick (View v) {
+    public void layoutClick(View v) {
         Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
         startActivity(i);
     }
@@ -113,8 +113,6 @@ public class InitialActivity extends ActivityHelper {
         }
 
     }
-
-
 
 
 }

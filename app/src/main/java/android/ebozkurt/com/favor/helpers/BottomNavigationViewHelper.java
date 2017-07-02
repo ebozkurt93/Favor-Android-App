@@ -1,9 +1,13 @@
 package android.ebozkurt.com.favor.helpers;
 
+import android.ebozkurt.com.favor.R;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import java.lang.reflect.Field;
 
@@ -12,7 +16,7 @@ import java.lang.reflect.Field;
  */
 
 public class BottomNavigationViewHelper {
-
+/*
     public static void removeShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
@@ -32,4 +36,26 @@ public class BottomNavigationViewHelper {
             Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode");
         }
     }
+    */
+
+public static void initialize(AHBottomNavigation bottomNavigationView, int place){
+    AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.home, R.drawable.home, R.color.colorAccent);
+    AHBottomNavigationItem chat = new AHBottomNavigationItem(R.string.chat, R.drawable.chat, R.color.colorAccent);
+    AHBottomNavigationItem create = new AHBottomNavigationItem(R.string.create, R.drawable.create, R.color.colorAccent);
+    AHBottomNavigationItem profile = new AHBottomNavigationItem(R.string.profile, R.drawable.profile, R.color.colorAccent);
+    AHBottomNavigationItem more = new AHBottomNavigationItem(R.string.more, R.drawable.more, R.color.colorAccent);
+    bottomNavigationView.addItem(home);
+    bottomNavigationView.addItem(chat);
+    bottomNavigationView.addItem(create);
+    bottomNavigationView.addItem(profile);
+    bottomNavigationView.addItem(more);
+    bottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
+    bottomNavigationView.setColored(true);
+    bottomNavigationView.setCurrentItem(place);
+}
+
+//todo add some function to set up and carry notifications
+
+
+
 }

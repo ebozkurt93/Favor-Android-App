@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor;
 
+import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -17,25 +18,10 @@ public class BoonListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boon_list);
+        ActivityHelper.initialize(this);
 
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_boon_list_bottom_navigation_bar);
-        //BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
+        BottomNavigationViewHelper.initialize(bottomNavigationView, 0);
 
-        AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.home, R.drawable.home, R.color.colorAccent);
-        AHBottomNavigationItem chat = new AHBottomNavigationItem(R.string.chat, R.drawable.chat, R.color.colorAccent);
-        AHBottomNavigationItem create = new AHBottomNavigationItem(R.string.create, R.drawable.create, R.color.colorAccent);
-        AHBottomNavigationItem profile = new AHBottomNavigationItem(R.string.profile, R.drawable.profile, R.color.colorAccent);
-        AHBottomNavigationItem more = new AHBottomNavigationItem(R.string.more, R.drawable.more, R.color.colorAccent);
-
-        bottomNavigationView.addItem(home);
-        bottomNavigationView.addItem(chat);
-        bottomNavigationView.addItem(create);
-        bottomNavigationView.addItem(profile);
-        bottomNavigationView.addItem(more);
-        bottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
-        bottomNavigationView.setColored(true);
-//        bottomNavigationView.setForceTint(true);
-        bottomNavigationView.setCurrentItem(0);
-        bottomNavigationView.setNotification("999",3);
     }
 }

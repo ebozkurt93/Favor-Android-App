@@ -6,6 +6,7 @@
     <color name="login_signup_button_background_disabled">@color/white_disabled</color>
     <color name="login_signup_button_text_disabled">@color/very_light_gray</color>
     <color name="errorText">@color/charcoal_grey</color>
+    <color name="createEventText">@color/charcoal_grey</color>
 
     <!-- Zeplin colors -->
     <color name="turquoise_blue">#01a3cb</color>
