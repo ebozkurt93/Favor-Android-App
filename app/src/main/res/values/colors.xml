@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/teal</color>
-    <color name="colorPrimaryDark">@color/dark_aquamarine</color>
+    <color name="colorPrimary">@color/turquoise_blue</color>
+    <color name="colorPrimaryDark">@color/turquoise_blue</color>
     <color name="colorAccent">@color/white</color>
-    <color name="colorAccent90opacity">@color/white_90_opacity</color>
-    <color name="disabledButtonText">@color/light_blue_grey_50_opacity</color>
-    <color name="errorText">@color/black</color>
-
+    <color name="login_signup_button_background_disabled">@color/white_disabled</color>
+    <color name="login_signup_button_text_disabled">@color/very_light_gray</color>
+    <color name="errorText">@color/charcoal_grey</color>
 
     <!-- Zeplin colors -->
+    <color name="turquoise_blue">#01a3cb</color>
+    <color name="white_disabled">#f0f0f0</color>
+    <color name="white">#ffffff</color>
+    <color name="very_light_gray">#e2e2e2</color>
+    <color name="charcoal_grey">#4a4a4a</color>
+    <color name="sun_yellow">#f8e81c</color>
+    <color name="squash">#f6a623</color>
+    <color name="apple_green">#6eb91c</color>
+    <color name="scarlet">#d0011b</color>
+
+    <color name="facebook_blue">#3b5998</color>
+
+
+    <!--Old Zeplin colors -->
+    <!--
     <color name="dark_aquamarine">#00796b</color>
     <color name="teal">#009688</color>
     <color name="light_blue_grey">#b2dfdb</color>
@@ -17,6 +31,6 @@
     <color name="white">#ffffff</color>
     <color name="white_90_opacity">#e6ffffff</color>
     <color name="facebook_blue">#3b5998</color>
-
+    -->
 
 </resources>

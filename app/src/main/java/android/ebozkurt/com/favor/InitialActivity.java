@@ -1,16 +1,13 @@
 package android.ebozkurt.com.favor;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,11 +52,7 @@ public class InitialActivity extends ActivityHelper {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent i = new Intent(InitialActivity.this, LoginActivity.class);
-                Intent i = new Intent(InitialActivity.this, BoonListActivity.class); //todo change this
-
-
-                //Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
+                Intent i = new Intent(InitialActivity.this, LoginActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.left1, R.anim.left2);
             }
@@ -104,7 +97,7 @@ public class InitialActivity extends ActivityHelper {
                 case 1: // Fragment # 0 - This will show FirstFragment different title
                     return InitialViewPager1Fragment.newInstance(1, "Page # 2", "fgfghfgh", R.color.colorPrimaryDark);
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return InitialViewPager1Fragment.newInstance(2, "Page # 3", "zxcvbnmöç", R.color.disabledButtonText);
+                    return InitialViewPager1Fragment.newInstance(2, "Page # 3", "zxcvbnmöç", R.color.login_signup_button_text_disabled);
                 case 3:
                     return InitialViewPager1Fragment.newInstance(3, "Page # 4", "page 4", R.color.facebook_blue);
 
