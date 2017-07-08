@@ -3,7 +3,6 @@
     <!-- todo remove placeholder texts before release -->
     <string name="placeholder_long">Lorem ipsum dolor sit amet, mea ei alii reprehendunt, an his mucius facilis corpora. Vim volutpat principes forensibus ei, sed appetere periculis ut, et sit perfecto quaestio persequeris. Mei id malis volutpat. Pro ad nullam mediocrem facilisis, sed graece imperdiet prodesset ut. Ei libris graecis pri, pri modo percipit luptatum no. Modus detraxit patrioque ad sed, duis reprimique ne mel. Te decore delectus eos, nec probo efficiendi ad, in qui vidit senserit similique.</string>
     <string name="placeholder_short">Lorem ipsum dolor sit amet</string>
-    <string name="login">Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="hello_what_is">Hello! What is your name?</string>
     <string name="name">Name</string>
@@ -22,11 +21,9 @@
     <string name="congratulations_you_are">Congratulations! You are signed up. Please check your mailbox to confirm your account and start using %1$s.</string>
     <string name="go_to_mailbox">Go To Mailbox</string>
     <string name="close">Close</string>
-    <string name="welcome_back">Welcome Back!</string>
     <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="send_mail">Send Mail</string>
-    <string name="time_for_a_new_password">Time for a new password? We will send you an email with further instructions.</string>
     <string name="cancel">Cancel</string>
     <string name="mail_sent_you">Mail sent! You can go to your mailbox and generate your new password.</string>
     <string name="please_create_your_new_password">Please create your new password.</string>
@@ -41,7 +38,6 @@
     <string name="welcome">Welcome!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_to_know">Get To Know New People</string>
     <string name="do_favors_in_exchange">Do favors in exchange of points, spend your points by requesting favors from people around...</string>
     <string name="home">Home</string>
@@ -55,4 +51,6 @@
     <string name="teach">Teach</string>
     <string name="borrow">Borrow</string>
     <string name="socialize">Socialize</string>
+    <string name="description">Description</string>
+    <string name="till_timeVar_dayVar">Till %1$s %2$s</string>
 </resources>

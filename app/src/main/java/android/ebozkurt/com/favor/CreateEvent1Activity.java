@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +42,11 @@ public class CreateEvent1Activity extends AppCompatActivity {
 
         RecyclerView categoriesRecyclerView = (RecyclerView) findViewById(R.id.activity_create_event1_recyclerview);
 
-        Category ride = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.ride));
-        Category delivery = new Category(getResources().getDrawable(R.drawable.home), getResources().getString(R.string.delivery));
-        Category teach = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.teach));
-        Category borrow = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.borrow));
-        Category socialize = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.socialize));
+        Category ride = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.ride), "ride");
+        Category delivery = new Category(getResources().getDrawable(R.drawable.home), getResources().getString(R.string.delivery), "delivery");
+        Category teach = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.teach), "teach");
+        Category borrow = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.borrow), "borrow");
+        Category socialize = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.socialize), "socialize");
         ArrayList<Category> categoryList = new ArrayList<>();
         categoryList.add(ride);
         categoryList.add(delivery);
@@ -63,13 +64,15 @@ public class CreateEvent1Activity extends AppCompatActivity {
     public class Category {
         Drawable icon;
         String name;
+        String category_id;
 
         public Category() {
         }
 
-        public Category(Drawable icon, String name) {
+        public Category(Drawable icon, String name, String category_id) {
             this.icon = icon;
             this.name = name;
+            this.category_id = category_id;
         }
 
         public Drawable getIcon() {
@@ -87,6 +90,14 @@ public class CreateEvent1Activity extends AppCompatActivity {
         public void setName(String name) {
             this.name = name;
         }
+
+        public String getCategory_id() {
+            return category_id;
+        }
+
+        public void setCategory_id(String category_id) {
+            this.category_id = category_id;
+        }
     }
 
 
@@ -102,7 +113,7 @@ public class CreateEvent1Activity extends AppCompatActivity {
 
             // We also create a constructor that accepts the entire item row
             // and does the view lookups to find each subview
-            public ViewHolder(View itemView) {
+            public ViewHolder(final View itemView) {
                 // Stores the itemView in a public final member variable that can be used
                 // to access the context from any ViewHolder instance.
                 super(itemView);
@@ -114,7 +125,8 @@ public class CreateEvent1Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(CreateEvent1Activity.this, CreateEvent2Activity.class);
-                        //i.putExtra("category", name);
+                        i.putExtra("category", mCategories.get(getAdapterPosition()).getCategory_id());
+                        Log.i("dev", mCategories.get(getAdapterPosition()).getCategory_id());
                         startActivity(i);
                     }
                 });
