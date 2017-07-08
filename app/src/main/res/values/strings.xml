@@ -53,4 +53,10 @@
     <string name="socialize">Socialize</string>
     <string name="description">Description</string>
     <string name="till_timeVar_dayVar">Till %1$s %2$s</string>
+    <string name="time">Time</string>
+    <string name="now">Now</string>
+    <string name="later">Later</string>
+    <string name="prize">Prize</string>
+    <string name="x_point_left"><![CDATA[<b>%1$s</b> P Left]]></string>
+    <string name="location">Location</string>
 </resources>

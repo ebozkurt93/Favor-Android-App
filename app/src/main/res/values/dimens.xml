@@ -4,4 +4,8 @@
     <dimen name="general_textsize">16sp</dimen>
     <dimen name="general_marginleftright">28dp</dimen>
     <dimen name="login_signup_buttons_textsize">17sp</dimen>
+    <dimen name="background_rectangle_border">4dp</dimen>
+
+    <!-- Dimens for size limits related to server values or values sent to server -->
+    <integer name="description_max_length">100</integer>
 </resources>

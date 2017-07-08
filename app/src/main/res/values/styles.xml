@@ -10,9 +10,8 @@
         <item name="colorControlNormal">@color/white</item>
 
 
-
     </style>
-<!-- unlikely but may get deleted -->
+    <!-- unlikely but may get deleted -->
     <style name="TextLabelHint" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">20sp</item>
     </style>
@@ -52,7 +51,6 @@
     <!-- Zeplin Styles -->
 
 
-
     <style name="DescriptionText">
         <item name="android:textSize">@dimen/login_signup_buttons_textsize</item>
         <item name="android:textColor">@color/colorAccent</item>
@@ -67,7 +65,7 @@
         <item name="android:paddingEnd">@dimen/general_marginleftright</item>
         <item name="android:paddingStart">@dimen/general_marginleftright</item>
         <item name="android:paddingBottom">8dp</item>
-      <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
+        <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
     </style>
 
     <style name="SignUpTextInputLayoutError">
@@ -75,6 +73,7 @@
         <item name="android:textColor">@color/errorText</item>
         <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
     </style>
+
     <style name="SignUpTextInputLayoutErrorInfo">
         <item name="android:textColorHint">@color/colorAccent</item>
         <item name="android:textColor">@color/colorAccent</item>
@@ -116,7 +115,7 @@
         <item name="android:calendarTextColor">@color/colorPrimaryDark</item>
         <item name="android:dayOfWeekBackground">@color/colorPrimaryDark</item>
         <item name="android:yearListSelectorColor">@color/colorPrimary</item>
-      <!--  <item name="android:datePickerMode">spinner</item> --> <!-- todo this doesn't work for nougat, find another solution, also style this -->
+        <!--  <item name="android:datePickerMode">spinner</item> --> <!-- todo this doesn't work for nougat, find another solution, also style this -->
 
         <!--<item name="android:minDate">01/01/2000</item> -->
     </style>
@@ -150,10 +149,20 @@
         <item name="android:layout_marginLeft">@dimen/general_marginleftright</item>
         <item name="android:layout_marginRight">@dimen/general_marginleftright</item>
         <item name="android:maxLines">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
-
-
+    <style name="NowLaterRadioButton">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:button">@android:color/transparent</item>
+        <item name="android:background">@drawable/now_later_selector_background</item>
+        <item name="android:textColor">@drawable/now_later_selector_text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 
 </resources>
