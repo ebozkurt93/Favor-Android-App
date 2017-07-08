@@ -164,5 +164,18 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="MainButtons">
+        <item name="android:layout_marginStart">@dimen/general_marginleftright</item>
+        <item name="android:layout_marginEnd">@dimen/general_marginleftright</item>
+        <item name="android:background">@drawable/main_button_background</item>
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+
+        <item name="android:textSize">@dimen/login_signup_buttons_textsize</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+        <item name="android:textColor">@color/main_button_state_text_color</item>
+        <item name="android:stateListAnimator">@animator/login_signup_button_animator</item>
+    </style>
+
 
 </resources>

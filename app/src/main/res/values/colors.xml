@@ -8,6 +8,8 @@
     <color name="errorText">@color/charcoal_grey</color>
     <color name="createEventText">@color/charcoal_grey</color>
     <color name="createEventCounterMax">@color/scarlet</color>
+    <color name="main_button_text_disabled">@color/white_50_opacity</color>
+    <color name="main_button_background_disabled">@color/turquoise_blue_50_opacity</color>
 
     <!-- Zeplin colors -->
     <color name="turquoise_blue">#01a3cb</color>
@@ -19,6 +21,9 @@
     <color name="squash">#f6a623</color>
     <color name="apple_green">#6eb91c</color>
     <color name="scarlet">#d0011b</color>
+
+    <color name="white_50_opacity">#80ffffff</color>
+    <color name="turquoise_blue_50_opacity">#8001a3cb</color>
 
     <color name="facebook_blue">#3b5998</color>
 
