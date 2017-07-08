@@ -15,7 +15,6 @@
     <string name="invalid_email_address">Invalid email address.</string>
     <string name="passwords_must_be">Passwords must be at least 6 characters and contain at least one letter and one number. Passwords are case sensitive.</string>
 
-    <!-- TODO check these 2 resources and update them-->
     <string name="by_proceeding_you"><![CDATA[By proceeding, you accept the <i><a href="http://www.google.com">Terms of Service</a></i> and <i><a href= "http://facebook.com">Conditions</a></i> to use %1$s.]]></string>
     <string name="password">Password</string>
     <string name="congratulations_you_are">Congratulations! You are signed up. Please check your mailbox to confirm your account and start using %1$s.</string>
@@ -59,7 +58,8 @@
     <string name="prize">Prize</string>
     <string name="x_point_left"><![CDATA[<b>%1$s</b> P Left]]></string>
     <string name="location">Location</string>
-
+    <string name="post_event">Post %1$s</string>
+    <string name="title_activity_maps">Map</string>
 
 
     <!-- -->

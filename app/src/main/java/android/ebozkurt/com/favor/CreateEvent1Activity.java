@@ -125,8 +125,9 @@ public class CreateEvent1Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(CreateEvent1Activity.this, CreateEvent2Activity.class);
-                        i.putExtra("category", mCategories.get(getAdapterPosition()).getCategory_id());
-                        Log.i("dev", mCategories.get(getAdapterPosition()).getCategory_id());
+                        i.putExtra("category_id", mCategories.get(getAdapterPosition()).getCategory_id());
+                        i.putExtra("category_name", mCategories.get(getAdapterPosition()).getName());
+                        //Log.i("dev", mCategories.get(getAdapterPosition()).getCategory_id());
                         startActivity(i);
                     }
                 });
