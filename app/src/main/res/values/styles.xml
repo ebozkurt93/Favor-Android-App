@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- For TextInputLayout Bottom Line Color -->
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
 
 
     </style>
@@ -94,12 +94,12 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textColorHint">@color/colorAccent</item>
     </style>
-
+<!--
     <style name="TextfieldText.Error">
         <item name="android:textColor">@color/errorText</item>
         <item name="android:textColorHint">@color/errorText</item>
     </style>
-
+-->
     <!--BirthDate Dialog Theme -->
 
     <style name="MyDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">

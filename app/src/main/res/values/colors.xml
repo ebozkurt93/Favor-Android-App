@@ -5,7 +5,7 @@
     <color name="colorAccent">@color/white</color>
     <color name="login_signup_button_background_disabled">@color/white_disabled</color>
     <color name="login_signup_button_text_disabled">@color/very_light_gray</color>
-    <color name="errorText">@color/charcoal_grey</color>
+    <color name="errorText">@color/scarlet</color>
     <color name="createEventText">@color/charcoal_grey</color>
     <color name="createEventCounterMax">@color/scarlet</color>
     <color name="main_button_text_disabled">@color/white_50_opacity</color>

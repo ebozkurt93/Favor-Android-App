@@ -60,6 +60,8 @@
     <string name="location">Location</string>
     <string name="post_event">Post %1$s</string>
     <string name="title_activity_maps">Map</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
 
 
     <!-- -->

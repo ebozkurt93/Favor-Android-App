@@ -4,17 +4,24 @@ import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +37,11 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
     //add till ... today, x points left variables
     EditText description;
-    TextView description_counter, points;
+    TextView description_counter, points, eventEndDate;
     ImageButton minus, plus;
     AHBottomNavigation bottomNavigationView;
     Button create;
+    RadioButton nowRadioButton, laterRadioButton;
     TextView title;
     ImageButton back;
     private GoogleMap mMap;
@@ -61,6 +69,18 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         BottomNavigationViewHelper.initialize(bottomNavigationView, 2);
         create = (Button) findViewById(R.id.activity_create_event2_create_button);
         create.setText(getResources().getString(R.string.post_event, getResources().getString(R.string.app_name)));
+        nowRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_now_radiobutton);
+        eventEndDate = (TextView) findViewById(R.id.activity_create_event2_time_till_textview);
+        setEndDateForEvent(true);
+        //not used, since there is 2 options only
+        laterRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_later_radiobutton);
+
+        nowRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setEndDateForEvent(isChecked);
+            }
+        });
 
         title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         title.setText(category_name);
@@ -94,7 +114,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 int descriptionLength = description.getText().length();
                 description_counter.setText(descriptionLength + " / " + getResources().getInteger(R.integer.description_max_length));
-                if (descriptionLength == 100) {
+                if (descriptionLength == getResources().getInteger(R.integer.description_max_length)) {
                     description_counter.setTextColor(getResources().getColor(R.color.createEventCounterMax));
                 } else {
                     description_counter.setTextColor(getResources().getColor(R.color.createEventText));
@@ -163,6 +183,36 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         if (pointValue > 0 && description.getText().length() > 0) {
             create.setEnabled(true);
         } else create.setEnabled(false);
+    }
+
+    public void setEndDateForEvent(boolean isNowRadioButtonChecked) {
+        if (isNowRadioButtonChecked) {
+            //1 hour
+            setEventEndDateTextView(1);
+        } else {
+            //24 hours
+            setEventEndDateTextView(24);
+        }
+    }
+
+    public void setEventEndDateTextView(int hoursToAdd) {
+
+        Calendar eventDate = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+        String day;
+        eventDate.add(Calendar.HOUR, hoursToAdd);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String time = sdf.format(eventDate.getTime());
+        time = "<b>" + time +"</b>";
+        if (today.get(Calendar.YEAR) == eventDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == eventDate.get(Calendar.DAY_OF_YEAR)) {
+            //today
+            day = getResources().getString(R.string.today);
+        } else {
+            //tomorrow
+            day = getResources().getString(R.string.tomorrow);
+        }
+        String finalText = String.format(getResources().getString(R.string.till_timeVar_dayVar), time, day);
+        eventEndDate.setText(Html.fromHtml(finalText));
     }
 
     @Override
