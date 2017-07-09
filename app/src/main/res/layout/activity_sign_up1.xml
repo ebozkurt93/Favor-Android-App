@@ -50,7 +50,7 @@
 
             <EditText
                 android:id="@+id/activity_sign_up1_name_editText"
-                style="@style/TextfieldText"
+                style="@style/SignUpEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
@@ -82,7 +82,7 @@
 
             <EditText
                 android:id="@+id/activity_sign_up1_surname_editText"
-                style="@style/TextfieldText"
+                style="@style/SignUpEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/surname"

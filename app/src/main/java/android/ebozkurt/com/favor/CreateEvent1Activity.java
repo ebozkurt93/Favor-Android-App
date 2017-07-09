@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,8 +117,8 @@ public class CreateEvent1Activity extends AppCompatActivity {
                 // to access the context from any ViewHolder instance.
                 super(itemView);
 
-                icon = (ImageView) itemView.findViewById(R.id.create_event_category_icon);
-                name = (TextView) itemView.findViewById(R.id.create_event_category_textview);
+                icon = (ImageView) itemView.findViewById(R.id.edit_profile_icon);
+                name = (TextView) itemView.findViewById(R.id.edit_profile_textview);
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -185,5 +184,4 @@ public class CreateEvent1Activity extends AppCompatActivity {
 
 
 }
-
 

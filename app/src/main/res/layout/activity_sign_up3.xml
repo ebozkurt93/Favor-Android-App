@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/activity_sign_up3_password_editText"
-            style="@style/TextfieldText"
+            style="@style/SignUpEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"

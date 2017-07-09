@@ -9,120 +9,12 @@
     tools:context="android.ebozkurt.com.favor.EditProfileActivity">
 
     <include layout="@layout/sign_up1_action_bar"/>
-    <!--
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-    -->
-    <!-- Placeholder for actionbar -->
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_edit_profile_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="48dp"/>
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="48dp"/>
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/profile"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/CreateEvent2TitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="0dp"
-            android:text="Profile Picture"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintLeft_toRightOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
-
-        <!-- Divider 1 -->
-        <View
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/edit_profile_divider"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline"
-            app:layout_constraintRight_toLeftOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/profile"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/view"/>
-
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/CreateEvent2TitleTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="0dp"
-            android:ellipsize="end"
-            android:text="@string/placeholder_long"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
-            app:layout_constraintLeft_toRightOf="@+id/imageView2"
-            app:layout_constraintRight_toLeftOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            android:src="@drawable/ic_expand_more_black_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
-            app:layout_constraintRight_toLeftOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/edit_profile_divider"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline"
-            app:layout_constraintRight_toLeftOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
-
-
-    </android.support.constraint.ConstraintLayout>
-    <!-- </ScrollView> -->
 
 </LinearLayout>

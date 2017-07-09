@@ -1,16 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SignupLoginAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- For TextInputLayout Bottom Line Color -->
         <item name="colorControlNormal">@color/colorAccent</item>
-
-
     </style>
+
+    <style name="MainAppTextInputLayoutTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- For TextInputLayout Bottom Line Color -->
+        <item name="colorAccent">@color/createEventText</item>
+        <item name="colorControlNormal">@color/createEventText</item>
+        <item name="colorControlActivated">@color/createEventText</item>
+    </style>
+
     <!-- unlikely but may get deleted -->
     <style name="TextLabelHint" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">20sp</item>
@@ -80,7 +89,7 @@
         <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
     </style>
 
-    <style name="TextfieldText">
+    <style name="SignUpEditText">
         <item name="android:textSize">@dimen/general_textsize</item>
         <item name="android:lineSpacingExtra">8sp</item>
         <item name="android:textColor">@color/colorAccent</item>
@@ -94,12 +103,12 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textColorHint">@color/colorAccent</item>
     </style>
-<!--
-    <style name="TextfieldText.Error">
-        <item name="android:textColor">@color/errorText</item>
-        <item name="android:textColorHint">@color/errorText</item>
-    </style>
--->
+    <!--
+        <style name="TextfieldText.Error">
+            <item name="android:textColor">@color/errorText</item>
+            <item name="android:textColorHint">@color/errorText</item>
+        </style>
+    -->
     <!--BirthDate Dialog Theme -->
 
     <style name="MyDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
@@ -175,6 +184,27 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
         <item name="android:textColor">@color/main_button_state_text_color</item>
         <item name="android:stateListAnimator">@animator/login_signup_button_animator</item>
+    </style>
+
+    <style name="EditProfileTextInputLayout">
+        <item name="android:theme">@style/MainAppTextInputLayoutTheme</item>
+        <item name="android:textColorHint">@color/createEventText</item>
+        <item name="android:textSize">@dimen/login_signup_buttons_textsize</item>
+        <item name="android:textColor">@color/createEventText</item>
+        <item name="android:paddingEnd">@dimen/general_marginleftright</item>
+        <item name="android:paddingStart">@dimen/general_marginleftright</item>
+        <item name="android:paddingBottom">8dp</item>
+
+        <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
+    </style>
+
+    <style name="EditProfileEditText">
+        <item name="android:textSize">@dimen/general_textsize</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/createEventText</item>
+        <item name="android:textColorHint">@color/createEventText</item>
+        <item name="android:paddingBottom">16dp</item>
+
     </style>
 
 
