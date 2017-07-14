@@ -7,5 +7,6 @@
     <dimen name="background_rectangle_border">4dp</dimen>
 
     <!-- Dimens for size limits related to server values or values sent to server -->
-    <integer name="description_max_length">100</integer>
+    <integer name="event_description_max_length">100</integer>
+    <integer name="personal_description_max_length">80</integer>
 </resources>

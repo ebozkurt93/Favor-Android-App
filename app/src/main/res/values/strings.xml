@@ -64,6 +64,8 @@
     <string name="tomorrow">Tomorrow</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="save">Save</string>
+    <string name="edit_name">Edit Name</string>
+    <string name="edit_description">Edit Description</string>
 
 
     <!-- -->

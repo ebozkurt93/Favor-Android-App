@@ -31,7 +31,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         EditProfileActivity.Settings list_profile_pic = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.profile), getResources().getString(R.string.profile_picture), "profile_pic");
         EditProfileActivity.Settings list_name_lastname = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.profile), getResources().getString(R.string.placeholder_long), "name_lastname");
-        EditProfileActivity.Settings list_description = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "description");
+        EditProfileActivity.Settings list_description = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "descriptionEditText");
         EditProfileActivity.Settings list_email = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "email");
         EditProfileActivity.Settings list_password = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "password");
         ArrayList<EditProfileActivity.Settings> settingsList = new ArrayList<>();
