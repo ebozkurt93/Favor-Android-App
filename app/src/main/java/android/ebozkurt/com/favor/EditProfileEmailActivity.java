@@ -10,6 +10,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,6 +28,8 @@ public class EditProfileEmailActivity extends AppCompatActivity {
     //actionbar components
     TextView title;
     ImageView back;
+
+    Animation shake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,10 @@ public class EditProfileEmailActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         title.setText(R.string.edit_email);
         back = (ImageView) findViewById(R.id.sign_up1_action_bar_image_button);
+
+        //todo use this on error
+        shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+
 
         //temporary email
         email = "example@boon-app.com";
@@ -108,6 +116,17 @@ public class EditProfileEmailActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus && passwordEditText.getText().toString().length() > 0) {
+                    passwordToggleTextView.setVisibility(View.VISIBLE);
+                } else {
+                    passwordToggleTextView.setVisibility(View.INVISIBLE);
+                }
             }
         });
 

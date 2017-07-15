@@ -168,6 +168,17 @@ public class LoginActivity extends ActivityHelper {
             }
         });
 
+        passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus && passwordEditText.getText().toString().length() > 0) {
+                    passwordToggleTextView.setVisibility(View.VISIBLE);
+                } else {
+                    passwordToggleTextView.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
 
         passwordToggleTextView.setOnClickListener(new View.OnClickListener() {
             @Override

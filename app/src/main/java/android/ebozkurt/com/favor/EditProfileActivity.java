@@ -145,6 +145,9 @@ public class EditProfileActivity extends AppCompatActivity {
                             case "email":
                                 c = EditProfileEmailActivity.class;
                                 break;
+                            case "password":
+                                c = EditProfilePasswordActivity.class;
+                                break;
                             default:
                                 c = EditProfileNameLastnameActivity.class;
                                 break;

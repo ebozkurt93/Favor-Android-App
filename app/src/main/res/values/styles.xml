@@ -214,5 +214,11 @@
         <item name="android:textColorHint">@color/createEventText</item>
     </style>
 
+    <style name="EditProfileTextInputLayoutErrorInfo">
+        <item name="android:textColorHint">@color/createEventText</item>
+        <item name="android:textColor">@color/createEventText</item>
+        <!--  <item name="android:textAppearance">@style/TextLabelHint</item> -->
+    </style>
+
 
 </resources>
