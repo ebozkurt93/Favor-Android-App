@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/description"
-            android:lines="4"
+            android:maxLines="4"
             android:gravity="left|top"
             android:maxLength="@integer/personal_description_max_length"
             android:inputType="textMultiLine"/>

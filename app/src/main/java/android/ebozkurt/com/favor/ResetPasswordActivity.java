@@ -6,14 +6,10 @@ import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -72,7 +68,7 @@ public class ResetPasswordActivity extends ActivityHelper {
                 if (s.length() > 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                if (PasswordChecker.passwordFitsConditions(passwordEditText.getText().toString(), 6, 1, 1)) {
                     generatePasswordButton.setEnabled(true);
                 } else generatePasswordButton.setEnabled(false);
 

@@ -7,13 +7,11 @@ import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
@@ -54,7 +52,7 @@ public class LoginActivity extends ActivityHelper {
         actionBarCenterText.setText(R.string.sign_in);
         actionBarRightText = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
         actionBarRightText.setText(R.string.forgot_password);
-        actionBarRightText.setTypeface(null, Typeface.ITALIC);
+        //actionBarRightText.setTypeface(null, Typeface.ITALIC);
         signInButton = (Button) findViewById(R.id.activity_login_sign_in_button);
         signInButton.setEnabled(false);
         signInButton.setClipToOutline(true);
@@ -159,7 +157,7 @@ public class LoginActivity extends ActivityHelper {
                 if (s.length() >= 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1) && Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
+                if (PasswordChecker.passwordFitsConditions(passwordEditText.getText().toString(), 6, 1, 1) && Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
                     signInButton.setEnabled(true);
                 } else signInButton.setEnabled(false);
             }

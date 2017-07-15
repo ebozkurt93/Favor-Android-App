@@ -56,14 +56,20 @@ public class EditProfileDescriptionActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                // Log.i("dev", Boolean.toString(descriptionEditText.getText().toString().trim().equals(personalDescription)));
-                if (!descriptionEditText.getText().toString().trim().equals(personalDescription)) {
+                if (!descriptionEditText.getText().toString().trim().equals(personalDescription) && descriptionEditText.getText().toString().trim().length() > 0) {
                     saveButton.setEnabled(true);
                 } else saveButton.setEnabled(false);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                for(int i = s.length(); i > 0; i--) {
 
+                    if(s.subSequence(i-1, i).toString().equals("\n"))
+                        s.replace(i-1, i, "");
+                }
+
+                String myTextString = s.toString();
             }
         });
 

@@ -207,5 +207,12 @@
 
     </style>
 
+    <style name="EditProfilePasswordHint">
+        <item name="android:textSize">@dimen/general_textsize</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textColor">@color/createEventText</item>
+        <item name="android:textColorHint">@color/createEventText</item>
+    </style>
+
 
 </resources>

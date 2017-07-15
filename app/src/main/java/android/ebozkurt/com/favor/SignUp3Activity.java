@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -113,7 +111,7 @@ public class SignUp3Activity extends ActivityHelper {
                 if (s.length() >= 1) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 }
-                if (PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                if (PasswordChecker.passwordFitsConditions(passwordEditText.getText().toString(), 6, 1, 1)) {
                     signUp.setEnabled(true);
                 } else signUp.setEnabled(false);
             }
@@ -136,7 +134,7 @@ public class SignUp3Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
 
-                /*if (!PasswordChecker.enableButtonifOK(passwordEditText.getText().toString(), 6, 1, 1)) {
+                /*if (!PasswordChecker.passwordFitsConditions(passwordEditText.getText().toString(), 6, 1, 1)) {
                     signUp.startAnimation(shake);
                 } else {
 */

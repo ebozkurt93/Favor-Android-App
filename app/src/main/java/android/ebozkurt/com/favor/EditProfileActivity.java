@@ -20,6 +20,13 @@ import java.util.List;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    //actionbar components
+    TextView title;
+    ImageView back;
+    TextView done;
+
+    String name, lastname, personalDescription, email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +34,26 @@ public class EditProfileActivity extends AppCompatActivity {
         ActivityHelper.initialize(this);
 
         RecyclerView settingsRecyclerView = (RecyclerView) findViewById(R.id.activity_edit_profile_recyclerview);
+        title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
+        title.setText(R.string.edit_profile);
+        back = (ImageView) findViewById(R.id.sign_up1_action_bar_image_button);
+        back.setVisibility(View.INVISIBLE);
+        done = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
+        done.setText(R.string.done);
+        done.setVisibility(View.VISIBLE);
+
+        //todo get profile picture, name, lastname, description, email address at here, set them to list items
+        name = "ExampleName";
+        lastname = "ExampleLastname";
+        personalDescription = "This is an example personal descriptionEditText, try changing it.";
+        email = "example@boon-app.com";
 
 
         EditProfileActivity.Settings list_profile_pic = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.profile), getResources().getString(R.string.profile_picture), "profile_pic");
-        EditProfileActivity.Settings list_name_lastname = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.profile), getResources().getString(R.string.placeholder_long), "name_lastname");
-        EditProfileActivity.Settings list_description = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "descriptionEditText");
-        EditProfileActivity.Settings list_email = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "email");
-        EditProfileActivity.Settings list_password = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.placeholder_short), "password");
+        EditProfileActivity.Settings list_name_lastname = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.profile), name + " " + lastname, "name_lastname");
+        EditProfileActivity.Settings list_description = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.description), personalDescription, "description");
+        EditProfileActivity.Settings list_email = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.mail), email, "email");
+        EditProfileActivity.Settings list_password = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.password), getResources().getString(R.string.password), "password");
         ArrayList<EditProfileActivity.Settings> settingsList = new ArrayList<>();
         settingsList.add(list_profile_pic);
         settingsList.add(list_name_lastname);
@@ -45,6 +65,7 @@ public class EditProfileActivity extends AppCompatActivity {
         settingsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         settingsRecyclerView.addItemDecoration(new DividerItemDecoration(EditProfileActivity.this.getDrawable(R.drawable.category_divider),
                 false, false));
+
     }
 
 
@@ -111,7 +132,25 @@ public class EditProfileActivity extends AppCompatActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(EditProfileActivity.this, EditProfileNameLastnameActivity.class);
+                        Class c;
+                        //todo add name etc as extra here and send with intent
+                        switch (mSettings.get(getAdapterPosition()).getSettings_id()) {
+                            //  case "profile_pic": c = EditProfileActivity.class;
+                            case "name_lastname":
+                                c = EditProfileNameLastnameActivity.class;
+                                break;
+                            case "description":
+                                c = EditProfileDescriptionActivity.class;
+                                break;
+                            case "email":
+                                c = EditProfileEmailActivity.class;
+                                break;
+                            default:
+                                c = EditProfileNameLastnameActivity.class;
+                                break;
+
+                        }
+                        Intent i = new Intent(EditProfileActivity.this, c);
                         //i.putExtra("category_id", mSettings.get(getAdapterPosition()).getSettings_id());
                         //Log.i("dev", mCategories.get(getAdapterPosition()).getSettings_id());
                         startActivity(i);

@@ -72,6 +72,8 @@
         </activity>
         <activity android:name=".EditProfileDescriptionActivity">
         </activity>
+        <activity android:name=".EditProfileEmailActivity">
+        </activity>
     </application>
 
 </manifest>

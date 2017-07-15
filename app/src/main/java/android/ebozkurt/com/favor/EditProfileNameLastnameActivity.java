@@ -96,10 +96,11 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
 
         boolean b = m.find();
         if (b == true) {
-            textInputLayout.setError("Invalid Character");
+            textInputLayout.setError(getString(R.string.invalid_character));
             return true;
         } else {
-            textInputLayout.setError("");
+            textInputLayout.setError(null);
+            textInputLayout.setErrorEnabled(false);
             return false;
         }
     }
@@ -115,7 +116,8 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
         //Do not remove, for an unknown reason it doesnt work without log message
         Log.i("dev", "variablesChanged(): " + variablesChanged() + "\n!hasinvalidCharactername: " + !hasInvalidCharacter(nameEditText, nameTextInputLayout) + "\n!hasinvalidCharacterlastname: " + !hasInvalidCharacter(lastnameEditText, lastnameTextInputLayout));
 
-        if (variablesChanged() && !hasInvalidCharacter(nameEditText, nameTextInputLayout) && !hasInvalidCharacter(lastnameEditText, lastnameTextInputLayout)) {
+        if (variablesChanged() && !hasInvalidCharacter(nameEditText, nameTextInputLayout) && !hasInvalidCharacter(lastnameEditText, lastnameTextInputLayout) &&
+                nameEditText.getText().toString().trim().length() > 0 && lastnameEditText.getText().toString().trim().length() > 0) {
             saveButton.setEnabled(true);
         } else {
             saveButton.setEnabled(false);

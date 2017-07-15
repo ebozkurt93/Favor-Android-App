@@ -9,7 +9,7 @@ import android.widget.EditText;
 public class PasswordChecker {
 
 
-    public static boolean enableButtonifOK(CharSequence password, int minPasswordLength, int minDigitCount, int minLetterCount ) {
+    public static boolean passwordFitsConditions(CharSequence password, int minPasswordLength, int minDigitCount, int minLetterCount ) {
         //s ppassword edit text
         //CharSequence password = passwordEditText.getText().toString();
         if (password.length() >= minPasswordLength) {
