@@ -41,10 +41,10 @@ public class CreateEvent1Activity extends AppCompatActivity {
 
         RecyclerView categoriesRecyclerView = (RecyclerView) findViewById(R.id.activity_create_event1_recyclerview);
 
-        Category ride = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.ride), "ride");
-        Category delivery = new Category(getResources().getDrawable(R.drawable.home), getResources().getString(R.string.delivery), "delivery");
-        Category teach = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.teach), "teach");
-        Category borrow = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.borrow), "borrow");
+        Category ride = new Category(getResources().getDrawable(R.drawable.ride), getResources().getString(R.string.ride), "ride");
+        Category delivery = new Category(getResources().getDrawable(R.drawable.delivery), getResources().getString(R.string.delivery), "delivery");
+        Category teach = new Category(getResources().getDrawable(R.drawable.teach), getResources().getString(R.string.teach), "teach");
+        Category borrow = new Category(getResources().getDrawable(R.drawable.borrow), getResources().getString(R.string.borrow), "borrow");
         Category socialize = new Category(getResources().getDrawable(R.drawable.chat), getResources().getString(R.string.socialize), "socialize");
         ArrayList<Category> categoryList = new ArrayList<>();
         categoryList.add(ride);

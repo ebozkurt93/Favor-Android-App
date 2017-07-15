@@ -66,6 +66,13 @@ public class EditProfileActivity extends AppCompatActivity {
         settingsRecyclerView.addItemDecoration(new DividerItemDecoration(EditProfileActivity.this.getDrawable(R.drawable.category_divider),
                 false, false));
 
+
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 

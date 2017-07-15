@@ -1,18 +1,26 @@
 package android.ebozkurt.com.favor;
 
+import android.content.Context;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
-import android.support.v7.app.AppCompatActivity;
+import android.ebozkurt.com.favor.helpers.MapHelper;
+import android.ebozkurt.com.favor.helpers.MyMapInfoWindowAdapter;
+import android.location.Address;
+import android.location.Geocoder;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -27,11 +35,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class CreateEvent2Activity extends AppCompatActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
+public class CreateEvent2Activity extends FragmentActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
 
-    //add till ... today, x points left variables
+    //x points left variables
     EditText description;
     TextView description_counter, points, eventEndDate;
     ImageButton minus, plus;
@@ -41,6 +50,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     TextView title;
     ImageButton back;
     private GoogleMap mMap;
+    String category_id, category_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +62,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
 
-        String category_id = getIntent().getStringExtra("category_id");
-        String category_name = getIntent().getStringExtra("category_name");
+        category_id = getIntent().getStringExtra("category_id");
+        category_name = getIntent().getStringExtra("category_name");
 
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);
@@ -199,7 +209,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         eventDate.add(Calendar.HOUR, hoursToAdd);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String time = sdf.format(eventDate.getTime());
-        time = "<b>" + time +"</b>";
+        time = "<b>" + time + "</b>";
         if (today.get(Calendar.YEAR) == eventDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == eventDate.get(Calendar.DAY_OF_YEAR)) {
             //today
             day = getResources().getString(R.string.today);
@@ -214,10 +224,38 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        MapHelper.setMapSettings(mMap, this, false);
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //LatLng sabanciUniv = new LatLng(40.891444, 29.379922);
+        LatLng sabanciUniv = new LatLng(40.7143528,-74.0059731);
+
+        MarkerOptions myMarkerOptions = new MarkerOptions()
+                .position(sabanciUniv)
+                .icon(MapHelper.getMapIcon(this, category_id));
+                //.title("Template marker title");
+        mMap.addMarker(myMarkerOptions).showInfoWindow();
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sabanciUniv));
+
+        try {
+            Geocoder geo = new Geocoder(CreateEvent2Activity.this.getApplicationContext(), Locale.getDefault());
+            List<Address> addresses = geo.getFromLocation(sabanciUniv.latitude, sabanciUniv.longitude, 1);
+            if (addresses.isEmpty()) {
+                myMarkerOptions.title("Waiting for Location");
+            }
+            else {
+                if (addresses.size() > 0) {
+                    myMarkerOptions.title(addresses.get(0).getAddressLine(0)); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+                    //myMarkerOptions.title(addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
+                    //Toast.makeText(getApplicationContext(), "Address:- " + addresses.get(0).getFeatureName() + addresses.get(0).getAdminArea() + addresses.get(0).getLocality(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace(); // getFromLocation() may sometimes fail
+        }
     }
+
+
 }
