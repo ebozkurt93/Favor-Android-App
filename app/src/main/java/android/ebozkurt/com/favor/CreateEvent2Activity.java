@@ -20,6 +20,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -135,19 +136,23 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
         });
 
         //todo add rapid counter for points on long press
-/*
+
         new CounterHandler.Builder()
                 .incrementalView(plus)
                 .decrementalView(minus)
+                .startNumber(Integer.parseInt(points.getText().toString()))
                 .minRange(0) // cant go any less than -50
                 .maxRange(999) // cant go any further than 50
                 .isCycle(false) // 49,50,-50,-49 and so on
-                .counterDelay(200) // speed of counter
-                .counterStep(2)  // steps e.g. 0,2,4,6...
+                .counterDelay(50) // speed of counter
+                .counterStep(1)  // steps e.g. 0,2,4,6...
+                .maxCounterStep(3)
                 .listener(this) // to listen counter results and show them in app
                 .build();
-*/
 
+        Log.i("dev", points.getText().toString());
+
+/*
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +175,7 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
                 }
             }
         });
+        */
     }
 
     @Override

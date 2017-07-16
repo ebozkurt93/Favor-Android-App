@@ -17,6 +17,8 @@ public class CounterHandler {
     private long startNumber = 0;
     private long counterStep = 1;
     private int counterDelay = 50; //millis
+    private long defaultCounterStep;
+    private long maxCounterStep = 50;
 
     private boolean isCycle = false;
     private boolean autoIncrement = false;
@@ -34,6 +36,9 @@ public class CounterHandler {
                 decrement();
                 handler.postDelayed(this, counterDelay);
             }
+            if (counterStep < maxCounterStep) {
+                counterStep = counterStep + 1;
+            }
         }
     };
 
@@ -47,7 +52,8 @@ public class CounterHandler {
         counterDelay = builder.counterDelay;
         isCycle = builder.isCycle;
         listener = builder.listener;
-
+        defaultCounterStep = counterStep;
+        maxCounterStep = builder.maxCounterStep;
         initDecrementalView();
         initIncrementalView();
 
@@ -78,6 +84,7 @@ public class CounterHandler {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoIncrement) {
                     autoIncrement = false;
+                    counterStep = defaultCounterStep;
                 }
                 return false;
             }
@@ -106,6 +113,7 @@ public class CounterHandler {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoDecrement) {
                     autoDecrement = false;
+                    counterStep = defaultCounterStep;
                 }
                 return false;
             }
@@ -121,6 +129,8 @@ public class CounterHandler {
                 number += counterStep;
             } else if (isCycle) {
                 number = minRange == -1 ? 0 : minRange;
+            } else {
+                number = maxRange;
             }
         } else {
             number += counterStep;
@@ -141,7 +151,8 @@ public class CounterHandler {
                 number -= counterStep;
             } else if (isCycle) {
                 number = maxRange == -1 ? 0 : maxRange;
-
+            } else {
+                number = minRange;
             }
         } else {
             number -= counterStep;
@@ -163,13 +174,14 @@ public class CounterHandler {
     public static final class Builder {
         private View incrementalView;
         private View decrementalView;
-        private long minRange=-1;
-        private long maxRange=-1;
-        private long startNumber=0;
-        private long counterStep =1;
-        private int counterDelay=50;
+        private long minRange = -1;
+        private long maxRange = -1;
+        private long startNumber = 0;
+        private long counterStep = 1;
+        private int counterDelay = 50;
         private boolean isCycle;
         private CounterListener listener;
+        private long maxCounterStep = 50;
 
         public Builder() {
         }
@@ -216,6 +228,10 @@ public class CounterHandler {
 
         public Builder listener(CounterListener val) {
             listener = val;
+            return this;
+        }
+        public Builder maxCounterStep(long val) {
+            maxCounterStep = val;
             return this;
         }
 
