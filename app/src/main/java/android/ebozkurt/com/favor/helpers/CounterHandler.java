@@ -84,8 +84,8 @@ public class CounterHandler {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoIncrement) {
                     autoIncrement = false;
-                    counterStep = defaultCounterStep;
                 }
+                counterStep = defaultCounterStep;
                 return false;
             }
         });
@@ -113,8 +113,8 @@ public class CounterHandler {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoDecrement) {
                     autoDecrement = false;
-                    counterStep = defaultCounterStep;
                 }
+                counterStep = defaultCounterStep;
                 return false;
             }
         });
@@ -230,6 +230,7 @@ public class CounterHandler {
             listener = val;
             return this;
         }
+
         public Builder maxCounterStep(long val) {
             maxCounterStep = val;
             return this;
