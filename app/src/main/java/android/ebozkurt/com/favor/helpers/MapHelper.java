@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -34,26 +35,26 @@ public class MapHelper {
 
     public static BitmapDescriptor getMapIcon(Activity activity, String categoryId) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v;
+        View v = inflater.inflate(R.layout.default_marker, null);
+        ImageView icon = (ImageView) v.findViewById(R.id.default_map_marker_icon);
 
         switch (categoryId) {
             case "ride":
-                v = inflater.inflate(R.layout.ride_marker, null);
+                icon.setImageResource(R.drawable.ride);
                 break;
             case "delivery":
-                v = inflater.inflate(R.layout.delivery_marker, null);
+                icon.setImageResource(R.drawable.delivery);
                 break;
             case "teach":
-                v = inflater.inflate(R.layout.teach_marker, null);
+                icon.setImageResource(R.drawable.teach);
                 break;
             case "borrow":
-                v = inflater.inflate(R.layout.borrow_marker, null);
+                icon.setImageResource(R.drawable.borrow);
                 break;
             case "socialize":
-                v = inflater.inflate(R.layout.socialize_marker, null);
+                //icon.setImageResource(R.drawable.socialize);
                 break;
             default:
-                v = inflater.inflate(R.layout.default_marker, null);
                 break;
         }
 
