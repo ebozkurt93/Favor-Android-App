@@ -11,7 +11,8 @@
     <color name="main_button_text_disabled">@color/white_50_opacity</color>
     <color name="main_button_background_disabled">@color/turquoise_blue_50_opacity</color>
     <color name="edit_profile_divider">@color/charcoal_grey</color>
-    <color name="point">@color/squash</color>
+    <color name="points_background">@color/squash</color>
+    <color name="marker_icon_default">@color/charcoal_grey</color>
 
     <!-- Zeplin colors -->
     <color name="turquoise_blue">#01a3cb</color>

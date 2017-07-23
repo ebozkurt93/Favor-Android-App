@@ -13,12 +13,10 @@ import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -36,9 +34,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CreateEvent2Activity extends AppCompatActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
 
-    //x points left variables
+    //x eventPoints left variables
     EditText description;
-    TextView description_counter, points;
+    TextView description_counter, eventPoints, userPointsTextView;
     ImageButton minus, plus;
     AHBottomNavigation bottomNavigationView;
     Button create;
@@ -52,6 +50,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     String category_id, category_name;
     LatLng coordinates; //todo update this for getting current coordinates, or coordinate of a preselected place
 
+    int userPoints;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +64,15 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
         category_id = getIntent().getStringExtra("category_id");
         category_name = getIntent().getStringExtra("category_name");
+        userPoints = 256;
 
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);
         description.setFilters(new InputFilter[]{new InputFilter.LengthFilter(getResources().getInteger(R.integer.event_description_max_length))});
-        points = (TextView) findViewById(R.id.activity_create_event2_point_textview);
+        eventPoints = (TextView) findViewById(R.id.activity_create_event2_point_textview);
+        eventPoints.setText(Integer.toString(0));
+        userPointsTextView = (TextView) findViewById(R.id.activity_create_event2_user_points_textview);
+        userPointsTextView.setText(Integer.toString(userPoints));
         minus = (ImageButton) findViewById(R.id.activity_create_event2_minus_imagebutton);
         plus = (ImageButton) findViewById(R.id.activity_create_event2_plus_imagebutton);
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_create_event2_bottom_navigation_bar);
@@ -131,9 +135,9 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         new CounterHandler.Builder()
                 .incrementalView(plus)
                 .decrementalView(minus)
-                .startNumber(Integer.parseInt(points.getText().toString()))
+                .startNumber(0)
                 .minRange(0) // cant go any less than -50
-                .maxRange(999) // cant go any further than 50
+                .maxRange(userPoints) // cant go any further than 50
                 .isCycle(false) // 49,50,-50,-49 and so on
                 .counterDelay(50) // speed of counter
                 .counterStep(1)  // steps e.g. 0,2,4,6...
@@ -163,18 +167,18 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
     @Override
     public void onIncrement(View view, long number) {
-        points.setText(String.valueOf(number));
+        eventPoints.setText(String.valueOf(number));
 
     }
 
     @Override
     public void onDecrement(View view, long number) {
-        points.setText(String.valueOf(number));
+        eventPoints.setText(String.valueOf(number));
 
     }
 
     public void checkAllForPosting() {
-        int pointValue = Integer.valueOf(points.getText().toString());
+        int pointValue = Integer.valueOf(eventPoints.getText().toString());
         if (pointValue > 0 && description.getText().length() > 0) {
             create.setEnabled(true);
         } else create.setEnabled(false);
