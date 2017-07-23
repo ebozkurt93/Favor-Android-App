@@ -25,7 +25,7 @@ public class CategoryHelper {
                 iconId = R.drawable.borrow;
                 break;
             case "socialize":
-                iconId = R.color.invisible;
+                iconId = R.drawable.socialize;
                 break;
             default:
                 iconId = R.color.invisible;

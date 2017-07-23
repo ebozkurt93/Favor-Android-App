@@ -5,16 +5,16 @@
               android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/map_marker_title_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/map_marker_title_title"
-        android:background="@drawable/map_title_background"
+        android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:maxEms="18"
+        android:background="@drawable/map_title_background"
         android:maxLines="1"
         android:padding="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/placeholder_long"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/createEventText"/>
 
 </LinearLayout>

@@ -52,6 +52,7 @@
     <string name="socialize">Socialize</string>
     <string name="description">Description</string>
     <string name="till_timeVar_dayVar">Till %1$s %2$s</string>
+    <string name="timeVar_dayVar">%1$s %2$s</string>
     <string name="time">Time</string>
     <string name="now">Now</string>
     <string name="later">Later</string>
@@ -73,6 +74,15 @@
     <string name="current_password">Current Password</string>
     <string name="edit_password">Edit Password</string>
     <string name="end_time">End Time</string>
+    <string-array name="days_short">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
 
 
     <!-- -->

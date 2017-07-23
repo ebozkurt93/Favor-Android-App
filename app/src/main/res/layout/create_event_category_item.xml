@@ -3,49 +3,50 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_event_category_layout"
     android:layout_width="match_parent"
     android:layout_height="72dp"
-    android:id="@+id/create_event_category_layout"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/edit_profile_icon"
-        android:layout_width="wrap_content"
+        android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginLeft="28dp"
-        android:tint="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
+        android:id="@+id/edit_profile_textview"
         style="@style/CreateEventTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="16sp"
-        android:id="@+id/edit_profile_textview"
-        app:layout_constraintLeft_toRightOf="@+id/edit_profile_icon"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="0dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/edit_profile_icon"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/edit_profile_chevron"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="0dp"
         android:src="@drawable/ic_chevron_right_black_24dp"
         android:tint="@color/turquoise_blue"
-        android:layout_marginRight="28dp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -38,7 +38,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
     //x points left variables
     EditText description;
-    TextView description_counter, points, eventEndDate;
+    TextView description_counter, points;
     ImageButton minus, plus;
     AHBottomNavigation bottomNavigationView;
     Button create;
@@ -76,17 +76,11 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         create = (Button) findViewById(R.id.activity_create_event2_create_button);
         create.setText(getResources().getString(R.string.post_event, getResources().getString(R.string.app_name)));
         nowRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_now_radiobutton);
-        eventEndDate = (TextView) findViewById(R.id.activity_create_event2_time_till_textview);
-        setEndDateForEvent(true);
         //not used, since there is 2 options only
         laterRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_later_radiobutton);
 
-        nowRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setEndDateForEvent(isChecked);
-            }
-        });
+        setEventEndDateRadioButton(nowRadioButton, 1);
+        setEventEndDateRadioButton(laterRadioButton, 24);
 
         title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         title.setText(category_name);
@@ -148,23 +142,23 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 .build();
 
         //sabancı coordinates
-       coordinates = new LatLng(40.891444, 29.379922);
+        coordinates = new LatLng(40.891444, 29.379922);
     }
 
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-            if (requestCode == 1) {
-                if(resultCode == Activity.RESULT_OK){
-                    category_id = data.getStringExtra("category_id");
-                    category_name = data.getStringExtra("category_name");
-                    coordinates = data.getParcelableExtra("position");
-                }
-                if (resultCode == Activity.RESULT_CANCELED) {
-                    //Write your code if there's no result
-                }
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                category_id = data.getStringExtra("category_id");
+                category_name = data.getStringExtra("category_name");
+                coordinates = data.getParcelableExtra("position");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
             }
         }
+    }
 
 
     @Override
@@ -186,35 +180,27 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         } else create.setEnabled(false);
     }
 
-    public void setEndDateForEvent(boolean isNowRadioButtonChecked) {
-        if (isNowRadioButtonChecked) {
-            //1 hour
-            setEventEndDateTextView(1);
-        } else {
-            //24 hours
-            setEventEndDateTextView(24);
-        }
-    }
 
-    public void setEventEndDateTextView(int hoursToAdd) {
+    public void setEventEndDateRadioButton(RadioButton button, int hoursToAdd) {
+        String day, time;
 
         Calendar eventDate = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
-        String day;
         eventDate.add(Calendar.HOUR, hoursToAdd);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        String time = sdf.format(eventDate.getTime());
-        time = "<b>" + time + "</b>";
+        time = sdf.format(eventDate.getTime());
         if (today.get(Calendar.YEAR) == eventDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == eventDate.get(Calendar.DAY_OF_YEAR)) {
             //today
             day = getResources().getString(R.string.today);
         } else {
-            //tomorrow
-            day = getResources().getString(R.string.tomorrow);
+            String[] days = getResources().getStringArray(R.array.days_short);
+            day = days[eventDate.get(Calendar.DAY_OF_WEEK) - 1];
         }
-        String finalText = String.format(getResources().getString(R.string.till_timeVar_dayVar), time, day);
-        eventEndDate.setText(Html.fromHtml(finalText));
+        String finalText = String.format(getResources().getString(R.string.timeVar_dayVar), time, day);
+        button.setText(finalText);
+
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -238,7 +224,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Intent i = new Intent(CreateEvent2Activity.this,CreateEventMapActivity.class);
+                Intent i = new Intent(CreateEvent2Activity.this, CreateEventMapActivity.class);
                 i.putExtra("position", coordinates);
                 i.putExtra("category_id", category_id);
                 i.putExtra("category_name", category_name);
@@ -250,7 +236,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Intent i = new Intent(CreateEvent2Activity.this,CreateEventMapActivity.class);
+                Intent i = new Intent(CreateEvent2Activity.this, CreateEventMapActivity.class);
                 i.putExtra("position", coordinates);
                 i.putExtra("category_id", category_id);
                 i.putExtra("category_name", category_name);
@@ -265,8 +251,6 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             }
         });
     }
-
-
 
 
 }
