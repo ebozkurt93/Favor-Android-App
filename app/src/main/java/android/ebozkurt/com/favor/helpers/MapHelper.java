@@ -20,6 +20,8 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 import java.util.Locale;
 
+
+
 /**
  * Created by erdem on 15.07.2017.
  */
@@ -39,9 +41,20 @@ public class MapHelper {
         return null;
     }
 
-    public static BitmapDescriptor getMapIcon(Activity activity, String categoryId) {
+    public static BitmapDescriptor getMapIcon(Activity activity, String categoryId, String mapMarkerState) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.default_marker, null);
+        View v = inflater.inflate(R.layout.default_marker, null); //todo
+        switch (mapMarkerState) {
+            case "now":
+                break;
+            case "later":
+                v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.marker_background_later));
+                break;
+            default:
+                v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.invisible));
+                break;
+        }
+
         ImageView icon = (ImageView) v.findViewById(R.id.default_map_marker_icon);
         int categoryIcon = CategoryHelper.getCategoryIcon(categoryId);
         icon.setImageResource(categoryIcon);

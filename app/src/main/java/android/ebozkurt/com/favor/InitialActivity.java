@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -51,8 +52,7 @@ public class InitialActivity extends ActivityHelper {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(InitialActivity.this, CreateEvent1Activity.class);
-                //todo fix this Intent i = new Intent(InitialActivity.this, LoginActivity.class);
+                Intent i = new Intent(InitialActivity.this, LoginActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.left1, R.anim.left2);
             }
@@ -64,6 +64,24 @@ public class InitialActivity extends ActivityHelper {
                 Intent i = new Intent(InitialActivity.this, SignUp1Activity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.left1, R.anim.left2);
+            }
+        });
+
+        login.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent i = new Intent(InitialActivity.this, CreateEvent1Activity.class);
+                startActivity(i);
+                return false;
+            }
+        });
+
+        signup.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent i = new Intent(InitialActivity.this, EditProfileActivity.class);
+                startActivity(i);
+                return false;
             }
         });
     }

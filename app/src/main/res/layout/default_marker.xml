@@ -3,7 +3,7 @@
              android:id="@+id/default_map_marker"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:background="@drawable/pin">
+             android:background="@drawable/marker_pin">
 
     <ImageView
         android:id="@+id/default_map_marker_icon"
@@ -12,5 +12,5 @@
         android:layout_gravity="center"
         android:paddingBottom="7dp"
         android:scaleType="fitXY"
-        android:tint="@color/createEventText"/>
+        android:tint="@color/marker_icon_default"/>
 </FrameLayout>

@@ -46,12 +46,12 @@
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/include6"
+            app:layout_constraintBottom_toTopOf="@+id/activity_create_event_map_include_default_marker"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
         <include
-            android:id="@+id/include6"
+            android:id="@+id/activity_create_event_map_include_default_marker"
             layout="@layout/default_marker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

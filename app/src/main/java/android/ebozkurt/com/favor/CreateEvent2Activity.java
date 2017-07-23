@@ -15,8 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,6 +43,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     AHBottomNavigation bottomNavigationView;
     Button create;
     RadioButton nowRadioButton, laterRadioButton;
+    String markerState;
 
     //actionbar components
     TextView title;
@@ -49,6 +52,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     GoogleMap map;
     String category_id, category_name;
     LatLng coordinates; //todo update this for getting current coordinates, or coordinate of a preselected place
+    Marker marker;
 
     int userPoints;
 
@@ -82,6 +86,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         nowRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_now_radiobutton);
         //not used, since there is 2 options only
         laterRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_later_radiobutton);
+        markerState = "now";
 
         setEventEndDateRadioButton(nowRadioButton, 1);
         setEventEndDateRadioButton(laterRadioButton, 24);
@@ -94,6 +99,20 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        nowRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    markerState = "now";
+                } else {
+                    markerState = "later";
+                }
+                marker.setIcon(MapHelper.getMapIcon(CreateEvent2Activity.this, category_id, markerState));
+                marker.hideInfoWindow();
+                marker.showInfoWindow();
             }
         });
 
@@ -157,6 +176,10 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 category_id = data.getStringExtra("category_id");
                 category_name = data.getStringExtra("category_name");
                 coordinates = data.getParcelableExtra("position");
+                Log.i("dev", coordinates.toString());
+                marker.setPosition(coordinates);
+                marker.hideInfoWindow();
+                marker.showInfoWindow();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
@@ -218,9 +241,9 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         final MarkerOptions myMarkerOptions = new MarkerOptions()
                 .position(coordinates)
                 .title(addressText)
-                .icon(MapHelper.getMapIcon(this, category_id));
+                .icon(MapHelper.getMapIcon(this, category_id, markerState));
 
-        final Marker marker = map.addMarker(myMarkerOptions);
+        marker = map.addMarker(myMarkerOptions);
 
         map.addMarker(myMarkerOptions).showInfoWindow();
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
@@ -228,11 +251,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Intent i = new Intent(CreateEvent2Activity.this, CreateEventMapActivity.class);
-                i.putExtra("position", coordinates);
-                i.putExtra("category_id", category_id);
-                i.putExtra("category_name", category_name);
-                startActivityForResult(i, 1);
+                mapActivityIntent();
                 return false;
             }
         });
@@ -240,11 +259,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                Intent i = new Intent(CreateEvent2Activity.this, CreateEventMapActivity.class);
-                i.putExtra("position", coordinates);
-                i.putExtra("category_id", category_id);
-                i.putExtra("category_name", category_name);
-                startActivityForResult(i, 1);
+               mapActivityIntent();
             }
         });
 
@@ -254,6 +269,15 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 marker.showInfoWindow();
             }
         });
+    }
+
+    public void mapActivityIntent() {
+        Intent i = new Intent(CreateEvent2Activity.this, CreateEventMapActivity.class);
+        i.putExtra("position", coordinates);
+        i.putExtra("category_id", category_id);
+        i.putExtra("category_name", category_name);
+        i.putExtra("marker_state", markerState);
+        startActivityForResult(i, 1);
     }
 
 
