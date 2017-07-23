@@ -85,7 +85,9 @@ public class CounterHandler {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoIncrement) {
                     autoIncrement = false;
                 }
-                counterStep = defaultCounterStep;
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    counterStep = defaultCounterStep;
+                }
                 return false;
             }
         });
@@ -114,7 +116,9 @@ public class CounterHandler {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoDecrement) {
                     autoDecrement = false;
                 }
-                counterStep = defaultCounterStep;
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    counterStep = defaultCounterStep;
+                }
                 return false;
             }
         });
@@ -230,7 +234,6 @@ public class CounterHandler {
             listener = val;
             return this;
         }
-
         public Builder maxCounterStep(long val) {
             maxCounterStep = val;
             return this;

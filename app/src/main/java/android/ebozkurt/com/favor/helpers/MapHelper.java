@@ -5,6 +5,8 @@ import android.content.Context;
 import android.ebozkurt.com.favor.R;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.location.Address;
+import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,6 +15,10 @@ import android.widget.ImageView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by erdem on 15.07.2017.
@@ -37,50 +43,52 @@ public class MapHelper {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.default_marker, null);
         ImageView icon = (ImageView) v.findViewById(R.id.default_map_marker_icon);
-
-        switch (categoryId) {
-            case "ride":
-                icon.setImageResource(R.drawable.ride);
-                break;
-            case "delivery":
-                icon.setImageResource(R.drawable.delivery);
-                break;
-            case "teach":
-                icon.setImageResource(R.drawable.teach);
-                break;
-            case "borrow":
-                icon.setImageResource(R.drawable.borrow);
-                break;
-            case "socialize":
-                //icon.setImageResource(R.drawable.socialize);
-                break;
-            default:
-                break;
-        }
-
-
+        int categoryIcon = CategoryHelper.getCategoryIcon(categoryId);
+        icon.setImageResource(categoryIcon);
         return BitmapDescriptorFactory.fromBitmap(MapHelper.loadBitmapFromView(v));
     }
 
-    public static void setMapSettings(GoogleMap mMap, Activity activity, boolean scrollable) {
-        mMap.setInfoWindowAdapter(new MyMapInfoWindowAdapter(activity));
-        mMap.getUiSettings().setMapToolbarEnabled(false);
-        //mMap.setMyLocationEnabled(true);
+    public static void setMapSettings(GoogleMap map, Activity activity, boolean scrollable, boolean zoomable) {
+        map.setInfoWindowAdapter(new MyMapInfoWindowAdapter(activity));
+        map.getUiSettings().setMapToolbarEnabled(false);
+        //map.setMyLocationEnabled(true);
 
         //myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         //myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //myMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
-        mMap.getUiSettings().setZoomControlsEnabled(false);
-        mMap.getUiSettings().setCompassEnabled(true);
+        map.getUiSettings().setZoomControlsEnabled(false);
+        map.getUiSettings().setCompassEnabled(true);
 
-        mMap.getUiSettings().setRotateGesturesEnabled(true);
-        mMap.getUiSettings().setScrollGesturesEnabled(scrollable);
-        mMap.getUiSettings().setTiltGesturesEnabled(true);
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.setMinZoomPreference(15f);
-        mMap.setMaxZoomPreference(35f);
+        map.getUiSettings().setRotateGesturesEnabled(true);
+        map.getUiSettings().setScrollGesturesEnabled(scrollable);
+        map.getUiSettings().setTiltGesturesEnabled(true);
+        map.getUiSettings().setZoomGesturesEnabled(zoomable);
+        map.setMinZoomPreference(15f);
+        map.setMaxZoomPreference(35f);
         //or myMap.getUiSettings().setAllGesturesEnabled(true);
+    }
+
+    public static String getAddress(Context context, LatLng location) {
+        String addressText = "";
+
+        try {
+            Geocoder geo = new Geocoder(context, Locale.getDefault());
+            List<Address> addresses = geo.getFromLocation(location.latitude, location.longitude, 1);
+            if (addresses.isEmpty()) {
+                addressText = "";
+            } else {
+                if (addresses.size() > 0) {
+                    Address address = addresses.get(0);
+                    addressText = address.getAddressLine(0);
+                    //addressText = address.getFeatureName() + ", " + address.getPostalCode();
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // getFromLocation() may sometimes fail
+        }
+        return addressText;
     }
 }

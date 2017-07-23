@@ -23,7 +23,9 @@ import java.util.List;
 
 public class CreateEvent1Activity extends AppCompatActivity {
 
+    //actionbar components
     TextView title;
+
     AHBottomNavigation bottomNavigationView;
 
     @Override

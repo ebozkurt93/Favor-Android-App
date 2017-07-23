@@ -76,6 +76,8 @@
         </activity>
         <activity android:name=".EditProfilePasswordActivity">
         </activity>
+        <activity android:name=".CreateEventMapActivity">
+        </activity>
     </application>
 
 </manifest>

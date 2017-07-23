@@ -1,32 +1,27 @@
 package android.ebozkurt.com.favor;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 import android.ebozkurt.com.favor.helpers.MapHelper;
-import android.ebozkurt.com.favor.helpers.MyMapInfoWindowAdapter;
-import android.location.Address;
-import android.location.Geocoder;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -39,7 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class CreateEvent2Activity extends FragmentActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
+public class CreateEvent2Activity extends AppCompatActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
 
     //x points left variables
     EditText description;
@@ -48,10 +43,14 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
     AHBottomNavigation bottomNavigationView;
     Button create;
     RadioButton nowRadioButton, laterRadioButton;
+
+    //actionbar components
     TextView title;
-    ImageButton back;
-    private GoogleMap mMap;
+    ImageView back;
+
+    GoogleMap map;
     String category_id, category_name;
+    LatLng coordinates; //todo update this for getting current coordinates, or coordinate of a preselected place
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
         ActivityHelper.initialize(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
+                .findFragmentById(R.id.activity_create_event2_mapfragment);
         mapFragment.getMapAsync(this);
 
         category_id = getIntent().getStringExtra("category_id");
@@ -135,8 +134,6 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
             }
         });
 
-        //todo add rapid counter for points on long press
-
         new CounterHandler.Builder()
                 .incrementalView(plus)
                 .decrementalView(minus)
@@ -150,33 +147,25 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
                 .listener(this) // to listen counter results and show them in app
                 .build();
 
-        Log.i("dev", points.getText().toString());
-
-/*
-        minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int value = Integer.valueOf(points.getText().toString());
-                if (value > 0) {
-                    value = value - 1;
-                    points.setText(String.valueOf(value));
-                    checkAllForPosting();
-                }
-            }
-        });
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int value = Integer.valueOf(points.getText().toString());
-                if (value < 999) {
-                    value = value + 1;
-                    points.setText(String.valueOf(value));
-                    checkAllForPosting();
-                }
-            }
-        });
-        */
+        //sabancı coordinates
+       coordinates = new LatLng(40.891444, 29.379922);
     }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+            if (requestCode == 1) {
+                if(resultCode == Activity.RESULT_OK){
+                    category_id = data.getStringExtra("category_id");
+                    category_name = data.getStringExtra("category_name");
+                    coordinates = data.getParcelableExtra("position");
+                }
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    //Write your code if there's no result
+                }
+            }
+        }
+
 
     @Override
     public void onIncrement(View view, long number) {
@@ -229,39 +218,55 @@ public class CreateEvent2Activity extends FragmentActivity implements CounterHan
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        MapHelper.setMapSettings(mMap, this, false);
+        map = googleMap;
+        MapHelper.setMapSettings(map, this, false, false);
 
-        //LatLng sabanciUniv = new LatLng(40.891444, 29.379922);
-        LatLng sabanciUniv = new LatLng(40.7143528,-74.0059731);
 
-        MarkerOptions myMarkerOptions = new MarkerOptions()
-                .position(sabanciUniv)
+        //LatLng coordinates = new LatLng(40.7143528,-74.0059731); //ny coordinates
+        String addressText = MapHelper.getAddress(CreateEvent2Activity.this.getApplicationContext(), coordinates);
+
+        final MarkerOptions myMarkerOptions = new MarkerOptions()
+                .position(coordinates)
+                .title(addressText)
                 .icon(MapHelper.getMapIcon(this, category_id));
-                //.title("Template marker title");
-        mMap.addMarker(myMarkerOptions).showInfoWindow();
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sabanciUniv));
+        final Marker marker = map.addMarker(myMarkerOptions);
 
-        try {
-            Geocoder geo = new Geocoder(CreateEvent2Activity.this.getApplicationContext(), Locale.getDefault());
-            List<Address> addresses = geo.getFromLocation(sabanciUniv.latitude, sabanciUniv.longitude, 1);
-            if (addresses.isEmpty()) {
-                myMarkerOptions.title("Waiting for Location");
+        map.addMarker(myMarkerOptions).showInfoWindow();
+        map.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Intent i = new Intent(CreateEvent2Activity.this,CreateEventMapActivity.class);
+                i.putExtra("position", coordinates);
+                i.putExtra("category_id", category_id);
+                i.putExtra("category_name", category_name);
+                startActivityForResult(i, 1);
+                return false;
             }
-            else {
-                if (addresses.size() > 0) {
-                    myMarkerOptions.title(addresses.get(0).getAddressLine(0)); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        });
 
-                    //myMarkerOptions.title(addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
-                    //Toast.makeText(getApplicationContext(), "Address:- " + addresses.get(0).getFeatureName() + addresses.get(0).getAdminArea() + addresses.get(0).getLocality(), Toast.LENGTH_LONG).show();
-                }
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent i = new Intent(CreateEvent2Activity.this,CreateEventMapActivity.class);
+                i.putExtra("position", coordinates);
+                i.putExtra("category_id", category_id);
+                i.putExtra("category_name", category_name);
+                startActivityForResult(i, 1);
             }
-        }
-        catch (Exception e) {
-            e.printStackTrace(); // getFromLocation() may sometimes fail
-        }
+        });
+
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                marker.showInfoWindow();
+            }
+        });
     }
+
+
 
 
 }
