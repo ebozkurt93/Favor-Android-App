@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_event2_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -56,20 +57,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_description_edittext"/>
 
             <View
+                android:id="@+id/view4"
                 android:layout_width="0dp"
-                android:layout_height="0.5dp"
+                android:layout_height="0.6dp"
                 android:background="@drawable/category_divider"
                 android:backgroundTint="@color/colorPrimary"
-                android:layout_marginTop="0dp"
-                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_description_edittext"
-                android:layout_marginLeft="0dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginRight="0dp"
-                app:layout_constraintRight_toRightOf="parent"
-                android:id="@+id/view4"
+                app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_time_textview"
                 app:layout_constraintHorizontal_bias="0.0"
-                android:layout_marginBottom="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_time_textview"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_description_edittext"/>
 
             <TextView
                 android:id="@+id/activity_create_event2_time_textview"
@@ -111,17 +108,13 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="0.5dp"
+                android:layout_height="0.6dp"
                 android:background="@drawable/category_divider"
                 android:backgroundTint="@color/colorPrimary"
-                android:layout_marginLeft="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_prize_textview"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginRight="0dp"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="0dp"
-                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_time_radiogroup"
-                android:layout_marginBottom="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_prize_textview"/>
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_time_radiogroup"/>
 
             <TextView
                 android:id="@+id/activity_create_event2_prize_textview"
@@ -138,96 +131,98 @@
                 style="@style/CreateEvent2TitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="50dp"
-                android:text="0"
-                android:gravity="center"
-                android:textColor="@color/colorAccent"
-                android:padding="4dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginRight="28dp"
                 android:background="@drawable/now_later_enabled_background"
                 android:backgroundTint="@color/points_background"
-                android:layout_marginTop="0dp"
-                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_prize_textview"
-                android:layout_marginBottom="0dp"
+                android:gravity="center"
+                android:minWidth="50dp"
+                android:padding="4dp"
+                android:text="0"
+                android:textColor="@color/colorAccent"
                 app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_prize_textview"
-                android:layout_marginRight="28dp"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_prize_textview"/>
 
-            <LinearLayout
-                android:id="@+id/linearLayout5"
+            <ImageButton
+                android:id="@+id/activity_create_event2_minus_imagebutton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/now_later_enabled_background"
+                android:src="@drawable/ic_remove_black_24dp"
+                android:tint="@color/colorAccent"
+                app:layout_constraintRight_toLeftOf="@+id/activity_create_event2_point_edittext"
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_prize_textview"/>
+
+            <TextView
+                android:id="@+id/activity_create_event2_point_edittext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/now_later_enabled_background"
+                android:backgroundTint="@color/create_event_points_background"
+                android:gravity="center"
+                android:inputType="number"
+                android:minHeight="36dp"
+                android:minWidth="70dp"
+                android:text="0"
+                android:textColor="@color/createEventText"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_minus_imagebutton"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_prize_textview">
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_minus_imagebutton"/>
 
-                <ImageButton
-                    android:id="@+id/activity_create_event2_minus_imagebutton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/now_later_enabled_background"
-                    android:src="@drawable/ic_remove_black_24dp"
-                    android:tint="@color/colorAccent"/>
-
-                <TextView
-                    android:id="@+id/activity_create_event2_point_textview"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="@color/createEventText"
-                    android:textSize="28sp"
-                    android:textStyle="bold"/>
-
-                <ImageButton
-                    android:id="@+id/activity_create_event2_plus_imagebutton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/now_later_enabled_background"
-                    android:src="@drawable/ic_add_black_24dp"
-                    android:tint="@color/colorAccent"/>
-            </LinearLayout>
+            <ImageButton
+                android:id="@+id/activity_create_event2_plus_imagebutton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/now_later_enabled_background"
+                android:src="@drawable/ic_add_black_24dp"
+                android:tint="@color/colorAccent"
+                app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_minus_imagebutton"
+                app:layout_constraintLeft_toRightOf="@+id/activity_create_event2_point_edittext"
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_minus_imagebutton"/>
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="0.5dp"
+                android:layout_height="0.6dp"
+                android:layout_marginBottom="-1dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/category_divider"
                 android:backgroundTint="@color/colorPrimary"
-                android:layout_marginLeft="0dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginRight="0dp"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginBottom="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView"
-                android:layout_marginTop="0dp"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout5"/>
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_minus_imagebutton"/>
 
             <TextView
                 android:id="@+id/textView"
                 style="@style/CreateEvent2TitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginStart="28dp"
                 android:layout_marginTop="48dp"
                 android:text="@string/location"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout5"/>
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_minus_imagebutton"/>
 
             <fragment
                 android:id="@+id/activity_create_event2_mapfragment"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
                 android:layout_marginTop="24dp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -240,8 +235,6 @@
                 style="@style/MainButtons"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
                 android:layout_marginTop="24dp"
                 android:enabled="false"
                 android:text="@string/post_event"
@@ -252,7 +245,8 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                app:layout_constraintTop_toBottomOf="@id/activity_create_event2_create_button"/>
+                app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_create_button"
+                tools:layout_editor_absoluteX="0dp"/>
 
 
         </android.support.constraint.ConstraintLayout>

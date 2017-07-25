@@ -1,6 +1,7 @@
 package android.ebozkurt.com.favor;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
@@ -9,19 +10,28 @@ import android.ebozkurt.com.favor.helpers.CounterHandler;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.solver.widgets.ConstraintTableLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -36,9 +46,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CreateEvent2Activity extends AppCompatActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
 
-    //x eventPoints left variables
+    LinearLayout layout;
+    //x eventPointsTextView left variables
     EditText description;
-    TextView description_counter, eventPoints, userPointsTextView;
+    TextView description_counter, userPointsTextView, eventPointsTextView;
     ImageButton minus, plus;
     AHBottomNavigation bottomNavigationView;
     Button create;
@@ -61,7 +72,6 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event2);
         ActivityHelper.initialize(this);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_create_event2_mapfragment);
         mapFragment.getMapAsync(this);
@@ -70,11 +80,18 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         category_name = getIntent().getStringExtra("category_name");
         userPoints = 256;
 
+
+        layout = (LinearLayout) findViewById(R.id.activity_create_event2_layout);
+        setupParent(layout);
+
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);
         description.setFilters(new InputFilter[]{new InputFilter.LengthFilter(getResources().getInteger(R.integer.event_description_max_length))});
-        eventPoints = (TextView) findViewById(R.id.activity_create_event2_point_textview);
-        eventPoints.setText(Integer.toString(0));
+        description.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        description.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        eventPointsTextView = (TextView) findViewById(R.id.activity_create_event2_point_edittext);
+        eventPointsTextView.setText(Integer.toString(0));
+        //eventPointsTextView.setFilters(new InputFilter[]{ new InputFilterMinMax("0", Integer.toString(userPoints))});
         userPointsTextView = (TextView) findViewById(R.id.activity_create_event2_user_points_textview);
         userPointsTextView.setText(Integer.toString(userPoints));
         minus = (ImageButton) findViewById(R.id.activity_create_event2_minus_imagebutton);
@@ -99,6 +116,15 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        description.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    KeyboardHelper.hideSoftKeyboard(CreateEvent2Activity.this);
+                }
             }
         });
 
@@ -151,6 +177,28 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             }
         });
 
+        eventPointsTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int p = Integer.parseInt(eventPointsTextView.getText().toString());
+                if (p < 0) {
+                    eventPointsTextView.setText("0");
+                } else if (p > userPoints) {
+                    eventPointsTextView.setText(userPoints);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         new CounterHandler.Builder()
                 .incrementalView(plus)
                 .decrementalView(minus)
@@ -166,6 +214,26 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
         //sabancı coordinates
         coordinates = new LatLng(40.891444, 29.379922);
+
+eventPointsTextView.addTextChangedListener(new TextWatcher() {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        int pointsLeft = userPoints - Integer.valueOf(eventPointsTextView.getText().toString());
+        userPointsTextView.setText(Integer.toString(pointsLeft));
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        int pointsLeft = userPoints - Integer.valueOf(eventPointsTextView.getText().toString());
+        userPointsTextView.setText(Integer.toString(pointsLeft));
+    }
+});
+
     }
 
     @Override
@@ -190,18 +258,16 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
     @Override
     public void onIncrement(View view, long number) {
-        eventPoints.setText(String.valueOf(number));
-
+        eventPointsTextView.setText(String.valueOf(number));
     }
 
     @Override
     public void onDecrement(View view, long number) {
-        eventPoints.setText(String.valueOf(number));
-
+        eventPointsTextView.setText(String.valueOf(number));
     }
 
     public void checkAllForPosting() {
-        int pointValue = Integer.valueOf(eventPoints.getText().toString());
+        int pointValue = Integer.valueOf(eventPointsTextView.getText().toString());
         if (pointValue > 0 && description.getText().length() > 0) {
             create.setEnabled(true);
         } else create.setEnabled(false);
@@ -246,7 +312,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         marker = map.addMarker(myMarkerOptions);
 
         map.addMarker(myMarkerOptions).showInfoWindow();
-        map.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
+        LatLng cameraPos = new LatLng(coordinates.latitude + 0.001, coordinates.longitude);
+        map.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -259,7 +326,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-               mapActivityIntent();
+                mapActivityIntent();
             }
         });
 
@@ -280,5 +347,22 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         startActivityForResult(i, 1);
     }
 
-
+    protected void setupParent(View view) {
+        //Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    KeyboardHelper.hideSoftKeyboard(CreateEvent2Activity.this);
+                    return false;
+                }
+            });
+        }
+        //If a layout container, iterate over children
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupParent(innerView);
+            }
+        }
+    }
 }
