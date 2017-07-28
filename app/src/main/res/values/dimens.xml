@@ -5,7 +5,11 @@
     <dimen name="general_marginleftright">28dp</dimen>
     <dimen name="login_signup_buttons_textsize">17sp</dimen>
     <dimen name="background_rectangle_border">4dp</dimen>
-
+    <!--
+    <dimen name="create_event_2_radio_button_animation">20dp</dimen>
+    <dimen name="create_event_2_radio_button_animation_return">-20dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+-->
     <!-- Dimens for size limits related to server values or values sent to server -->
     <integer name="event_description_max_length">100</integer>
     <integer name="personal_description_max_length">80</integer>

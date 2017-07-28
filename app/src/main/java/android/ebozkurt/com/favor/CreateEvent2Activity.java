@@ -1,8 +1,10 @@
 package android.ebozkurt.com.favor;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
@@ -13,8 +15,6 @@ import java.util.Calendar;
 import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.solver.widgets.ConstraintTableLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -25,7 +25,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -60,12 +59,16 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     TextView title;
     ImageView back;
 
+    //Animation shake;
+
     GoogleMap map;
     String category_id, category_name;
     LatLng coordinates; //todo update this for getting current coordinates, or coordinate of a preselected place
     Marker marker;
 
     int userPoints;
+
+    BroadcastReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         description.setFilters(new InputFilter[]{new InputFilter.LengthFilter(getResources().getInteger(R.integer.event_description_max_length))});
         description.setImeOptions(EditorInfo.IME_ACTION_DONE);
         description.setRawInputType(InputType.TYPE_CLASS_TEXT);
-        eventPointsTextView = (TextView) findViewById(R.id.activity_create_event2_point_edittext);
+        eventPointsTextView = (TextView) findViewById(R.id.activity_create_event2_point_textview);
         eventPointsTextView.setText(Integer.toString(0));
         //eventPointsTextView.setFilters(new InputFilter[]{ new InputFilterMinMax("0", Integer.toString(userPoints))});
         userPointsTextView = (TextView) findViewById(R.id.activity_create_event2_user_points_textview);
@@ -105,12 +108,12 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         laterRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_later_radiobutton);
         markerState = "now";
 
-        setEventEndDateRadioButton(nowRadioButton, 1);
-        setEventEndDateRadioButton(laterRadioButton, 24);
+       setNowLaterRadioButtonValues();
 
         title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         title.setText(category_name);
         back = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
+        //shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +202,18 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             }
         });
 
+        eventPointsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo animation shake
+                //plus.startAnimation(shake);
+                //minus.startAnimation(shake);
+                //plus.setTranslationX(20);
+                //animate up and to full alpha.
+                //plus.animate().translationX(0).setDuration(100).start();
+            }
+        });
+
         new CounterHandler.Builder()
                 .incrementalView(plus)
                 .decrementalView(minus)
@@ -215,25 +230,47 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         //sabancı coordinates
         coordinates = new LatLng(40.891444, 29.379922);
 
-eventPointsTextView.addTextChangedListener(new TextWatcher() {
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        eventPointsTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int pointsLeft = userPoints - Integer.valueOf(eventPointsTextView.getText().toString());
+                userPointsTextView.setText(Integer.toString(pointsLeft));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int pointsLeft = userPoints - Integer.valueOf(eventPointsTextView.getText().toString());
+                userPointsTextView.setText(Integer.toString(pointsLeft));
+            }
+        });
 
     }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        int pointsLeft = userPoints - Integer.valueOf(eventPointsTextView.getText().toString());
-        userPointsTextView.setText(Integer.toString(pointsLeft));
+    public void onStart() {
+        super.onStart();
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context ctx, Intent intent) {
+                if (intent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
+                   setNowLaterRadioButtonValues();
+                }
+            }
+        };
+
+        registerReceiver(broadcastReceiver, new IntentFilter(Intent.ACTION_TIME_TICK));
     }
 
     @Override
-    public void afterTextChanged(Editable s) {
-        int pointsLeft = userPoints - Integer.valueOf(eventPointsTextView.getText().toString());
-        userPointsTextView.setText(Integer.toString(pointsLeft));
-    }
-});
-
+    public void onStop() {
+        super.onStop();
+        if (broadcastReceiver != null)
+            unregisterReceiver(broadcastReceiver);
     }
 
     @Override
@@ -364,5 +401,10 @@ eventPointsTextView.addTextChangedListener(new TextWatcher() {
                 setupParent(innerView);
             }
         }
+    }
+
+    private void setNowLaterRadioButtonValues() {
+        setEventEndDateRadioButton(nowRadioButton, 1);
+        setEventEndDateRadioButton(laterRadioButton, 24);
     }
 }
