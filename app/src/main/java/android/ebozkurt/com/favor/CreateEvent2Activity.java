@@ -108,7 +108,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         laterRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_later_radiobutton);
         markerState = "now";
 
-       setNowLaterRadioButtonValues();
+        setNowLaterRadioButtonValues();
 
         title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         title.setText(category_name);
@@ -139,6 +139,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 } else {
                     markerState = "later";
                 }
+                checkAllForPosting();
                 marker.setIcon(MapHelper.getMapIcon(CreateEvent2Activity.this, category_id, markerState));
                 marker.hideInfoWindow();
                 marker.showInfoWindow();
@@ -227,8 +228,6 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 .listener(this) // to listen counter results and show them in app
                 .build();
 
-        //sabancı coordinates
-        coordinates = new LatLng(40.891444, 29.379922);
 
         eventPointsTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -258,7 +257,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             @Override
             public void onReceive(Context ctx, Intent intent) {
                 if (intent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0) {
-                   setNowLaterRadioButtonValues();
+                    setNowLaterRadioButtonValues();
                 }
             }
         };
@@ -282,9 +281,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 category_name = data.getStringExtra("category_name");
                 coordinates = data.getParcelableExtra("position");
                 Log.i("dev", coordinates.toString());
-                marker.setPosition(coordinates);
-                marker.hideInfoWindow();
-                marker.showInfoWindow();
+                onMapReady(map);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
@@ -337,7 +334,10 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         map = googleMap;
         MapHelper.setMapSettings(map, this, false, false);
 
-
+        //sabancı coordinates
+        if (coordinates == null) {
+            coordinates = new LatLng(40.891444, 29.379922);
+        }
         //LatLng coordinates = new LatLng(40.7143528,-74.0059731); //ny coordinates
         String addressText = MapHelper.getAddress(CreateEvent2Activity.this.getApplicationContext(), coordinates);
 
@@ -347,8 +347,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 .icon(MapHelper.getMapIcon(this, category_id, markerState));
 
         marker = map.addMarker(myMarkerOptions);
+        marker.showInfoWindow();
 
-        map.addMarker(myMarkerOptions).showInfoWindow();
         LatLng cameraPos = new LatLng(coordinates.latitude + 0.001, coordinates.longitude);
         map.moveCamera(CameraUpdateFactory.newLatLng(cameraPos));
 
@@ -371,12 +371,14 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             @Override
             public void onMapClick(LatLng latLng) {
                 marker.showInfoWindow();
+                mapActivityIntent();
             }
         });
     }
 
     public void mapActivityIntent() {
         Intent i = new Intent(CreateEvent2Activity.this, CreateEventMapActivity.class);
+        marker.remove();
         i.putExtra("position", coordinates);
         i.putExtra("category_id", category_id);
         i.putExtra("category_name", category_name);
