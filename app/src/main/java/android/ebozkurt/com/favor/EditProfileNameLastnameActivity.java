@@ -31,6 +31,7 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_name_lastname);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), EditProfileNameLastnameActivity.this);
 
         nameTextInputLayout = (TextInputLayout) findViewById(R.id.activity_edit_profile_name_lastname_name_text_input_layout);
         lastnameTextInputLayout = (TextInputLayout) findViewById(R.id.activity_edit_profile_name_lastname_lastname_text_input_layout);

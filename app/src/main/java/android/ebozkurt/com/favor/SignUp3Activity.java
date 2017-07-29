@@ -39,6 +39,7 @@ public class SignUp3Activity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up3);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), SignUp3Activity.this);
 
         actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
         actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);

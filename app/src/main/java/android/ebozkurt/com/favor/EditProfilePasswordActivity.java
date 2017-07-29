@@ -35,6 +35,8 @@ public class EditProfilePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_password);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), EditProfilePasswordActivity.this);
+
 
         currentPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_edit_profile_password_current_password_text_input_layout);
         currentPasswordEditText = (EditText) findViewById(R.id.activity_edit_profile_password_current_password_editText);

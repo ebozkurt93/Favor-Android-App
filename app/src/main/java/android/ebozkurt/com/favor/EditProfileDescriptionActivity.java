@@ -28,6 +28,8 @@ public class EditProfileDescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_description);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), EditProfileDescriptionActivity.this);
+
 
         descriptionTextInputLayout = (TextInputLayout) findViewById(R.id.activity_edit_profile_description_description_text_input_layout);
         descriptionEditText = (EditText) findViewById(R.id.activity_edit_profile_description_description_editText);

@@ -36,6 +36,7 @@ public class EditProfileEmailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_email);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), EditProfileEmailActivity.this);
 
         emailTextInputLayout = (TextInputLayout) findViewById(R.id.activity_edit_profile_email_email_text_input_layout);
         emailEditText = (EditText) findViewById(R.id.activity_edit_profile_email_email_editText);

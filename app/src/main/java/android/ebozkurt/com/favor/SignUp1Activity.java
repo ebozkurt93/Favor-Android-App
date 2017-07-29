@@ -48,6 +48,7 @@ public class SignUp1Activity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up1);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), SignUp1Activity.this);
 
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
@@ -109,7 +110,7 @@ public class SignUp1Activity extends ActivityHelper {
 
             }
         });
-
+/*
         name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -121,7 +122,7 @@ public class SignUp1Activity extends ActivityHelper {
                 }
             }
         });
-
+*/
 
         surname.addTextChangedListener(new TextWatcher() {
             @Override

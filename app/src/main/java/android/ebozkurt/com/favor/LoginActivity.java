@@ -47,6 +47,9 @@ public class LoginActivity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), LoginActivity.this);
+
+
         backImageButton = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         actionBarCenterText = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         actionBarCenterText.setText(R.string.sign_in);

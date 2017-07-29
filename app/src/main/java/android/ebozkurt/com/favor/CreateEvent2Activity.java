@@ -21,9 +21,9 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -45,7 +45,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CreateEvent2Activity extends AppCompatActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
 
-    LinearLayout layout;
     //x eventPointsTextView left variables
     EditText description;
     TextView description_counter, userPointsTextView, eventPointsTextView;
@@ -59,7 +58,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
     TextView title;
     ImageView back;
 
-    //Animation shake;
+    Animation shake;
 
     GoogleMap map;
     String category_id, category_name;
@@ -75,6 +74,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event2);
         ActivityHelper.initialize(this);
+        ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), CreateEvent2Activity.this);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_create_event2_mapfragment);
         mapFragment.getMapAsync(this);
@@ -82,10 +83,6 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         category_id = getIntent().getStringExtra("category_id");
         category_name = getIntent().getStringExtra("category_name");
         userPoints = 256;
-
-
-        layout = (LinearLayout) findViewById(R.id.activity_create_event2_layout);
-        setupParent(layout);
 
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);
@@ -113,7 +110,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         title.setText(category_name);
         back = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
-        //shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+        shake = AnimationUtils.loadAnimation(this, R.anim.createevent2_point_button_shake_animation);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +192,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 } else if (p > userPoints) {
                     eventPointsTextView.setText(userPoints);
                 }
+                checkAllForPosting();
             }
 
             @Override
@@ -207,8 +205,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             @Override
             public void onClick(View v) {
                 //todo animation shake
-                //plus.startAnimation(shake);
-                //minus.startAnimation(shake);
+                plus.startAnimation(shake);
+                minus.startAnimation(shake);
                 //plus.setTranslationX(20);
                 //animate up and to full alpha.
                 //plus.animate().translationX(0).setDuration(100).start();
@@ -281,12 +279,13 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 category_name = data.getStringExtra("category_name");
                 coordinates = data.getParcelableExtra("position");
                 Log.i("dev", coordinates.toString());
-                onMapReady(map);
+                checkAllForPosting();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
         }
+        onMapReady(map);
     }
 
 
@@ -386,24 +385,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         startActivityForResult(i, 1);
     }
 
-    protected void setupParent(View view) {
-        //Set up touch listener for non-text box views to hide keyboard.
-        if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
-                    KeyboardHelper.hideSoftKeyboard(CreateEvent2Activity.this);
-                    return false;
-                }
-            });
-        }
-        //If a layout container, iterate over children
-        if (view instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-                View innerView = ((ViewGroup) view).getChildAt(i);
-                setupParent(innerView);
-            }
-        }
-    }
+
 
     private void setNowLaterRadioButtonValues() {
         setEventEndDateRadioButton(nowRadioButton, 1);
