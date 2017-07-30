@@ -15,6 +15,7 @@ import java.util.Calendar;
 import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -32,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -76,6 +78,9 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), CreateEvent2Activity.this);
 
+        RelativeLayout actionBarLayout = (RelativeLayout) findViewById(R.id.sign_up1_action_bar_relative_layout);
+        actionBarLayout.setBackground(getResources().getDrawable(R.drawable.gradient_background_action_bar));
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_create_event2_mapfragment);
         mapFragment.getMapAsync(this);
@@ -83,6 +88,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         category_id = getIntent().getStringExtra("category_id");
         category_name = getIntent().getStringExtra("category_name");
         userPoints = 256;
+
 
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);

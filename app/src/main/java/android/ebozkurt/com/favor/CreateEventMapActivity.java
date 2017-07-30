@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +44,10 @@ public class CreateEventMapActivity extends AppCompatActivity implements OnMapRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event_map);
         ActivityHelper.initialize(this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
+
+        RelativeLayout actionBarLayout = (RelativeLayout) findViewById(R.id.include5);
+        actionBarLayout.setBackground(getResources().getDrawable(R.drawable.gradient_background_action_bar));
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_create_event_map_mapfragment);

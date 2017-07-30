@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="@drawable/gradient_background"
     tools:context="android.ebozkurt.com.favor.InitialActivity">
 
     <!--
@@ -45,12 +47,12 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_initial_viewPager_dots"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintBottom_toTopOf="@+id/activity_initial_viewPager_dots">
+        app:layout_constraintVertical_bias="0.0">
     </android.support.v4.view.ViewPager>
 
     <android.support.design.widget.TabLayout
@@ -67,15 +69,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:tabBackground="@drawable/viewpager_dot_selector"
         app:tabGravity="center"
-        app:tabMaxWidth="14dp"
-        app:tabIndicatorHeight="0dp"/>
+        app:tabIndicatorHeight="0dp"
+        app:tabMaxWidth="14dp"/>
 
 
     <LinearLayout
         android:id="@+id/activity_initial_linear_layout"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

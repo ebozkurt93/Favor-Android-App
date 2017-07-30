@@ -5,6 +5,8 @@
     <color name="colorAccent">@color/white</color>
     <color name="login_signup_button_background_disabled">@color/white_disabled</color>
     <color name="login_signup_button_text_disabled">@color/very_light_gray</color>
+    <color name="initial_viewpager_dot_selected">@color/squash</color>
+    <color name="initial_viewpager_dot_default">@color/pale_grey</color>
     <color name="errorText">@color/scarlet</color>
     <color name="createEventText">@color/charcoal_grey</color>
     <color name="createEventCounterMax">@color/scarlet</color>
@@ -20,6 +22,12 @@
     <color name="marker_background_sent_request">@color/squash</color>
     <color name="marker_background_my_event">@color/white</color>
 
+    <!-- gradient background colors -->
+    <!--
+        <color name="background_start">#21BFD4</color>
+        <color name="background_end">#5951B0</color>
+        <color name="background_action_or_status_bar_end">#3697C6</color>
+    -->
 
     <!-- Zeplin colors -->
     <color name="turquoise_blue">#01a3cb</color>
@@ -39,8 +47,6 @@
     <color name="facebook_blue">#3b5998</color>
 
     <color name="invisible">#00000000</color>
-
-
 
 
     <!--Old Zeplin colors -->

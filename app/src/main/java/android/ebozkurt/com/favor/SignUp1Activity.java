@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.PaintDrawable;
+import android.os.Build;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,10 +19,12 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -49,6 +52,7 @@ public class SignUp1Activity extends ActivityHelper {
         setContentView(R.layout.activity_sign_up1);
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), SignUp1Activity.this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
 
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);

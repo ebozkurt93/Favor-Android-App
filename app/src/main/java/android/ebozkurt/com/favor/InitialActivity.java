@@ -35,6 +35,7 @@ public class InitialActivity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
         ActivityHelper.initialize(this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.activity_initial_viewPager);
         TabLayout vpPagerTabLayout = (TabLayout) findViewById(R.id.activity_initial_viewPager_dots);
@@ -92,7 +93,7 @@ public class InitialActivity extends ActivityHelper {
     }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 4;
+        private static int NUM_ITEMS = 3;
         private Context context;
 
         public MyPagerAdapter(FragmentManager fragmentManager, Context current) {
@@ -111,13 +112,11 @@ public class InitialActivity extends ActivityHelper {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return InitialViewPager1Fragment.newInstance(0, context.getResources().getString(R.string.get_to_know), context.getResources().getString(R.string.do_favors_in_exchange), R.color.colorPrimary);
+                    return InitialViewPager1Fragment.newInstance(0, context.getResources().getString(R.string.initial_viewpager_1_title, context.getResources().getString(R.string.app_name)), context.getResources().getString(R.string.initial_viewpager_1_text), R.drawable.welcome_01);
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return InitialViewPager1Fragment.newInstance(1, "Page # 2", "fgfghfgh", R.color.colorPrimaryDark);
+                    return InitialViewPager1Fragment.newInstance(0, context.getResources().getString(R.string.initial_viewpager_2_title), context.getResources().getString(R.string.initial_viewpager_2_text), R.drawable.welcome_02);
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return InitialViewPager1Fragment.newInstance(2, "Page # 3", "zxcvbnmöç", R.color.login_signup_button_text_disabled);
-                case 3:
-                    return InitialViewPager1Fragment.newInstance(3, "Page # 4", "page 4", R.color.facebook_blue);
+                    return InitialViewPager1Fragment.newInstance(0, context.getResources().getString(R.string.initial_viewpager_3_title), context.getResources().getString(R.string.initial_viewpager_3_text), R.drawable.welcome_03);
 
                 default:
                     return null;

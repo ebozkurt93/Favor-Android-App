@@ -37,8 +37,13 @@
     <string name="welcome">Welcome!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="get_to_know">Get To Know New People</string>
-    <string name="do_favors_in_exchange">Do favors in exchange of points, spend your points by requesting favors from people around...</string>
+    <string name="initial_viewpager_1_title">Welcome to %1$s</string>
+    <string name="initial_viewpager_1_text">Do favors in exchange of points, ask for favors in exchange of points.</string>
+    <string name="initial_viewpager_2_title">Socialize, Experience, Discover</string>
+    <string name="initial_viewpager_2_text">Ask or do favors anytime, get to know new people around you.</string>
+    <string name="initial_viewpager_3_title">Anything You Need</string>
+    <string name="initial_viewpager_3_text">5 categories, unlimited favors, collaborate to the sharing economy.</string>
+
     <string name="home">Home</string>
     <string name="chat">Chat</string>
     <string name="create">Create</string>
@@ -74,6 +79,7 @@
     <string name="current_password">Current Password</string>
     <string name="edit_password">Edit Password</string>
     <string name="end_time">End Time</string>
+    <string name="please_select_a_category">Please select a category.</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

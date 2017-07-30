@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- For TextInputLayout Bottom Line Color -->
         <item name="colorControlNormal">@color/colorAccent</item>
+
+        <!--todo remove this -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
     </style>
 
     <style name="MainAppTextInputLayoutTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -131,7 +136,7 @@
 
     <style name="InitialScreenViewPagerDescription">
         <item name="android:textSize">@dimen/login_signup_buttons_textsize</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:paddingEnd">@dimen/general_marginleftright</item>
         <item name="android:paddingStart">@dimen/general_marginleftright</item>
         <item name="android:paddingBottom">8dp</item>
@@ -140,7 +145,7 @@
 
     <style name="InitialScreenViewPagerTitle">
         <item name="android:textSize">@dimen/login_signup_buttons_textsize</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:paddingEnd">@dimen/general_marginleftright</item>
         <item name="android:paddingStart">@dimen/general_marginleftright</item>
         <item name="android:paddingBottom">8dp</item>

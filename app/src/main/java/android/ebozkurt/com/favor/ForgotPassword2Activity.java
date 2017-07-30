@@ -29,6 +29,7 @@ public class ForgotPassword2Activity extends ActivityHelper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password2);
         ActivityHelper.initialize(this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
         topText = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
         topText.setVisibility(View.INVISIBLE);

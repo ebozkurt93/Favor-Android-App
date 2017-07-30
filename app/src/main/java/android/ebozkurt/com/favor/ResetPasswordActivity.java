@@ -38,6 +38,7 @@ public class ResetPasswordActivity extends ActivityHelper {
         setContentView(R.layout.activity_reset_password);
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), ResetPasswordActivity.this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
 
 

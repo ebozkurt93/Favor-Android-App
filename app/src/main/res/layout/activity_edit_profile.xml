@@ -5,15 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="android.ebozkurt.com.favor.EditProfileActivity">
+
+    <android.ebozkurt.com.favor.helpers.StatusBarView
+        android:id="@+id/activity_create_event1_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background_status_bar"/>
 
     <include layout="@layout/sign_up1_action_bar"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_edit_profile_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent">
     </android.support.v7.widget.RecyclerView>
 
 

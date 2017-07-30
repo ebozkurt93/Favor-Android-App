@@ -48,6 +48,7 @@ public class LoginActivity extends ActivityHelper {
         setContentView(R.layout.activity_login);
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), LoginActivity.this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
 
         backImageButton = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);

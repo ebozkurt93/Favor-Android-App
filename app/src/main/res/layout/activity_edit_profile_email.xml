@@ -5,87 +5,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:fitsSystemWindows="true"
     tools:context="android.ebozkurt.com.favor.EditProfileEmailActivity">
 
-    <include layout="@layout/sign_up1_action_bar"
-             android:id="@+id/include3"/>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/activity_edit_profile_email_email_text_input_layout"
-        style="@style/EditProfileTextInputLayout"
+    <android.ebozkurt.com.favor.helpers.StatusBarView
+        android:id="@+id/statusBarView3"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/sign_up1_action_bar"
+        app:layout_constraintTop_toBottomOf="@+id/statusBarView3"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="16dp"
-        app:errorTextAppearance="@style/SignUpTextInputLayoutError"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include3">
 
-        <EditText
-            android:id="@+id/activity_edit_profile_email_email_editText"
-            style="@style/EditProfileEditText"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_edit_profile_email_email_text_input_layout"
+            style="@style/EditProfileTextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="16dp"
+            app:errorTextAppearance="@style/SignUpTextInputLayoutError"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/activity_edit_profile_email_password_text_input_layout"
-        style="@style/EditProfileTextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:errorEnabled="false"
-        app:errorTextAppearance="@style/SignUpTextInputLayoutErrorInfo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_edit_profile_email_email_text_input_layout"
-        app:passwordToggleEnabled="false">
+            <EditText
+                android:id="@+id/activity_edit_profile_email_email_editText"
+                style="@style/EditProfileEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"/>
+        </android.support.design.widget.TextInputLayout>
 
-
-        <EditText
-            android:id="@+id/activity_edit_profile_email_password_editText"
-            style="@style/EditProfileEditText"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/activity_edit_profile_email_password_text_input_layout"
+            style="@style/EditProfileTextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:maxLength="16"/>
+            android:layout_marginTop="16dp"
+            app:errorEnabled="false"
+            app:errorTextAppearance="@style/SignUpTextInputLayoutErrorInfo"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_edit_profile_email_email_text_input_layout"
+            app:passwordToggleEnabled="false">
 
-    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:id="@+id/activity_edit_profile_email_password_toggle_editText"
-        style="@style/EditProfilePasswordHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="21dp"
-        android:gravity="right"
-        android:text="@string/hide"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_edit_profile_email_password_text_input_layout"
-        app:layout_constraintRight_toRightOf="@+id/activity_edit_profile_email_password_text_input_layout"
-        app:layout_constraintTop_toTopOf="@+id/activity_edit_profile_email_password_text_input_layout"/>
+            <EditText
+                android:id="@+id/activity_edit_profile_email_password_editText"
+                style="@style/EditProfileEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLength="16"/>
 
-    <Button
-        android:id="@+id/activity_edit_profile_email_save_button"
-        style="@style/MainButtons"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:enabled="false"
-        android:text="@string/save"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_edit_profile_email_password_text_input_layout"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/activity_edit_profile_email_password_toggle_editText"
+            style="@style/EditProfilePasswordHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="21dp"
+            android:gravity="right"
+            android:text="@string/hide"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_edit_profile_email_password_text_input_layout"
+            app:layout_constraintRight_toRightOf="@+id/activity_edit_profile_email_password_text_input_layout"
+            app:layout_constraintTop_toTopOf="@+id/activity_edit_profile_email_password_text_input_layout"/>
+
+        <Button
+            android:id="@+id/activity_edit_profile_email_save_button"
+            style="@style/MainButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:text="@string/save"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_edit_profile_email_password_text_input_layout"/>
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

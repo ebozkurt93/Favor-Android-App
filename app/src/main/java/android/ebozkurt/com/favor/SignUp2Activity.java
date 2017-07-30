@@ -57,6 +57,7 @@ public class SignUp2Activity extends ActivityHelper {
         setContentView(R.layout.activity_sign_up2);
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), SignUp2Activity.this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
         shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 

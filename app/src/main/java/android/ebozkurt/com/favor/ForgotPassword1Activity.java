@@ -41,6 +41,7 @@ public class ForgotPassword1Activity extends ActivityHelper {
         setContentView(R.layout.activity_forgot_password1);
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), ForgotPassword1Activity.this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
 
         shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
