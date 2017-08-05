@@ -101,11 +101,7 @@ public class SignUp1Activity extends ActivityHelper {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 1 && surname.getText().length() > 1) {
-                    nextButton.setEnabled(true);
-                } else {
-                    nextButton.setEnabled(false);
-                }
+               nextButtonEnable();
 
             }
 
@@ -136,11 +132,7 @@ public class SignUp1Activity extends ActivityHelper {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 1 && name.getText().length() > 1) {
-                    nextButton.setEnabled(true);
-                } else {
-                    nextButton.setEnabled(false);
-                }
+                nextButtonEnable();
             }
 
             @Override
@@ -150,4 +142,11 @@ public class SignUp1Activity extends ActivityHelper {
         });
 
     }
+
+    public void nextButtonEnable() {
+        if (ActivityHelper.getTrimmedEditTextLength(name) > 1 && ActivityHelper.getTrimmedEditTextLength(surname) > 1) {
+            nextButton.setEnabled(true);
+        } else nextButton.setEnabled(false);
+    }
+
 }

@@ -7,8 +7,8 @@ import android.ebozkurt.com.favor.helpers.CategoryHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,9 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CreateEventMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -29,10 +27,10 @@ public class CreateEventMapActivity extends AppCompatActivity implements OnMapRe
     //fake map marker components
     ImageView markerIcon;
     TextView markerTitle;
-
+    Button done;
     //actionbar components
-    TextView title, done;
-    ImageView back;
+    TextView title;
+    ImageView cancel;
     GoogleMap map;
     LatLng coordinates;
     String category_id, category_name, markerState;
@@ -46,9 +44,6 @@ public class CreateEventMapActivity extends AppCompatActivity implements OnMapRe
         ActivityHelper.initialize(this);
         ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
-        RelativeLayout actionBarLayout = (RelativeLayout) findViewById(R.id.include5);
-        actionBarLayout.setBackground(getResources().getDrawable(R.drawable.gradient_background_action_bar));
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_create_event_map_mapfragment);
         mapFragment.getMapAsync(this);
@@ -58,17 +53,19 @@ public class CreateEventMapActivity extends AppCompatActivity implements OnMapRe
         category_name = getIntent().getStringExtra("category_name");
         markerState = getIntent().getStringExtra("marker_state");
 
-        title = (TextView) findViewById(R.id.sign_up1_action_bar_middle_text_view);
-        title.setText(R.string.location);
-        back = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
-        back.setVisibility((View.INVISIBLE));
-        done = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
-        done.setText(R.string.done);
-        done.setVisibility(View.VISIBLE);
+        cancel = (ImageButton) findViewById(R.id.activity_create_event_map_cancel_imagebutton);
         markerIcon = (ImageView) findViewById(R.id.default_map_marker_icon);
         markerIcon.setImageResource(CategoryHelper.getCategoryIcon(category_id));
         markerTitle = (TextView) findViewById(R.id.map_marker_title_title);
         markerLayout = (FrameLayout) findViewById(R.id.activity_create_event_map_include_default_marker);
+        done = (Button) findViewById(R.id.activity_create_event_map_new_location_button);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         if (markerState.equals("later")) {
             markerLayout.setBackgroundTintList(getResources().getColorStateList(R.color.marker_background_later));
@@ -118,7 +115,6 @@ public class CreateEventMapActivity extends AppCompatActivity implements OnMapRe
                 markerTitle.setText(address);
             }
         });
-
 
 
     }

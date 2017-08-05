@@ -107,7 +107,7 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
     }
 
     private boolean variablesChanged() {
-        if (nameEditText.getText().toString().trim().equals(name) && lastnameEditText.getText().toString().trim().equals(lastname)) {
+        if (ActivityHelper.getTrimmedString(nameEditText).equals(name) && ActivityHelper.getTrimmedString(lastnameEditText).equals(lastname)) {
             return false;
         } else return true;
     }

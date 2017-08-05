@@ -88,7 +88,7 @@
             <RadioGroup
                 android:id="@+id/activity_create_event2_time_radiogroup"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="@dimen/general_marginleftright"
                 android:layout_marginLeft="@dimen/general_marginleftright"
                 android:layout_marginRight="@dimen/general_marginleftright"

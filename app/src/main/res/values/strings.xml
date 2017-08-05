@@ -80,6 +80,7 @@
     <string name="edit_password">Edit Password</string>
     <string name="end_time">End Time</string>
     <string name="please_select_a_category">Please select a category.</string>
+    <string name="set_new_location">Set New Location</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

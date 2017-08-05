@@ -58,7 +58,8 @@ public class EditProfileDescriptionActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                // Log.i("dev", Boolean.toString(descriptionEditText.getText().toString().trim().equals(personalDescription)));
-                if (!descriptionEditText.getText().toString().trim().equals(personalDescription) && descriptionEditText.getText().toString().trim().length() > 0) {
+                String text = ActivityHelper.getTrimmedString(descriptionEditText);
+                   if(text.equals(personalDescription) && text.length() > 0) {
                     saveButton.setEnabled(true);
                 } else saveButton.setEnabled(false);
             }
