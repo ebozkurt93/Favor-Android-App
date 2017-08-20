@@ -2,11 +2,13 @@ package android.ebozkurt.com.favor.helpers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.ebozkurt.com.favor.R;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.location.Address;
 import android.location.Geocoder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,10 +18,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -62,6 +66,20 @@ public class MapHelper {
     }
 
     public static void setMapSettings(GoogleMap map, Activity activity, boolean scrollable, boolean zoomable) {
+
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = map.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(activity.getApplicationContext(), R.raw.map_style));
+
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e(TAG, "Can't find style. Error: ", e);
+        }
+
         map.setInfoWindowAdapter(new MyMapInfoWindowAdapter(activity));
         map.getUiSettings().setMapToolbarEnabled(false);
         //map.setMyLocationEnabled(true);
@@ -69,7 +87,7 @@ public class MapHelper {
         //myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         //myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         //myMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        //map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
         map.getUiSettings().setZoomControlsEnabled(false);
         map.getUiSettings().setCompassEnabled(true);
