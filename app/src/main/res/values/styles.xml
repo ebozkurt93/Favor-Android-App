@@ -173,9 +173,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:button">@android:color/transparent</item>
         <item name="android:background">@drawable/now_later_selector_background</item>
+        <item name="android:stateListAnimator">@animator/login_signup_button_animator</item>
         <item name="android:textColor">@drawable/now_later_selector_text</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">14sp</item>
+
     </style>
 
     <style name="MainButtons">

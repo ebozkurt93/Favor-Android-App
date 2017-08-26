@@ -7,6 +7,7 @@ import android.ebozkurt.com.favor.helpers.CategoryHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -69,6 +70,12 @@ public class CreateEventMapActivity extends AppCompatActivity implements OnMapRe
 
         if (markerState.equals("later")) {
             markerLayout.setBackgroundTintList(getResources().getColorStateList(R.color.marker_background_later));
+            markerLayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return false;
+                }
+            });
         }
 
         done.setOnClickListener(new View.OnClickListener() {

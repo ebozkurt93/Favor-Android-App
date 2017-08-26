@@ -6,6 +6,8 @@
     android:id="@+id/activity_create_event2_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context="android.ebozkurt.com.favor.CreateEvent2Activity">
@@ -27,6 +29,8 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:paddingBottom="24dp">
 
             <EditText
@@ -141,6 +145,7 @@
                 android:layout_marginRight="28dp"
                 android:background="@drawable/now_later_enabled_background"
                 android:backgroundTint="@color/points_background"
+                android:drawableRight="@drawable/currency"
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:padding="4dp"
@@ -157,6 +162,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/now_later_enabled_background"
+                android:elevation="6dp"
                 android:src="@drawable/ic_remove_black_24dp"
                 android:tint="@color/colorAccent"
                 app:layout_constraintRight_toLeftOf="@+id/activity_create_event2_point_textview"
@@ -191,6 +197,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/now_later_enabled_background"
+                android:elevation="6dp"
                 android:src="@drawable/ic_add_black_24dp"
                 android:tint="@color/colorAccent"
                 app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_minus_imagebutton"

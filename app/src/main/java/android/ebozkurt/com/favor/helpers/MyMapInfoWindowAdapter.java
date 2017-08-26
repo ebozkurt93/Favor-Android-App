@@ -28,7 +28,6 @@ public class MyMapInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.map_marker_title_title));
         tvTitle.setText(marker.getTitle());
-
         return myContentsView;
     }
 

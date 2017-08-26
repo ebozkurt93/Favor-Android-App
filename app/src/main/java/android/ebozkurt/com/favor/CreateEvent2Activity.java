@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.BitmapHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
 
@@ -14,6 +15,9 @@ import java.util.Calendar;
 
 import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -100,6 +104,14 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         //eventPointsTextView.setFilters(new InputFilter[]{ new InputFilterMinMax("0", Integer.toString(userPoints))});
         userPointsTextView = (TextView) findViewById(R.id.activity_create_event2_user_points_textview);
         userPointsTextView.setText(Integer.toString(userPoints));
+        Drawable userPointsCurrency = getResources().getDrawable(R.drawable.currency);
+        userPointsCurrency.setTint(getResources().getColor(R.color.colorAccent));
+        Bitmap bitmap = BitmapHelper.getBitmapFromVectorDrawable(userPointsCurrency);
+        int size = BitmapHelper.dpToPx(getApplicationContext(), 16);
+        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, size, size, true));
+        userPointsTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
+        userPointsTextView.setCompoundDrawablePadding(4);
+
         minus = (ImageButton) findViewById(R.id.activity_create_event2_minus_imagebutton);
         plus = (ImageButton) findViewById(R.id.activity_create_event2_plus_imagebutton);
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_create_event2_bottom_navigation_bar);
@@ -390,7 +402,6 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         i.putExtra("marker_state", markerState);
         startActivityForResult(i, 1);
     }
-
 
 
     private void setNowLaterRadioButtonValues() {
