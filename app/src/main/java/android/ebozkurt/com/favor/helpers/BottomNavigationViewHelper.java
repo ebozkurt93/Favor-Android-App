@@ -113,21 +113,15 @@ public class BottomNavigationViewHelper {
                     switch (position) {
                         case 0:
                             i = new Intent(activity, HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            activity.startActivity(i);
-                            activity.finish();
+                            nextActivity(i, activity);
                             break;
                         case 2:
                             i = new Intent(activity, CreateEvent1Activity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            activity.startActivity(i);
-                            activity.finish();
+                            nextActivity(i, activity);
                             break;
                         case 3:
                             i = new Intent(activity, EditProfileActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            activity.startActivity(i);
-                            activity.finish();
+                            nextActivity(i, activity);
                             break;
                         default:
                             Toast.makeText(activity.getApplicationContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
@@ -136,6 +130,12 @@ public class BottomNavigationViewHelper {
                 return false;
             }
         });
+    }
+
+    private static void nextActivity(Intent i, Activity activity) {
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(i);
+        activity.finish();
     }
 
 //todo add some function to set up and carry notifications
