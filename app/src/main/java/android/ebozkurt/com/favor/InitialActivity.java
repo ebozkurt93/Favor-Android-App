@@ -80,17 +80,15 @@ public class InitialActivity extends ActivityHelper {
         signup.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent i = new Intent(InitialActivity.this, EditProfileActivity.class);
+                Intent i = new Intent(InitialActivity.this, HomeActivity.class);
                 startActivity(i);
                 return false;
             }
         });
+
+
     }
 
-    public void layoutClick(View v) {
-        Intent i = new Intent(InitialActivity.this, SignUp2Activity.class);
-        startActivity(i);
-    }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;

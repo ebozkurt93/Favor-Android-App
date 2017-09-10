@@ -70,6 +70,12 @@ public class AHBottomNavigationItem {
 		this.colorRes = colorRes;
 	}
 
+	public AHBottomNavigationItem(int titleRes, Drawable drawable, int colorRes) {
+		this.drawable = drawable;
+		this.titleRes = titleRes;
+		this.colorRes = colorRes;
+	}
+
 	/**
 	 * Constructor
 	 *

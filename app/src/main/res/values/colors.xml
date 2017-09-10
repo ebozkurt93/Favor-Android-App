@@ -21,6 +21,7 @@
     <color name="marker_background_selected">@color/turquoise_blue</color>
     <color name="marker_background_sent_request">@color/squash</color>
     <color name="marker_background_my_event">@color/white</color>
+    <color name="search_bar_hint_color">@color/warm_grey</color>
 
     <!-- gradient background colors -->
     <!--
@@ -40,6 +41,7 @@
     <color name="apple_green">#6eb91c</color>
     <color name="scarlet">#d0011b</color>
     <color name="pale_grey">#f2f6f8</color>
+    <color name="warm_grey">#808080</color>
 
     <color name="white_50_opacity">#80ffffff</color>
     <color name="turquoise_blue_50_opacity">#8001a3cb</color>

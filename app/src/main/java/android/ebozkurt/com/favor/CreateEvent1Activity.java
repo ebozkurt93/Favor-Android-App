@@ -35,7 +35,7 @@ public class CreateEvent1Activity extends AppCompatActivity {
         ActivityHelper.initialize(this);
 
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_create_event1_bottom_navigation_bar);
-        BottomNavigationViewHelper.initialize(bottomNavigationView, 2);
+        BottomNavigationViewHelper.initialize(this, bottomNavigationView, 2);
 
         title = (TextView) findViewById(R.id.activity_create_event1_title_textview);
         title.setText(getResources().getString(R.string.create_event, getResources().getString(R.string.app_name)));

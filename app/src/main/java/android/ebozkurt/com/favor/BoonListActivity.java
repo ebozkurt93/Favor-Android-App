@@ -21,7 +21,7 @@ public class BoonListActivity extends AppCompatActivity {
         ActivityHelper.initialize(this);
 
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_boon_list_bottom_navigation_bar);
-        BottomNavigationViewHelper.initialize(bottomNavigationView, 0);
+        BottomNavigationViewHelper.initialize(this, bottomNavigationView, 0);
 
     }
 }

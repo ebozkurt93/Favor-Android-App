@@ -81,6 +81,7 @@
     <string name="end_time">End Time</string>
     <string name="please_select_a_category">Please select a category.</string>
     <string name="set_new_location">Set New Location</string>
+    <string name="search_bar_hint">Looking for a %1$s to make?</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

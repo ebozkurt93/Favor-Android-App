@@ -1,15 +1,25 @@
 package android.ebozkurt.com.favor.helpers;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.ebozkurt.com.favor.CreateEvent1Activity;
+import android.ebozkurt.com.favor.EditProfileActivity;
+import android.ebozkurt.com.favor.HomeActivity;
 import android.ebozkurt.com.favor.R;
+import android.graphics.drawable.Drawable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by erdem on 23.06.2017.
@@ -38,24 +48,97 @@ public class BottomNavigationViewHelper {
     }
     */
 
-public static void initialize(AHBottomNavigation bottomNavigationView, int place){
-    AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.home, R.drawable.home, R.color.colorAccent);
-    AHBottomNavigationItem chat = new AHBottomNavigationItem(R.string.chat, R.drawable.chat, R.color.colorAccent);
-    AHBottomNavigationItem create = new AHBottomNavigationItem(R.string.create, R.drawable.create, R.color.colorAccent);
-    AHBottomNavigationItem profile = new AHBottomNavigationItem(R.string.profile, R.drawable.profile, R.color.colorAccent);
-    AHBottomNavigationItem more = new AHBottomNavigationItem(R.string.more, R.drawable.more, R.color.colorAccent);
-    bottomNavigationView.addItem(home);
-    bottomNavigationView.addItem(chat);
-    bottomNavigationView.addItem(create);
-    bottomNavigationView.addItem(profile);
-    bottomNavigationView.addItem(more);
-    bottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
-    bottomNavigationView.setColored(true);
-    bottomNavigationView.setCurrentItem(place);
-}
+    public static void initialize(final Activity activity, AHBottomNavigation bottomNavigationView, final int place) {
+        //mutate here prevents drawable being changed in all other screens also
+        Drawable homeDrawable = activity.getDrawable(R.drawable.home).mutate();
+        Drawable chatDrawable = activity.getDrawable(R.drawable.chat).mutate();
+        Drawable createDrawable = activity.getDrawable(R.drawable.create_disabled).mutate();
+        Drawable profileDrawable = activity.getDrawable(R.drawable.profile).mutate();
+        Drawable moreDrawable = activity.getDrawable(R.drawable.more).mutate();
+
+
+
+        /*
+    List<Drawable> drawables = new ArrayList<Drawable>();
+    drawables.add(homeDrawable);
+    drawables.add(chatDrawable);
+    drawables.add(createDrawable);
+    drawables.add(profileDrawable);
+    drawables.add(moreDrawable);
+*/
+        int color = activity.getResources().getColor(R.color.colorPrimary);
+
+        switch (place) {
+            case 0:
+                homeDrawable.setTint(color);
+                break;
+            case 1:
+                chatDrawable.setTint(color);
+                break;
+            case 2:
+                createDrawable = activity.getResources().getDrawable(R.drawable.create);
+                break;
+            case 3:
+                profileDrawable.setTint(color);
+                break;
+            case 4:
+                moreDrawable.setTint(color);
+                break;
+
+        }
+
+        bottomNavigationView.removeAllItems();
+        bottomNavigationView.removeAllViews();
+        bottomNavigationView.clearFocus();
+        final AHBottomNavigationItem home = new AHBottomNavigationItem(R.string.home, homeDrawable, R.color.colorAccent);
+        AHBottomNavigationItem chat = new AHBottomNavigationItem(R.string.chat, chatDrawable, R.color.colorAccent);
+        AHBottomNavigationItem create = new AHBottomNavigationItem(R.string.create, createDrawable, R.color.colorAccent);
+        AHBottomNavigationItem profile = new AHBottomNavigationItem(R.string.profile, profileDrawable, R.color.colorAccent);
+        AHBottomNavigationItem more = new AHBottomNavigationItem(R.string.more, moreDrawable, R.color.colorAccent);
+        bottomNavigationView.addItem(home);
+        bottomNavigationView.addItem(chat);
+        bottomNavigationView.addItem(create);
+        bottomNavigationView.addItem(profile);
+        bottomNavigationView.addItem(more);
+        bottomNavigationView.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
+        bottomNavigationView.setColored(true);
+        bottomNavigationView.setCurrentItem(place);
+
+        bottomNavigationView.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+            @Override
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                Intent i;
+
+                if (place != position) {
+                    switch (position) {
+                        case 0:
+                            i = new Intent(activity, HomeActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            activity.startActivity(i);
+                            activity.finish();
+                            break;
+                        case 2:
+                            i = new Intent(activity, CreateEvent1Activity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            activity.startActivity(i);
+                            activity.finish();
+                            break;
+                        case 3:
+                            i = new Intent(activity, EditProfileActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            activity.startActivity(i);
+                            activity.finish();
+                            break;
+                        default:
+                            Toast.makeText(activity.getApplicationContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
+            }
+        });
+    }
 
 //todo add some function to set up and carry notifications
-
 
 
 }

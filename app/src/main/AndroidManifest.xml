@@ -78,6 +78,10 @@
         </activity>
         <activity android:name=".CreateEventMapActivity">
         </activity>
+        <activity android:name=".TestActivity">
+        </activity>
+        <activity android:name=".HomeActivity">
+        </activity>
     </application>
 
 </manifest>

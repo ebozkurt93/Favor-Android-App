@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="380dp"
+             android:layout_height="230dp"
+             android:background="@drawable/event_detail_card_background"
+             android:elevation="6dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+
+        <android.support.v4.widget.CircleImageView
+            android:id="@+id/event_detail_card_profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/profile"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_event_creator_textview"
+            style="@style/EventDetailCardName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:text="@string/placeholder_long"
+            app:layout_constraintLeft_toRightOf="@+id/event_detail_card_profile_image"
+            app:layout_constraintTop_toTopOf="@+id/event_detail_card_profile_image"/>
+
+        <android.support.v7.widget.AppCompatRatingBar
+            android:id="@+id/event_detail_card_event_creator_rating"
+            style="@style/MyRatingBar"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:background="@color/apple_green"
+            app:layout_constraintBottom_toBottomOf="@+id/event_detail_card_profile_image"
+            app:layout_constraintLeft_toLeftOf="@+id/event_detail_card_event_creator_textview"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_creator_textview"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_event_details_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:lines="3"
+            android:maxLines="3"
+            android:text="@string/placeholder_long"
+            android:textColor="@color/createEventText"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_profile_image"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_detail_card_event_points"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/now_later_enabled_background"
+            android:backgroundTint="@color/points_background"
+            android:drawableRight="@drawable/currency"
+            android:gravity="center"
+            android:text="123"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_event_creator_textview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_creator_rating"/>
+
+        <Button
+            android:id="@+id/event_detail_card_send_request_button"
+            style="@style/MainButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="Send Request"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_details_textview"/>
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

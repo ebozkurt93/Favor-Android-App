@@ -115,7 +115,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         minus = (ImageButton) findViewById(R.id.activity_create_event2_minus_imagebutton);
         plus = (ImageButton) findViewById(R.id.activity_create_event2_plus_imagebutton);
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_create_event2_bottom_navigation_bar);
-        BottomNavigationViewHelper.initialize(bottomNavigationView, 2);
+        BottomNavigationViewHelper.initialize(this, bottomNavigationView, 2);
         create = (Button) findViewById(R.id.activity_create_event2_create_button);
         create.setText(getResources().getString(R.string.post_event, getResources().getString(R.string.app_name)));
         nowRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_now_radiobutton);

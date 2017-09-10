@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.ebozkurt.com.favor.R;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.location.Address;
 import android.location.Geocoder;
@@ -64,6 +65,13 @@ public class MapHelper {
         icon.setImageResource(categoryIcon);
         return BitmapDescriptorFactory.fromBitmap(MapHelper.loadBitmapFromView(v));
     }
+
+    public static BitmapDescriptor getDefaultMapIcon(Activity activity) {
+
+        return BitmapDescriptorFactory.fromBitmap(BitmapHelper.getBitmapFromVectorDrawable(activity.getResources().getDrawable(R.drawable.map_current_position_marker)));
+    }
+
+
 
     public static void setMapSettings(GoogleMap map, Activity activity, boolean scrollable, boolean zoomable) {
 

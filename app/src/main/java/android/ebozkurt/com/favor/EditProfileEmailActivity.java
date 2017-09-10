@@ -7,6 +7,8 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class EditProfileEmailActivity extends AppCompatActivity {
 
@@ -62,6 +66,14 @@ public class EditProfileEmailActivity extends AppCompatActivity {
         //temporary email
         email = "example@boon-app.com";
         emailEditText.setText(email);
+        emailEditText.setFilters(new InputFilter[] {
+                new InputFilter.AllCaps() {
+                    @Override
+                    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                        return String.valueOf(source).toLowerCase(Locale.ENGLISH);
+                    }
+                }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

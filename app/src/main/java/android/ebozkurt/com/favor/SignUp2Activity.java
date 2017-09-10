@@ -9,6 +9,8 @@ import android.ebozkurt.com.favor.helpers.DateValidator;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
@@ -83,7 +85,14 @@ public class SignUp2Activity extends ActivityHelper {
 
         myCalendar = Calendar.getInstance();
 
-
+        email.setFilters(new InputFilter[] {
+                new InputFilter.AllCaps() {
+                    @Override
+                    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                        return String.valueOf(source).toLowerCase(Locale.ENGLISH);
+                    }
+                }
+        });
 
 
 
@@ -152,7 +161,6 @@ public class SignUp2Activity extends ActivityHelper {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 

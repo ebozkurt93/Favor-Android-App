@@ -10,6 +10,8 @@ import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Patterns;
@@ -22,6 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -78,6 +82,15 @@ public class LoginActivity extends ActivityHelper {
         passwordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_login_password_text_input_layout);
         passwordToggleTextView = (TextView) findViewById(R.id.activity_login_password_toggle_editText);
         passwordToggleTextView.setVisibility(View.INVISIBLE);
+
+        emailEditText.setFilters(new InputFilter[] {
+                new InputFilter.AllCaps() {
+                    @Override
+                    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                        return String.valueOf(source).toLowerCase(Locale.ENGLISH);
+                    }
+                }
+        });
 
         PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
 
