@@ -136,19 +136,12 @@
 
             <TextView
                 android:id="@+id/activity_create_event2_user_points_textview"
-                style="@style/CreateEvent2TitleTextView"
+                style="@style/Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="28dp"
                 android:layout_marginRight="28dp"
-                android:background="@drawable/now_later_enabled_background"
-                android:backgroundTint="@color/points_background"
-                android:drawableRight="@drawable/currency"
-                android:gravity="center"
-                android:minWidth="50dp"
-                android:padding="4dp"
                 android:text="0"
-                android:textColor="@color/colorAccent"
                 app:layout_constraintBottom_toTopOf="@+id/activity_create_event2_prize_textview"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activity_create_event2_prize_textview"/>

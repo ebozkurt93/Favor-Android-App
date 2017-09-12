@@ -8,22 +8,23 @@
     android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true"
     tools:context="android.ebozkurt.com.favor.HomeActivity">
-<!--
-    <android.support.v7.widget.SearchView
-        style="@style/HomeSearchBar"
-        android:id="@+id/activity_home_searchbar_search_view"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="72dp"
-        app:defaultQueryHint="@string/search_bar_hint"
-        app:iconifiedByDefault="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/activity_home_mapfragment"
-        app:searchIcon="@null">
+    <!--
+        <android.support.v7.widget.SearchView
+            style="@style/HomeSearchBar"
+            android:id="@+id/activity_home_searchbar_search_view"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="72dp"
+            app:defaultQueryHint="@string/search_bar_hint"
+            app:iconifiedByDefault="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activity_home_mapfragment"
+            app:searchIcon="@null">
 
 
-    </android.support.v7.widget.SearchView>-->
+        </android.support.v7.widget.SearchView>-->
+
 
     <fragment
         android:id="@+id/activity_home_mapfragment"
@@ -34,17 +35,32 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
     </fragment>
-<include layout="@layout/event_detail_card"
-         android:layout_width="380dp"
-         android:layout_height="230dp"
-         android:layout_marginRight="0dp"
-         app:layout_constraintRight_toRightOf="parent"
-         android:layout_marginLeft="0dp"
-         app:layout_constraintLeft_toLeftOf="parent"
-         android:layout_marginBottom="36dp"
-         app:layout_constraintBottom_toTopOf="@+id/activity_home_bottom_navigation_bar"></include>
+
+    <TextView
+        android:id="@+id/activity_home_points_textview"
+        style="@style/Points.Background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="256"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <include
+        layout="@layout/event_detail_card"
+        android:layout_width="380dp"
+        android:layout_height="230dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_home_bottom_navigation_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"></include>
+
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
         android:id="@+id/activity_home_bottom_navigation_bar"
         android:layout_width="0dp"

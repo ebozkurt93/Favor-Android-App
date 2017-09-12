@@ -104,13 +104,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         //eventPointsTextView.setFilters(new InputFilter[]{ new InputFilterMinMax("0", Integer.toString(userPoints))});
         userPointsTextView = (TextView) findViewById(R.id.activity_create_event2_user_points_textview);
         userPointsTextView.setText(Integer.toString(userPoints));
-        Drawable userPointsCurrency = getResources().getDrawable(R.drawable.currency);
-        userPointsCurrency.setTint(getResources().getColor(R.color.colorAccent));
-        Bitmap bitmap = BitmapHelper.getBitmapFromVectorDrawable(userPointsCurrency);
-        int size = BitmapHelper.dpToPx(getApplicationContext(), 16);
-        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, size, size, true));
-        userPointsTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
-        userPointsTextView.setCompoundDrawablePadding(4);
+
+        BitmapHelper.currencyIconInitializer(this, userPointsTextView);
 
         minus = (ImageButton) findViewById(R.id.activity_create_event2_minus_imagebutton);
         plus = (ImageButton) findViewById(R.id.activity_create_event2_plus_imagebutton);

@@ -13,7 +13,7 @@
     <color name="main_button_text_disabled">@color/white_50_opacity</color>
     <color name="main_button_background_disabled">@color/turquoise_blue_50_opacity</color>
     <color name="edit_profile_divider">@color/charcoal_grey</color>
-    <color name="points_background">@color/squash</color>
+    <color name="points_text">@color/squash</color>
     <color name="create_event_points_background">@color/pale_grey</color>
     <!-- marker colors -->
     <color name="marker_icon_default">@color/charcoal_grey</color>

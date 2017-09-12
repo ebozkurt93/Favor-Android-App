@@ -252,4 +252,21 @@
         <item name="android:maxHeight">25dp</item>
     </style>
 
+    <style name="Points">
+        <item name="android:textColor">@color/points_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableRight">@drawable/currency</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:minWidth">50dp</item>
+    </style>
+
+    <style name="Points.Background">
+        <item name="android:background">@drawable/now_later_enabled_background</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+    </style>
+
 </resources>

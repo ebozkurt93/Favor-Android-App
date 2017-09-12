@@ -82,20 +82,11 @@
 
         <TextView
             android:id="@+id/event_detail_card_event_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Points"
             android:layout_marginBottom="0dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/now_later_enabled_background"
-            android:backgroundTint="@color/points_background"
-            android:drawableRight="@drawable/currency"
-            android:gravity="center"
-            android:padding="6dp"
             android:text="123"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5"/>

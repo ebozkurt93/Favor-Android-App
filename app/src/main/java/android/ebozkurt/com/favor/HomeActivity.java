@@ -7,6 +7,7 @@ import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
     AHBottomNavigation bottomNavigationView;
+    TextView userPointsTextView;
     //SearchView searchBar;
 
     GoogleMap map;
@@ -38,6 +40,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_home_bottom_navigation_bar);
         BottomNavigationViewHelper.initialize(this, bottomNavigationView, 0);
+
+        userPointsTextView = (TextView) findViewById(R.id.activity_home_points_textview);
+        BitmapHelper.currencyIconInitializer(this, userPointsTextView);
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
