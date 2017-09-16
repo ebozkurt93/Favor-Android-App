@@ -35,7 +35,7 @@
     <string name="show">Show</string>
     <string name="please_write_your_email_below">Please write your email below</string>
     <string name="welcome">Welcome!</string>
-
+<string name="personal_description_empty"><![CDATA[You have no personal description.<br><u>Add personal description.</u>]]></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="initial_viewpager_1_title">Welcome to %1$s</string>
     <string name="initial_viewpager_1_text">Do favors in exchange of points, ask for favors in exchange of points.</string>
@@ -82,6 +82,8 @@
     <string name="please_select_a_category">Please select a category.</string>
     <string name="set_new_location">Set New Location</string>
     <string name="search_bar_hint">Looking for a %1$s to make?</string>
+    <string name="ongoing_events">Ongoing %1$ss</string>
+    <string name="number_reviews">%1$d Reviews</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

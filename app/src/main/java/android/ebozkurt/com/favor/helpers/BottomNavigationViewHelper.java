@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.ebozkurt.com.favor.CreateEvent1Activity;
 import android.ebozkurt.com.favor.EditProfileActivity;
 import android.ebozkurt.com.favor.HomeActivity;
+import android.ebozkurt.com.favor.ProfileActivity;
 import android.ebozkurt.com.favor.R;
 import android.graphics.drawable.Drawable;
 import android.support.design.internal.BottomNavigationItemView;
@@ -113,15 +114,15 @@ public class BottomNavigationViewHelper {
                     switch (position) {
                         case 0:
                             i = new Intent(activity, HomeActivity.class);
-                            nextActivity(i, activity);
+                            nextActivity(i, activity, true);
                             break;
                         case 2:
                             i = new Intent(activity, CreateEvent1Activity.class);
-                            nextActivity(i, activity);
+                            nextActivity(i, activity, true);
                             break;
                         case 3:
-                            i = new Intent(activity, EditProfileActivity.class);
-                            nextActivity(i, activity);
+                            i = new Intent(activity, ProfileActivity.class);
+                            nextActivity(i, activity, false);
                             break;
                         default:
                             Toast.makeText(activity.getApplicationContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
@@ -132,10 +133,11 @@ public class BottomNavigationViewHelper {
         });
     }
 
-    private static void nextActivity(Intent i, Activity activity) {
+    private static void nextActivity(Intent i, Activity activity, boolean clear) {
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(i);
-        activity.finish();
+        if (clear)
+            activity.finish();
     }
 
 //todo add some function to set up and carry notifications
