@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<!--
+<android.support.constraint.Guideline
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_begin="360dp"/>-->
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,7 +37,6 @@
             android:layout_height="48dp"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/event_detail_card_profile_image"
@@ -52,14 +57,17 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <!-- android:isIndicator="true" -->
-            <android.ebozkurt.com.favor.helpers.BoonRatingBarView
+            <android.ebozkurt.com.favor.helpers.CustomRatingBar
                 android:id="@+id/event_detail_card_event_creator_rating"
-                android:layout_width="150dp"
-                android:layout_height="24dp"
+                android:layout_width="80dp"
+                android:layout_height="12dp"
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="0dp"
+                app:onlyForDisplay="true"
+                app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_creator_textview"/>
         </android.support.constraint.ConstraintLayout>
 
 
