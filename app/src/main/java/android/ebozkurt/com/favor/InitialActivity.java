@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -86,7 +87,7 @@ public class InitialActivity extends ActivityHelper {
             }
         });
 
-
+        //ActivityHelper.DisplayCustomToast(InitialActivity.this, "asdsadas dsadasdasdas dsadsadsada asdasd", Toast.LENGTH_LONG);
     }
 
 

@@ -1,15 +1,19 @@
 package android.ebozkurt.com.favor.helpers;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.ebozkurt.com.favor.R;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ActivityHelper extends AppCompatActivity {
@@ -58,6 +62,20 @@ public class ActivityHelper extends AppCompatActivity {
 
     public static String getTrimmedString(EditText editText) {
         return editText.getText().toString().trim();
+    }
+
+    public static void DisplayCustomToast(Context context, String message, int length) {
+        Toast toast = Toast.makeText(context, message, length);
+        View view = toast.getView();
+        view.setBackgroundResource(R.drawable.toast_background);
+        TextView text = (TextView) view.findViewById(android.R.id.message);
+        text.setGravity(Gravity.CENTER);
+        text.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        int dp_6 = BitmapHelper.dpToPx(context,6);
+        int dp_8 = BitmapHelper.dpToPx(context,8);
+        text.setPadding(dp_6, dp_8, dp_6, dp_8);
+/*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+        toast.show();
     }
 
 }
