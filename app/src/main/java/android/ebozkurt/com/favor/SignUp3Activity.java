@@ -2,19 +2,31 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.ebozkurt.com.favor.domain.User;
+import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.AnimationHelper;
 import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
+import android.ebozkurt.com.favor.network.BoonApiInterface;
+import android.ebozkurt.com.favor.network.RetrofitBuilder;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignUp3Activity extends ActivityHelper {
@@ -26,7 +38,6 @@ public class SignUp3Activity extends ActivityHelper {
     View actionBarBackground1, actionBarBackground2, actionBarBackground3, actionBarBackground4;
     TextInputLayout passwordTextInputLayout;
     EditText passwordEditText;
-    //Animation shake;
 
 
     @Override
@@ -63,7 +74,6 @@ public class SignUp3Activity extends ActivityHelper {
         passwordToggleTextView.setVisibility(View.INVISIBLE);
         passwordEditText.setTransformationMethod(null);
 
-        //shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 
 
         passwordTextInputLayout.setError(getString(R.string.passwords_must_be));
@@ -79,7 +89,6 @@ public class SignUp3Activity extends ActivityHelper {
         signUp = (Button) findViewById(R.id.activity_sign_up3_sign_up_button);
         signUp.setEnabled(false);
         //termsOfConditions.setText(formattedTermsOfConditions);
-
 
 
         actionBarBack.setOnClickListener(new View.OnClickListener() {
@@ -140,10 +149,46 @@ public class SignUp3Activity extends ActivityHelper {
                     signUp.startAnimation(shake);
                 } else {
 */
-                    Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(i);
-              //  }
+
+
+                BoonApiInterface apiService = RetrofitBuilder.returnService();
+                User user = new User();
+
+                user.setName(getIntent().getStringExtra("name"));
+                user.setLastname(getIntent().getStringExtra("lastname"));
+                user.setEmail(getIntent().getStringExtra("email"));
+                user.setBirthDate(getIntent().getStringExtra("birthdate"));
+                user.setPassword(passwordEditText.getText().toString());
+
+                Call<JSONResponse> call = apiService.registerUser(user);
+                call.enqueue(new Callback<JSONResponse>() {
+                    @Override
+                    public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                        Log.i("dev", response.toString());
+                        Log.i("dev", "onResponse: ");
+                        if (response.body().isSuccess() == true) {
+                            Toast.makeText(SignUp3Activity.this, "Registered", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            startActivity(i);
+                        } else {
+                            AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
+                            Toast.makeText(SignUp3Activity.this, response.body().getError().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<JSONResponse> call, Throwable t) {
+                        Log.i("dev", t.toString());
+                        AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
+                        Toast.makeText(SignUp3Activity.this, "Failed to register", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+                //  }
             }
         });
     }

@@ -289,6 +289,7 @@ public class SignUp2Activity extends ActivityHelper {
                     Calendar dob = Calendar.getInstance();
                     Calendar today = Calendar.getInstance();
                     dob.set(year, month, day);
+                    String formattedBirthdate = year + "-" + month + "-" + day;
 
 
                     int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
@@ -311,6 +312,10 @@ public class SignUp2Activity extends ActivityHelper {
 
                         //
                         Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
+                        i.putExtra("name", getIntent().getStringExtra("name"));
+                        i.putExtra("lastname", getIntent().getStringExtra("lastname"));
+                        i.putExtra("email", ActivityHelper.getTrimmedString(email));
+                        i.putExtra("birthdate", formattedBirthdate);
                         i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(i);
                     }

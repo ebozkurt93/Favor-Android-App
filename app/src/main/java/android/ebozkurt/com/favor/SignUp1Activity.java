@@ -88,6 +88,8 @@ public class SignUp1Activity extends ActivityHelper {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SignUp1Activity.this, SignUp2Activity.class);
+                i.putExtra("name", ActivityHelper.getTrimmedString(name));
+                i.putExtra("lastname", ActivityHelper.getTrimmedString(surname));
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
             }
