@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -87,7 +86,8 @@ public class InitialActivity extends ActivityHelper {
             }
         });
 
-        //ActivityHelper.DisplayCustomToast(InitialActivity.this, "asdsadas dsadasdasdas dsadsadsada asdasd", Toast.LENGTH_LONG);
+        ActivityHelper.DisplayCustomToast(InitialActivity.this, "test", Toast.LENGTH_LONG);
+       //ActivityHelper.getLoadingDialog().show(getSupportFragmentManager(), "");
     }
 
 

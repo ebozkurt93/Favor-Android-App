@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context="android.ebozkurt.com.favor.EditProfileEmailActivity">
 
-    <android.ebozkurt.com.favor.helpers.StatusBarView
+    <android.ebozkurt.com.favor.views.StatusBarView
         android:id="@+id/statusBarView3"
         android:layout_width="0dp"
         android:layout_height="0dp"

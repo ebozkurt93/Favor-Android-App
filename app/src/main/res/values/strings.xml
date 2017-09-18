@@ -84,6 +84,7 @@
     <string name="search_bar_hint">Looking for a %1$s to make?</string>
     <string name="ongoing_events">Ongoing %1$ss</string>
     <string name="number_reviews">%1$d Reviews</string>
+    <string name="general_error">An error occurred. Please try again.</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

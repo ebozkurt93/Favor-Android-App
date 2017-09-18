@@ -10,7 +10,7 @@
     android:orientation="vertical"
     tools:context="android.ebozkurt.com.favor.EditProfileActivity">
 
-    <android.ebozkurt.com.favor.helpers.StatusBarView
+    <android.ebozkurt.com.favor.views.StatusBarView
         android:id="@+id/activity_create_event1_status_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

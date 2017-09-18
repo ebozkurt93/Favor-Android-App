@@ -5,7 +5,7 @@
               android:fitsSystemWindows="true"
               android:orientation="vertical">
 
-    <android.ebozkurt.com.favor.helpers.StatusBarView
+    <android.ebozkurt.com.favor.views.StatusBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_background_status_bar"/>

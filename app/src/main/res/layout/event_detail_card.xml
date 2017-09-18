@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <!-- android:isIndicator="true" -->
-            <android.ebozkurt.com.favor.helpers.CustomRatingBar
+            <android.ebozkurt.com.favor.views.CustomRatingBar
                 android:id="@+id/event_detail_card_event_creator_rating"
                 android:layout_width="80dp"
                 android:layout_height="12dp"

@@ -10,6 +10,7 @@ import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
+import android.ebozkurt.com.favor.views.LoadingDialogFragment;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
@@ -161,28 +162,32 @@ public class SignUp3Activity extends ActivityHelper {
                 user.setPassword(passwordEditText.getText().toString());
 
                 Call<JSONResponse> call = apiService.registerUser(user);
+                final LoadingDialogFragment loadingDialogFragment = ActivityHelper.getLoadingDialog();
+                loadingDialogFragment.show(getSupportFragmentManager(), "");
                 call.enqueue(new Callback<JSONResponse>() {
                     @Override
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                         Log.i("dev", response.toString());
                         Log.i("dev", "onResponse: ");
                         if (response.body().isSuccess() == true) {
-                            Toast.makeText(SignUp3Activity.this, "Registered", Toast.LENGTH_SHORT).show();
+                            loadingDialogFragment.dismiss();
                             Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                             startActivity(i);
                         } else {
+                            loadingDialogFragment.dismiss();
                             AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
-                            Toast.makeText(SignUp3Activity.this, response.body().getError().getMessage(), Toast.LENGTH_SHORT).show();
+                            ActivityHelper.DisplayCustomToast(SignUp3Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
                         }
                     }
 
 
                     @Override
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
+                        loadingDialogFragment.dismiss();
                         Log.i("dev", t.toString());
                         AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
-                        Toast.makeText(SignUp3Activity.this, "Failed to register", Toast.LENGTH_SHORT).show();
+                        ActivityHelper.DisplayCustomToast(SignUp3Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
 
                     }
                 });

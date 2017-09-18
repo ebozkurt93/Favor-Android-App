@@ -1,4 +1,4 @@
-package android.ebozkurt.com.favor.helpers;
+package android.ebozkurt.com.favor.views;
 
 /**
  * Created by erdem on 10.09.2017.

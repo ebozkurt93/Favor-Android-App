@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="android.ebozkurt.com.favor.CreateEvent1Activity">
 
-    <android.ebozkurt.com.favor.helpers.StatusBarView
+    <android.ebozkurt.com.favor.views.StatusBarView
         android:layout_width="0dp"
         android:id="@+id/activity_create_event1_status_bar"
         android:layout_height="wrap_content"

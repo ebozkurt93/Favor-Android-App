@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:weightSum="1"
     tools:context="android.ebozkurt.com.favor.CreateEvent2Activity">
-    <android.ebozkurt.com.favor.helpers.StatusBarView
+    <android.ebozkurt.com.favor.views.StatusBarView
         android:layout_width="match_parent"
         android:id="@+id/activity_create_event2_status_bar"
         android:layout_height="wrap_content"

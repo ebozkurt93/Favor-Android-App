@@ -1,4 +1,4 @@
-package android.ebozkurt.com.favor.helpers;
+package android.ebozkurt.com.favor.views;
 
 import android.content.Context;
 import android.os.Build;

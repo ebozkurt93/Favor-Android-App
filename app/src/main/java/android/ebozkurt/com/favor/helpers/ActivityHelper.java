@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.ebozkurt.com.favor.R;
+import android.ebozkurt.com.favor.views.LoadingDialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -71,11 +73,19 @@ public class ActivityHelper extends AppCompatActivity {
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setGravity(Gravity.CENTER);
         text.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        int dp_6 = BitmapHelper.dpToPx(context,6);
-        int dp_8 = BitmapHelper.dpToPx(context,8);
-        text.setPadding(dp_6, dp_8, dp_6, dp_8);
+        int lrPadding = BitmapHelper.dpToPx(context, 12);
+        int tbPadding = BitmapHelper.dpToPx(context, 6);
+        text.setPadding(lrPadding, tbPadding, lrPadding, tbPadding);
+
 /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
         toast.show();
     }
+
+    public static LoadingDialogFragment getLoadingDialog() {
+        LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment();
+        loadingDialogFragment.setCancelable(false);
+        return loadingDialogFragment;
+    }
+
 
 }
