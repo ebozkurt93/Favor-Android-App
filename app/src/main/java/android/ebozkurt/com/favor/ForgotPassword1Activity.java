@@ -62,7 +62,7 @@ public class ForgotPassword1Activity extends ActivityHelper {
 
         emailEditText = (EditText) findViewById(R.id.activity_forgot_password1_email_editText);
         emailTextInputLayout = (TextInputLayout) findViewById(R.id.activity_forgot_password1_email_text_input_layout);
-
+/*
         emailEditText.setFilters(new InputFilter[] {
                 new InputFilter.AllCaps() {
                     @Override
@@ -71,6 +71,7 @@ public class ForgotPassword1Activity extends ActivityHelper {
                     }
                 }
         });
+        */
 
         emailEditText.addTextChangedListener(new TextWatcher() {
             @Override

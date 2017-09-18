@@ -6,6 +6,7 @@ import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.AnimationHelper;
+import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
@@ -74,7 +75,6 @@ public class SignUp3Activity extends ActivityHelper {
         passwordToggleTextView.bringToFront();
         passwordToggleTextView.setVisibility(View.INVISIBLE);
         passwordEditText.setTransformationMethod(null);
-
 
 
         passwordTextInputLayout.setError(getString(R.string.passwords_must_be));
@@ -185,6 +185,7 @@ public class SignUp3Activity extends ActivityHelper {
                     @Override
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
                         loadingDialogFragment.dismiss();
+                        //KeyboardHelper.hideSoftKeyboard(SignUp3Activity.this);
                         Log.i("dev", t.toString());
                         AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
                         ActivityHelper.DisplayCustomToast(SignUp3Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);

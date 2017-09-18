@@ -84,7 +84,7 @@ public class SignUp2Activity extends ActivityHelper {
         nextButton.setEnabled(false);
 
         myCalendar = Calendar.getInstance();
-
+/*
         email.setFilters(new InputFilter[] {
                 new InputFilter.AllCaps() {
                     @Override
@@ -93,7 +93,7 @@ public class SignUp2Activity extends ActivityHelper {
                     }
                 }
         });
-
+*/
 
 
 /*

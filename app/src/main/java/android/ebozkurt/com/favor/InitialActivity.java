@@ -86,7 +86,7 @@ public class InitialActivity extends ActivityHelper {
             }
         });
 
-        ActivityHelper.DisplayCustomToast(InitialActivity.this, "test", Toast.LENGTH_LONG);
+        //ActivityHelper.DisplayCustomToast(InitialActivity.this, "test", Toast.LENGTH_LONG);
        //ActivityHelper.getLoadingDialog().show(getSupportFragmentManager(), "");
     }
 

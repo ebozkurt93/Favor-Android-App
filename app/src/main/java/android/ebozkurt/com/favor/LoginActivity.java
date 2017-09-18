@@ -82,7 +82,7 @@ public class LoginActivity extends ActivityHelper {
         passwordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_login_password_text_input_layout);
         passwordToggleTextView = (TextView) findViewById(R.id.activity_login_password_toggle_editText);
         passwordToggleTextView.setVisibility(View.INVISIBLE);
-
+/*
         emailEditText.setFilters(new InputFilter[] {
                 new InputFilter.AllCaps() {
                     @Override
@@ -91,6 +91,7 @@ public class LoginActivity extends ActivityHelper {
                     }
                 }
         });
+*/
 
         PasswordHintToggler.passwordToggleState(passwordEditText, passwordToggleTextView);
 

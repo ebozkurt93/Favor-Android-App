@@ -66,6 +66,7 @@ public class EditProfileEmailActivity extends AppCompatActivity {
         //temporary email
         email = "example@boon-app.com";
         emailEditText.setText(email);
+        /*
         emailEditText.setFilters(new InputFilter[] {
                 new InputFilter.AllCaps() {
                     @Override
@@ -74,6 +75,7 @@ public class EditProfileEmailActivity extends AppCompatActivity {
                     }
                 }
         });
+        */
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +137,7 @@ public class EditProfileEmailActivity extends AppCompatActivity {
         passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus && passwordEditText.getText().toString().length() > 0) {
+                if (hasFocus && passwordEditText.getText().toString().length() > 0) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 } else {
                     passwordToggleTextView.setVisibility(View.INVISIBLE);
