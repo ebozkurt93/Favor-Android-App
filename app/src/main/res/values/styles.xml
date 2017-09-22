@@ -261,6 +261,7 @@
         <item name="android:drawableRight">@drawable/currency</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">6dp</item>
+        <item name="android:drawablePadding">2dp</item>
         <item name="android:minWidth">50dp</item>
     </style>
 

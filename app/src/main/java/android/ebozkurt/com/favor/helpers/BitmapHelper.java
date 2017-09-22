@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.widget.TextView;
 
 
@@ -50,6 +51,6 @@ public class BitmapHelper {
         int size = BitmapHelper.dpToPx(activity.getApplicationContext(), 16);
         Drawable d = new BitmapDrawable(activity.getResources(), Bitmap.createScaledBitmap(bitmap, size, size, true));
         v.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
-        v.setCompoundDrawablePadding(dpToPx(activity.getApplicationContext(), 2));
+        //v.setCompoundDrawablePadding(dpToPx(activity.getApplicationContext(), 2));
     }
 }

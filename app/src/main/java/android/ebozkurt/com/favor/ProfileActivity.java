@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         pointsTextView = (TextView) findViewById(R.id.activity_profile_points_textview);
         pointsTextView.setText(Integer.toString(points));
-        BitmapHelper.currencyIconInitializer(this, pointsTextView);
+        //BitmapHelper.currencyIconInitializer(this, pointsTextView);
         ongoingEventsTextView = (TextView) findViewById(R.id.activity_profile_ongoing_events_textview);
         if(numberOfActiveEvents <= 0){
             ongoingEventsTextView.setVisibility(View.GONE);

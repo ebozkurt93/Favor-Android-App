@@ -105,7 +105,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         userPointsTextView = (TextView) findViewById(R.id.activity_create_event2_user_points_textview);
         userPointsTextView.setText(Integer.toString(userPoints));
 
-        BitmapHelper.currencyIconInitializer(this, userPointsTextView);
+        //BitmapHelper.currencyIconInitializer(this, userPointsTextView);
 
         minus = (ImageButton) findViewById(R.id.activity_create_event2_minus_imagebutton);
         plus = (ImageButton) findViewById(R.id.activity_create_event2_plus_imagebutton);

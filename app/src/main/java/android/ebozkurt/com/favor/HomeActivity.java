@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         BottomNavigationViewHelper.initialize(this, bottomNavigationView, 0);
 
         userPointsTextView = (TextView) findViewById(R.id.activity_home_points_textview);
-        BitmapHelper.currencyIconInitializer(this, userPointsTextView);
+        //BitmapHelper.currencyIconInitializer(this, userPointsTextView);
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
