@@ -167,9 +167,7 @@ public class SignUp3Activity extends ActivityHelper {
                 call.enqueue(new Callback<JSONResponse>() {
                     @Override
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                        Log.i("dev", response.toString());
-                        Log.i("dev", "onResponse: ");
-                        if (response.body().isSuccess() == true) {
+                        if (response.body().isSuccess()) {
                             loadingDialogFragment.dismiss();
                             Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -185,8 +183,6 @@ public class SignUp3Activity extends ActivityHelper {
                     @Override
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
                         loadingDialogFragment.dismiss();
-                        //KeyboardHelper.hideSoftKeyboard(SignUp3Activity.this);
-                        Log.i("dev", t.toString());
                         AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
                         ActivityHelper.DisplayCustomToast(SignUp3Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
 

@@ -2,9 +2,15 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.ebozkurt.com.favor.domain.User;
+import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.AnimationHelper;
 import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
+import android.ebozkurt.com.favor.network.BoonApiInterface;
+import android.ebozkurt.com.favor.network.RetrofitBuilder;
+import android.ebozkurt.com.favor.views.LoadingDialogFragment;
 import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
@@ -14,6 +20,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +34,9 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends ActivityHelper {
@@ -123,9 +133,40 @@ public class LoginActivity extends ActivityHelper {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                //todo if there is error
-                //        shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
+                BoonApiInterface apiService = RetrofitBuilder.returnService();
+                User user = new User();
+                user.setEmail(emailEditText.getText().toString());
+                user.setPassword(passwordEditText.getText().toString());
+
+                Call<JSONResponse> call = apiService.login(user);
+                final LoadingDialogFragment loadingDialogFragment = ActivityHelper.getLoadingDialog();
+                loadingDialogFragment.show(getSupportFragmentManager(), "");
+                call.enqueue(new Callback<JSONResponse>() {
+                    @Override
+                    public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                        if (response.body().isSuccess()) {
+                            loadingDialogFragment.dismiss();
+                            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                            finish();
+                            //todo clear backstack
+                        } else {
+                            loadingDialogFragment.dismiss();
+                            AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
+                            ActivityHelper.DisplayCustomToast(LoginActivity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+                        }
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<JSONResponse> call, Throwable t) {
+                        loadingDialogFragment.dismiss();
+                        AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
+                        ActivityHelper.DisplayCustomToast(LoginActivity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+
+                    }
+                });
 
             }
         });
@@ -189,7 +230,7 @@ public class LoginActivity extends ActivityHelper {
         passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus && passwordEditText.getText().toString().length() > 0) {
+                if (hasFocus && passwordEditText.getText().toString().length() > 0) {
                     passwordToggleTextView.setVisibility(View.VISIBLE);
                 } else {
                     passwordToggleTextView.setVisibility(View.INVISIBLE);

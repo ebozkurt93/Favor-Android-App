@@ -15,5 +15,10 @@ public interface BoonApiInterface {
 
     @POST("user/register")
     Call<JSONResponse> registerUser(@Body User user);
-    
+
+    @POST("user/login")
+    Call<JSONResponse> login(@Body User user);
+
+    @POST("user/isemailregistered")
+    Call<JSONResponse> isEmailRegistered(@Body String email);
 }

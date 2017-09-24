@@ -2,20 +2,21 @@ package android.ebozkurt.com.favor;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.AnimationHelper;
 import android.ebozkurt.com.favor.helpers.DateValidator;
+import android.ebozkurt.com.favor.network.BoonApiInterface;
+import android.ebozkurt.com.favor.network.RetrofitBuilder;
+import android.ebozkurt.com.favor.views.LoadingDialogFragment;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -27,11 +28,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignUp2Activity extends ActivityHelper {
@@ -47,6 +52,8 @@ public class SignUp2Activity extends ActivityHelper {
     Animation shake;
 
     Calendar myCalendar;
+
+    ArrayList<String> takenMailList = new ArrayList<>();
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -154,6 +161,10 @@ public class SignUp2Activity extends ActivityHelper {
                 if (email.getText().length() == 0) {
                     emailTextInputLayout.setError(null);
                     emailTextInputLayout.setErrorEnabled(false);
+                }
+
+                if(emailInUse()) {
+                    emailTextInputLayout.setError(getString(R.string.email_already_in_use));
                 }
 
                 enableButtonifOK();
@@ -289,7 +300,7 @@ public class SignUp2Activity extends ActivityHelper {
                     Calendar dob = Calendar.getInstance();
                     Calendar today = Calendar.getInstance();
                     dob.set(year, month, day);
-                    String formattedBirthdate = year + "-" + month + "-" + day;
+                    final String formattedBirthdate = year + "-" + month + "-" + day;
 
 
                     int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
@@ -305,19 +316,49 @@ public class SignUp2Activity extends ActivityHelper {
                     } else if (ageInt >= 100) {
                         birthdateTextInputLayout.setError(getString(R.string.invalid_age));
                     } else {
-                        //todo get email and check if this email is already registered
-                        //todo show some animation here
-                        //nextButton.setAnimation(shake);
+
+                        BoonApiInterface apiService = RetrofitBuilder.returnService();
+                        Log.i("dev", "onClick: " + ActivityHelper.getTrimmedString(email));
+                        Call<JSONResponse> call = apiService.isEmailRegistered(ActivityHelper.getTrimmedString(email));
+                        final LoadingDialogFragment loadingDialogFragment = ActivityHelper.getLoadingDialog();
+                        loadingDialogFragment.show(getSupportFragmentManager(), "");
+                        call.enqueue(new Callback<JSONResponse>() {
+                            @Override
+                            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                                loadingDialogFragment.dismiss();
+
+                                if (response.body().isSuccess()) {
+                                    boolean isEmailRegistered = response.body().getPayload().equals(Boolean.TRUE);
+                                    if (isEmailRegistered) {
+                                        AnimationHelper.initializeShakeAnimation(SignUp2Activity.this, nextButton);
+                                        emailTextInputLayout.setError(getString(R.string.email_already_in_use));
+                                        nextButton.setEnabled(false);
+                                        takenMailList.add(ActivityHelper.getTrimmedString(email));
+                                    } else {
+                                        Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
+                                        i.putExtra("name", getIntent().getStringExtra("name"));
+                                        i.putExtra("lastname", getIntent().getStringExtra("lastname"));
+                                        i.putExtra("email", ActivityHelper.getTrimmedString(email));
+                                        i.putExtra("birthdate", formattedBirthdate);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        startActivity(i);
+                                    }
+                                } else {
+                                    AnimationHelper.initializeShakeAnimation(SignUp2Activity.this, nextButton);
+                                    ActivityHelper.DisplayCustomToast(SignUp2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                                }
+                                Log.i("dev", "onResponse: " + response.body().getPayload().toString() + "\t" + Boolean.TRUE.toString());
+                            }
 
 
-                        //
-                        Intent i = new Intent(SignUp2Activity.this, SignUp3Activity.class);
-                        i.putExtra("name", getIntent().getStringExtra("name"));
-                        i.putExtra("lastname", getIntent().getStringExtra("lastname"));
-                        i.putExtra("email", ActivityHelper.getTrimmedString(email));
-                        i.putExtra("birthdate", formattedBirthdate);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(i);
+                            @Override
+                            public void onFailure(Call<JSONResponse> call, Throwable t) {
+                                loadingDialogFragment.dismiss();
+                                AnimationHelper.initializeShakeAnimation(SignUp2Activity.this, nextButton);
+                                ActivityHelper.DisplayCustomToast(SignUp2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+
+                            }
+                        });
                     }
 
                 } else {
@@ -330,7 +371,7 @@ public class SignUp2Activity extends ActivityHelper {
     }
 
     public void enableButtonifOK() {
-        if (email.length() > 0 && birthdate.length() > 0 && emailTextInputLayout.getError() == null && Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+        if (email.length() > 0 && birthdate.length() > 0 && emailTextInputLayout.getError() == null && Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() && !emailInUse()) {
             nextButton.setEnabled(true);
         } else nextButton.setEnabled(false);
     }
@@ -341,6 +382,12 @@ public class SignUp2Activity extends ActivityHelper {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         birthdate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private boolean emailInUse() {
+        if (takenMailList.contains(ActivityHelper.getTrimmedString(email))) {
+            return true;
+        } else return false;
     }
 
 }
