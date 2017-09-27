@@ -6,7 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.ebozkurt.com.favor.R;
 import android.ebozkurt.com.favor.views.LoadingDialogFragment;
-import android.support.v4.app.FragmentManager;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -16,6 +16,9 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class ActivityHelper extends AppCompatActivity {
@@ -87,5 +90,31 @@ public class ActivityHelper extends AppCompatActivity {
         return loadingDialogFragment;
     }
 
+    public static Boolean isNameLastname(String s) {
+        if (s == null || s.trim().isEmpty()) {
+            return false;
+        }
+        //[^A-Za-z0-9\s]
+        Pattern p = Pattern.compile("[^\\p{L}\\s]");
+        Matcher m = p.matcher(s);
+        // boolean b = m.matches();
+
+        boolean b = m.find();
+        if (b)
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean hasInvalidName(Activity activity, EditText editText, TextInputLayout textInputLayout) {
+        if (ActivityHelper.isNameLastname(ActivityHelper.getTrimmedString(editText))) {
+            textInputLayout.setError(activity.getResources().getString(R.string.invalid_character));
+            return true;
+        } else {
+            textInputLayout.setError(null);
+            textInputLayout.setErrorEnabled(false);
+            return false;
+        }
+    }
 
 }

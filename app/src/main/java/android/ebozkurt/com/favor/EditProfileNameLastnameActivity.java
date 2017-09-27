@@ -13,9 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class EditProfileNameLastnameActivity extends AppCompatActivity {
 
     TextInputLayout nameTextInputLayout, lastnameTextInputLayout;
@@ -90,21 +87,6 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
         });
     }
 
-    private boolean hasInvalidCharacter(EditText editText, TextInputLayout textInputLayout) {
-        Pattern p = Pattern.compile("[^A-Za-z]");//replace this with your needs
-        Matcher m = p.matcher(editText.getText());
-        // boolean b = m.matches();
-
-        boolean b = m.find();
-        if (b == true) {
-            textInputLayout.setError(getString(R.string.invalid_character));
-            return true;
-        } else {
-            textInputLayout.setError(null);
-            textInputLayout.setErrorEnabled(false);
-            return false;
-        }
-    }
 
     private boolean variablesChanged() {
         if (ActivityHelper.getTrimmedString(nameEditText).equals(name) && ActivityHelper.getTrimmedString(lastnameEditText).equals(lastname)) {
@@ -115,9 +97,9 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
     private void enableSaveButton() {
 
         //Do not remove, for an unknown reason it doesnt work without log message
-        Log.i("dev", "variablesChanged(): " + variablesChanged() + "\n!hasinvalidCharactername: " + !hasInvalidCharacter(nameEditText, nameTextInputLayout) + "\n!hasinvalidCharacterlastname: " + !hasInvalidCharacter(lastnameEditText, lastnameTextInputLayout));
+        Log.i("dev", "variablesChanged(): " + variablesChanged() + "\n!hasinvalidCharactername: " + !ActivityHelper.hasInvalidName(this, nameEditText, nameTextInputLayout) + "\n!hasinvalidCharacterlastname: " + !ActivityHelper.hasInvalidName(this, lastnameEditText, lastnameTextInputLayout));
 
-        if (variablesChanged() && !hasInvalidCharacter(nameEditText, nameTextInputLayout) && !hasInvalidCharacter(lastnameEditText, lastnameTextInputLayout) &&
+        if (variablesChanged() && !ActivityHelper.hasInvalidName(this, nameEditText, nameTextInputLayout) && !ActivityHelper.hasInvalidName(this, lastnameEditText, lastnameTextInputLayout) &&
                 nameEditText.getText().toString().trim().length() > 0 && lastnameEditText.getText().toString().trim().length() > 0) {
             saveButton.setEnabled(true);
         } else {

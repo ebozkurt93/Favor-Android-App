@@ -1,30 +1,19 @@
 package android.ebozkurt.com.favor;
 
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.PaintDrawable;
-import android.os.Build;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -103,7 +92,7 @@ public class SignUp1Activity extends ActivityHelper {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-               nextButtonEnable();
+                nextButtonEnable();
 
             }
 
@@ -146,7 +135,10 @@ public class SignUp1Activity extends ActivityHelper {
     }
 
     public void nextButtonEnable() {
-        if (ActivityHelper.getTrimmedEditTextLength(name) > 1 && ActivityHelper.getTrimmedEditTextLength(surname) > 1) {
+        if (!ActivityHelper.hasInvalidName(this, name, nameLayout)
+                && !ActivityHelper.hasInvalidName(this, surname, surnameLayout)
+                && ActivityHelper.getTrimmedEditTextLength(name) > 1
+                && ActivityHelper.getTrimmedEditTextLength(surname) > 1) {
             nextButton.setEnabled(true);
         } else nextButton.setEnabled(false);
     }
