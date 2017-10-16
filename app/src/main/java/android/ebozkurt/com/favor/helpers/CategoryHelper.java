@@ -12,19 +12,19 @@ public class CategoryHelper {
     public static int getCategoryIcon(String categoryId) {
         int iconId;
         switch (categoryId) {
-            case "ride":
+            case "RIDE":
                 iconId = R.drawable.ride;
                 break;
-            case "delivery":
+            case "DELIVERY":
                 iconId = R.drawable.delivery;
                 break;
-            case "teach":
+            case "TEACH":
                 iconId = R.drawable.teach;
                 break;
-            case "borrow":
+            case "BORROW":
                 iconId = R.drawable.borrow;
                 break;
-            case "socialize":
+            case "SOCIALIZE":
                 iconId = R.drawable.socialize;
                 break;
             default:

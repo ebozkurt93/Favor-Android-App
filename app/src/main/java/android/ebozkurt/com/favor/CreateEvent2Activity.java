@@ -5,8 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.ebozkurt.com.favor.domain.Event;
+import android.ebozkurt.com.favor.domain.helpers.EventCreate;
+import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
-import android.ebozkurt.com.favor.helpers.BitmapHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
 
@@ -15,11 +18,10 @@ import java.util.Calendar;
 
 import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.ebozkurt.com.favor.network.BoonApiInterface;
+import android.ebozkurt.com.favor.network.RetrofitBuilder;
+import android.ebozkurt.com.favor.views.LoadingDialogFragment;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -35,10 +37,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,6 +50,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateEvent2Activity extends AppCompatActivity implements CounterHandler.CounterListener, OnMapReadyCallback {
 
@@ -91,8 +97,8 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
         category_id = getIntent().getStringExtra("category_id");
         category_name = getIntent().getStringExtra("category_name");
-        userPoints = 256;
-
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
+        userPoints = sharedPreferences.getInt(getString(R.string.__sp_user_point), 0);
 
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);
@@ -116,7 +122,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         nowRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_now_radiobutton);
         //not used, since there is 2 options only
         laterRadioButton = (RadioButton) findViewById(R.id.activity_create_event2_time_later_radiobutton);
-        markerState = "now";
+        markerState = "NOW";
 
         setNowLaterRadioButtonValues();
 
@@ -145,9 +151,9 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    markerState = "now";
+                    markerState = "NOW";
                 } else {
-                    markerState = "later";
+                    markerState = "LATER";
                 }
                 checkAllForPosting();
                 marker.setIcon(MapHelper.getMapIcon(CreateEvent2Activity.this, category_id, markerState));
@@ -259,6 +265,56 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
             }
         });
 
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Event event = new Event();
+                event.setDescription(description.getText().toString());
+                event.setLatitude(coordinates.latitude);
+                event.setLongitude(coordinates.longitude);
+                event.setCategory(category_id);
+                //event.setCreationDate();
+                event.setPoints(Integer.parseInt(eventPointsTextView.getText().toString()));
+                BoonApiInterface apiService = RetrofitBuilder.returnService();
+                final SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
+                String accessToken = sharedPreferences.getString(getString(R.string.__sp_access_token), "");
+                boolean isNow = nowRadioButton.isChecked();
+
+                EventCreate eventCreate = new EventCreate(event, isNow);
+
+                Call<JSONResponse> call = apiService.createEvent(accessToken, eventCreate);
+                final LoadingDialogFragment loadingDialogFragment = ActivityHelper.getLoadingDialog();
+                loadingDialogFragment.show(getSupportFragmentManager(), "");
+                call.enqueue(new Callback<JSONResponse>() {
+                    @Override
+                    public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                        loadingDialogFragment.dismiss();
+                        if (response.body().isSuccess()) {
+                            ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, String.format(getResources().getString(R.string.event_created), getString(R.string.app_name)), Toast.LENGTH_LONG);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt(getString(R.string.__sp_user_point), userPoints - Integer.valueOf(eventPointsTextView.getText().toString()));
+                            int activeEventCount = sharedPreferences.getInt(getString(R.string.__sp_user_active_event_count), 0);
+                            editor.putInt(getString(R.string.__sp_user_active_event_count), activeEventCount - 1);
+                            editor.apply();
+                            Intent i = new Intent(CreateEvent2Activity.this, HomeActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            //startActivity(i);
+                            //finish();
+                        } else {
+                            ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONResponse> call, Throwable t) {
+                        ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+
+                    }
+                });
+            }
+        });
     }
 
     @Override

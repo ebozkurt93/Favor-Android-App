@@ -2,6 +2,7 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
@@ -11,13 +12,10 @@ import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
 import android.ebozkurt.com.favor.views.LoadingDialogFragment;
-import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -32,7 +30,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -133,7 +135,7 @@ public class LoginActivity extends ActivityHelper {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BoonApiInterface apiService = RetrofitBuilder.returnService();
+                final BoonApiInterface apiService = RetrofitBuilder.returnService();
                 User user = new User();
                 user.setEmail(emailEditText.getText().toString());
                 user.setPassword(passwordEditText.getText().toString());
@@ -146,11 +148,51 @@ public class LoginActivity extends ActivityHelper {
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                         if (response.body().isSuccess()) {
                             loadingDialogFragment.dismiss();
-                            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                            finish();
-                            //todo clear backstack
+                            final String accessToken = "Bearer " + response.body().getPayload().toString();
+                            Call<JSONResponse> call1 = apiService.getMyInfo(accessToken);
+                            loadingDialogFragment.show(getSupportFragmentManager(), "");
+                            call1.enqueue(new Callback<JSONResponse>() {
+                                @Override
+                                public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                                    if (response.body().isSuccess()) {
+                                        Gson gson = new Gson();
+                                        String jsonString = new JSONObject((Map) response.body().getPayload()).toString();
+                                        Log.i("dev", "onResponse: " + jsonString);
+                                        User user1 = gson.fromJson(jsonString, User.class);
+                                        Log.i("dev", "onResponse: " + user1.toString());
+                                        //user1 = (User) response.body().getPayload();
+                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString(getString(R.string.__sp_access_token),accessToken);
+                                        editor.putString(getString(R.string.__sp_user_name), user1.getName());
+                                        editor.putString(getString(R.string.__sp_user_lastname), user1.getLastname());
+                                        editor.putString(getString(R.string.__sp_user_email), user1.getEmail());
+                                        editor.putInt(getString(R.string.__sp_user_point), user1.getPoints());
+                                        editor.putInt(getString(R.string.__sp_user_active_event_count), user1.getActiveEventCount());
+                                        editor.putString(getString(R.string.__sp_user_rating), user1.getRating().toString());
+                                        editor.commit();
+
+                                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                        finish();
+                                        //todo clear backstack
+                                    } else {
+                                        loadingDialogFragment.dismiss();
+                                        AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
+                                        ActivityHelper.DisplayCustomToast(LoginActivity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<JSONResponse> call, Throwable t) {
+                                    loadingDialogFragment.dismiss();
+                                    AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
+                                    ActivityHelper.DisplayCustomToast(LoginActivity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                                }
+                            });
+
+
                         } else {
                             loadingDialogFragment.dismiss();
                             AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);

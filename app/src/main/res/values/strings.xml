@@ -86,6 +86,7 @@
     <string name="number_reviews">%1$d Reviews</string>
     <string name="general_error">An error occurred. Please try again.</string>
     <string name="email_already_in_use">This email is already is use.</string>
+    <string name="event_created">Your %1$s has been created.</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

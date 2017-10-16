@@ -42,11 +42,11 @@ public class CreateEvent1Activity extends AppCompatActivity {
 
         RecyclerView categoriesRecyclerView = (RecyclerView) findViewById(R.id.activity_create_event1_recyclerview);
 
-        Category ride = new Category(getResources().getDrawable(R.drawable.ride), getResources().getString(R.string.ride), "ride");
-        Category delivery = new Category(getResources().getDrawable(R.drawable.delivery), getResources().getString(R.string.delivery), "delivery");
-        Category teach = new Category(getResources().getDrawable(R.drawable.teach), getResources().getString(R.string.teach), "teach");
-        Category borrow = new Category(getResources().getDrawable(R.drawable.borrow), getResources().getString(R.string.borrow), "borrow");
-        Category socialize = new Category(getResources().getDrawable(R.drawable.socialize), getResources().getString(R.string.socialize), "socialize");
+        Category ride = new Category(getResources().getDrawable(R.drawable.ride), getResources().getString(R.string.ride), "RIDE");
+        Category delivery = new Category(getResources().getDrawable(R.drawable.delivery), getResources().getString(R.string.delivery), "DELIVERY");
+        Category teach = new Category(getResources().getDrawable(R.drawable.teach), getResources().getString(R.string.teach), "TEACH");
+        Category borrow = new Category(getResources().getDrawable(R.drawable.borrow), getResources().getString(R.string.borrow), "BORROW");
+        Category socialize = new Category(getResources().getDrawable(R.drawable.socialize), getResources().getString(R.string.socialize), "SOCIALIZE");
         ArrayList<Category> categoryList = new ArrayList<>();
         categoryList.add(ride);
         categoryList.add(delivery);

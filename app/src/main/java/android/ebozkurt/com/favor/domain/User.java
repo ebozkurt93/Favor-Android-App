@@ -8,7 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class User {
-
+    @SerializedName("id")
+    @Expose
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -21,13 +23,26 @@ public class User {
     @SerializedName("birthDate")
     @Expose
     private String birthDate;
-    @SerializedName("registerDate")
-    @Expose
-    private String registerDate;
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("points")
+    @Expose
+    private Integer points;
+    @SerializedName("activeEventCount")
+    @Expose
+    private Integer activeEventCount;
+    @SerializedName("rating")
+    @Expose
+    private Double rating;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -61,14 +76,6 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public String getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(String registerDate) {
-        this.registerDate = registerDate;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -77,4 +84,42 @@ public class User {
         this.password = password;
     }
 
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
+    public Integer getActiveEventCount() {
+        return activeEventCount;
+    }
+
+    public void setActiveEventCount(Integer activeEventCount) {
+        this.activeEventCount = activeEventCount;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", password='" + password + '\'' +
+                ", points=" + points +
+                ", activeEventCount=" + activeEventCount +
+                ", rating=" + rating +
+                '}';
+    }
 }
