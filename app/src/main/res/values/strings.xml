@@ -87,6 +87,8 @@
     <string name="general_error">An error occurred. Please try again.</string>
     <string name="email_already_in_use">This email is already is use.</string>
     <string name="event_created">Your %1$s has been created.</string>
+    <string name="getting_location">Trying to find your location...</string>
+    <string name="permission_denied">Permission denied.</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>
