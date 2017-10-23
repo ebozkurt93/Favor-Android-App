@@ -77,6 +77,8 @@ public class LoginActivity extends ActivityHelper {
         signInButton.setEnabled(false);
         signInButton.setClipToOutline(true);
 
+        //todo remove this after refresh token implementation & auto login process
+        signInButton.setEnabled(true);
 
         shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 

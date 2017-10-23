@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/turquoise_blue</color>
+    <color name="colorPrimary">@color/peach_orange</color>
     <color name="colorPrimaryDark">@color/turquoise_blue</color>
     <color name="colorAccent">@color/white</color>
     <color name="login_signup_button_background_disabled">@color/white_disabled</color>
+    <color name="login_signup_button_background_enabled">@color/colorAccent</color>
     <color name="login_signup_button_text_disabled">@color/very_light_gray</color>
     <color name="initial_viewpager_dot_selected">@color/squash</color>
     <color name="initial_viewpager_dot_default">@color/pale_grey</color>
-    <color name="errorText">@color/scarlet</color>
+    <color name="errorText">@color/charcoal_grey</color>
     <color name="createEventText">@color/charcoal_grey</color>
     <color name="createEventCounterMax">@color/scarlet</color>
     <color name="main_button_text_disabled">@color/white_50_opacity</color>
     <color name="main_button_background_disabled">@color/turquoise_blue_50_opacity</color>
     <color name="edit_profile_divider">@color/charcoal_grey</color>
-    <color name="points_text">@color/squash</color>
+    <color name="points_text">@color/charcoal_grey</color>
     <color name="create_event_points_background">@color/pale_grey</color>
-    <!-- marker colors -->
+
+    <!--map marker colors -->
     <color name="marker_icon_default">@color/charcoal_grey</color>
     <color name="marker_background_later">@color/white</color>
     <color name="marker_background_selected">@color/turquoise_blue</color>
@@ -24,15 +26,16 @@
     <color name="search_bar_hint_color">@color/warm_grey</color>
 
     <!-- gradient background colors -->
-    <!--
-        <color name="background_start">#21BFD4</color>
-        <color name="background_end">#5951B0</color>
-        <color name="background_action_or_status_bar_end">#3697C6</color>
-    -->
 
-    <!-- Zeplin colors -->
+        <color name="background_start">@color/aquamarine_blue</color>
+        <color name="background_end">@color/peach_orange</color>
+        <color name="background_action_or_status_bar_end">#3697C6</color>
+
+
     <color name="turquoise_blue">#01a3cb</color>
-    <color name="white_disabled">#f0f0f0</color>
+    <color name="white_disabled">#99ffffff</color>
+
+
     <color name="white">#ffffff</color>
     <color name="very_light_gray">#e2e2e2</color>
     <color name="charcoal_grey">#4a4a4a</color>
@@ -50,6 +53,32 @@
 
     <color name="invisible">#00000000</color>
 
+    <!-- new colors -->
+    <color name="aquamarine_blue">#77dfe2</color>
+    <color name="peach_orange">#fdc094</color>
+
+
+
+    <!-- new colors test-->
+    <color name="t1">#ff8080</color>
+    <color name="t2">#09dfdf</color>
+
+
+    <color name="t3">#77dfe2</color>
+    <color name="t4">#fdc094</color>
+
+    <color name="t5">#d27bf2</color>
+    <color name="t6">#fcc989</color>
+
+
+    <color name="t7">#98cee6</color>
+    <color name="t8">#e7c4ca</color>
+
+    <color name="t9">#a57fba</color>
+    <color name="t10">#f2adca</color>
+
+    <color name="t11">#92dbec</color>
+    <color name="t12">#ccb4a8</color>
 
     <!--Old Zeplin colors -->
     <!--

@@ -61,8 +61,6 @@
         <Button
             android:id="@+id/activity_sign_up1_next_button"
             style="@style/LoginSignupButtons"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/next"
             app:layout_constraintLeft_toLeftOf="@+id/activity_sign_up1_top_text"
