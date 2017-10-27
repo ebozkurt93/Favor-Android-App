@@ -20,6 +20,9 @@ public class User {
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("description")
+    @Expose
+    private String description;
     @SerializedName("birthDate")
     @Expose
     private String birthDate;
@@ -66,6 +69,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBirthDate() {
@@ -115,6 +126,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
+                ", description=" + description +
                 ", birthDate='" + birthDate + '\'' +
                 ", password='" + password + '\'' +
                 ", points=" + points +

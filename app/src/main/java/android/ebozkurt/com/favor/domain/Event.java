@@ -110,4 +110,19 @@ public class Event {
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", creator=" + creator +
+                ", helper=" + helper +
+                ", description='" + description + '\'' +
+                ", points=" + points +
+                ", category='" + category + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", creationDate='" + creationDate + '\'' +
+                '}';
+    }
 }

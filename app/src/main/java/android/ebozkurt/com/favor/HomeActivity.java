@@ -2,14 +2,15 @@ package android.ebozkurt.com.favor;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.ebozkurt.com.favor.domain.Event;
 import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
+import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
@@ -18,7 +19,6 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,9 +51,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -83,6 +92,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //used for location permission, value of this int doesn't matter, just needs to be unique
     public static final int LOCATION_PERMISSION_CODE = 99;
+
+    private ArrayList<Event> events;
 
 
     @Override
@@ -285,20 +296,25 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         currentCoordinates = new LatLng(location.getLatitude(), location.getLongitude());
-        map.moveCamera(CameraUpdateFactory.newLatLng(currentCoordinates));
         addMapMarker();
     }
 
+    public void Test(View v) {
+        getEventsNearby(currentCoordinates.latitude, currentCoordinates.longitude);
+    }
 
     private void getEventsNearby(double latitude, double longitude) {
         BoonApiInterface apiService = RetrofitBuilder.returnService();
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
-        final String accessToken = sharedPreferences.getString(getString(R.string.__sp_access_token), "");
+        String accessToken = CommonOperations.getAccessToken(this);
         Call<JSONResponse> call = apiService.getAllEvents(accessToken, latitude, longitude);
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                 if (response.body().isSuccess()) {
+                    Gson gson = new Gson();
+                    String json = gson.toJson(response.body().getPayload());
+                    events = gson.fromJson(json, new TypeToken<List<Event>>() {
+                    }.getType());
 
                 } else {
                     Log.i("dev", "getting event list failed.");
@@ -339,8 +355,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void getUserInfo() {
         BoonApiInterface apiService = RetrofitBuilder.returnService();
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
-        final String accessToken = sharedPreferences.getString(getString(R.string.__sp_access_token), "");
+        final String accessToken = CommonOperations.getAccessToken(this);
         Call<JSONResponse> call = apiService.getMyInfo(accessToken);
         call.enqueue(new Callback<JSONResponse>() {
             @Override
@@ -348,19 +363,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (response.body().isSuccess()) {
                     Gson gson = new Gson();
                     String jsonString = new JSONObject((Map) response.body().getPayload()).toString();
-                    Log.i("dev", "onResponse: " + jsonString);
                     User user1 = gson.fromJson(jsonString, User.class);
-                    Log.i("dev", "onResponse: " + user1.toString());
-                    SharedPreferences sharedPreferences = HomeActivity.this.getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(getString(R.string.__sp_access_token), accessToken);
-                    editor.putString(getString(R.string.__sp_user_name), user1.getName());
-                    editor.putString(getString(R.string.__sp_user_lastname), user1.getLastname());
-                    editor.putString(getString(R.string.__sp_user_email), user1.getEmail());
-                    editor.putInt(getString(R.string.__sp_user_point), user1.getPoints());
-                    editor.putInt(getString(R.string.__sp_user_active_event_count), user1.getActiveEventCount());
-                    editor.putString(getString(R.string.__sp_user_rating), user1.getRating().toString());
-                    editor.apply();
+                    CommonOperations.saveUserInfo(HomeActivity.this, user1);
                     points = user1.getPoints();
                     userPointsTextView.setText("" + points);
                 }

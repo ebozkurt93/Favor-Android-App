@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.ebozkurt.com.favor.domain.Event;
+import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.EventCreate;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
+import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.CounterHandler;
 
 import java.text.SimpleDateFormat;
@@ -97,8 +99,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
         category_id = getIntent().getStringExtra("category_id");
         category_name = getIntent().getStringExtra("category_name");
-        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
-        userPoints = sharedPreferences.getInt(getString(R.string.__sp_user_point), 0);
+        userPoints = CommonOperations.getUserInfo(this).getPoints();
 
         description = (EditText) findViewById(R.id.activity_create_event2_description_edittext);
         description_counter = (TextView) findViewById(R.id.activity_create_event2_description_counter_textview);
@@ -277,8 +278,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                 //event.setCreationDate();
                 event.setPoints(Integer.parseInt(eventPointsTextView.getText().toString()));
                 BoonApiInterface apiService = RetrofitBuilder.returnService();
-                final SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
-                String accessToken = sharedPreferences.getString(getString(R.string.__sp_access_token), "");
+                String accessToken = CommonOperations.getAccessToken(CreateEvent2Activity.this);
                 boolean isNow = nowRadioButton.isChecked();
 
                 EventCreate eventCreate = new EventCreate(event, isNow);
@@ -292,15 +292,16 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                         loadingDialogFragment.dismiss();
                         if (response.body().isSuccess()) {
                             ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, String.format(getResources().getString(R.string.event_created), getString(R.string.app_name)), Toast.LENGTH_LONG);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putInt(getString(R.string.__sp_user_point), userPoints - Integer.valueOf(eventPointsTextView.getText().toString()));
-                            int activeEventCount = sharedPreferences.getInt(getString(R.string.__sp_user_active_event_count), 0);
-                            editor.putInt(getString(R.string.__sp_user_active_event_count), activeEventCount - 1);
-                            editor.apply();
+
+                            User user = CommonOperations.getUserInfo(CreateEvent2Activity.this);
+                            user.setPoints(user.getPoints() - Integer.valueOf(eventPointsTextView.getText().toString()));
+                            user.setActiveEventCount(user.getActiveEventCount() - 1);
+                            CommonOperations.saveUserInfo(CreateEvent2Activity.this, user);
+
                             Intent i = new Intent(CreateEvent2Activity.this, HomeActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            //startActivity(i);
-                            //finish();
+                            startActivity(i);
+                            finish();
                         } else {
                             ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
 

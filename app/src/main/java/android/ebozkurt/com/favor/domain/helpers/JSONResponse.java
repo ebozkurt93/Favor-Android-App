@@ -45,4 +45,14 @@ public class JSONResponse<T> {
     public JSONResponseError getError() {
         return error;
     }
+
+    @Override
+    public String toString() {
+        return "JSONResponse{" +
+                "success=" + success +
+                ", createdTime=" + createdTime +
+                ", payload=" + payload +
+                ", error=" + error +
+                '}';
+    }
 }
