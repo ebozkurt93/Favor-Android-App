@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.ebozkurt.com.favor.adapters.EventsAdapter;
 import android.ebozkurt.com.favor.domain.Event;
 import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
@@ -21,6 +22,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -95,6 +99,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private ArrayList<Event> events;
 
+    RecyclerView eventsRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +124,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //BitmapHelper.currencyIconInitializer(this, userPointsTextView);
 
         startLocationUpdates();
+
+        eventsRecyclerView = (RecyclerView) findViewById(R.id.activity_home_events_recycler_view);
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -313,8 +321,22 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (response.body().isSuccess()) {
                     Gson gson = new Gson();
                     String json = gson.toJson(response.body().getPayload());
-                    events = gson.fromJson(json, new TypeToken<List<Event>>() {
+                    List<Event> eventList = gson.fromJson(json, new TypeToken<List<Event>>() {
                     }.getType());
+                    if (eventList.size() > 0) {
+                        events = new ArrayList<Event>();
+                        for (Event e : eventList) {
+                            events.add(e);
+                        }
+                        EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this);
+                        eventsRecyclerView.setAdapter(adapter);
+                        eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                        //todo add divider !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    }
+
+                    for (Event event : events) {
+                        Log.i("dev", event.toString());
+                    }
 
                 } else {
                     Log.i("dev", "getting event list failed.");
