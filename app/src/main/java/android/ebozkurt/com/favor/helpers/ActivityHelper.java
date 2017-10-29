@@ -17,6 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -115,6 +122,18 @@ public class ActivityHelper extends AppCompatActivity {
             textInputLayout.setErrorEnabled(false);
             return false;
         }
+    }
+
+    public static Calendar stringToDateTime(String stringDateTime) {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        try {
+            cal.setTime(sdf.parse(stringDateTime));// all done
+        } catch (ParseException e) {
+            return Calendar.getInstance();
+            //e.printStackTrace();
+        }
+        return cal;
     }
 
 }

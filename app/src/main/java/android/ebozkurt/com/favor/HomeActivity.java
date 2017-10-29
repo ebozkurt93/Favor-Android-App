@@ -15,6 +15,7 @@ import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
+import android.ebozkurt.com.favor.views.SpacesItemDecoration;
 import android.location.Location;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -124,6 +125,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //BitmapHelper.currencyIconInitializer(this, userPointsTextView);
 
         startLocationUpdates();
+        //getEventsNearby(currentCoordinates.latitude, currentCoordinates.longitude);
+
 
         eventsRecyclerView = (RecyclerView) findViewById(R.id.activity_home_events_recycler_view);
 
@@ -331,7 +334,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this);
                         eventsRecyclerView.setAdapter(adapter);
                         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                        //todo add divider !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+                        eventsRecyclerView.addItemDecoration(decoration);
                     }
 
                     for (Event event : events) {

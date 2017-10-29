@@ -38,6 +38,9 @@ public class Event {
     @SerializedName("creationDate")
     @Expose
     private String creationDate;
+    @SerializedName("latestStartDate")
+    @Expose
+    private String latestStartDate;
 
     public Integer getId() {
         return id;
@@ -111,6 +114,14 @@ public class Event {
         this.creationDate = creationDate;
     }
 
+    public String getLatestStartDate() {
+        return latestStartDate;
+    }
+
+    public void setLatestStartDate(String latestStartDate) {
+        this.latestStartDate = latestStartDate;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -123,6 +134,7 @@ public class Event {
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", creationDate='" + creationDate + '\'' +
+                ", latestStartDate='" + latestStartDate + '\'' +
                 '}';
     }
 }

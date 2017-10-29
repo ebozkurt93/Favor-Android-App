@@ -12,20 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout2"
-            android:layout_width="75dp"
+        <android.support.constraint.Guideline
+            android:id="@+id/guideLine"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            android:background="@color/peach_orange"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_end="75dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
-        </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.Guideline>
         <!--
         <android.support.constraint.Guideline
             android:layout_width="wrap_content"
@@ -90,8 +87,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:ellipsize="end"
@@ -101,22 +96,28 @@
             android:textColor="@color/createEventText"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/constraintLayout2"
+            app:layout_constraintRight_toLeftOf="@+id/guideLine"
             app:layout_constraintTop_toBottomOf="@+id/event_detail_card_profile_image"/>
 
         <TextView
             android:id="@+id/event_detail_card_event_points_textview"
             style="@style/Points"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            android:text="999"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
+            android:text="0"
+            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_send_request_button"
+            app:layout_constraintLeft_toLeftOf="@+id/guideLine"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-            app:layout_constraintVertical_bias="0.506"/>
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_send_request_button"/>
+
+        <ImageView
+            android:id="@+id/event_detail_card_event_category"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ride"
+            android:tint="@color/points_text"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"/>
 
         <Button
             android:id="@+id/event_detail_card_send_request_button"
@@ -126,45 +127,29 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="17dp"
+            android:enabled="false"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:text="Send Request"
-            android:enabled="false"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/constraintLayout2"
+            app:layout_constraintRight_toLeftOf="@+id/guideLine"
             app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_description_textview"/>
 
-        <View
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/scarlet"
-            android:layout_marginTop="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_description_textview"
-            android:layout_marginBottom="0dp"
+        <TextView
+            android:id="@+id/event_detail_card_event_end_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/createEventText"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/event_detail_card_event_description_textview"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2">
-
-        </View>
-
-        <ImageView
-            android:id="@+id/event_detail_card_event_category"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:src="@drawable/ride"
-            android:tint="@color/points_text"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.589"
-            android:layout_marginBottom="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_send_request_button"
-            android:layout_marginTop="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_send_request_button"/>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideLine"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_event_description_textview"
+            app:layout_constraintVertical_bias="0.55"/>
 
     </android.support.constraint.ConstraintLayout>
 
