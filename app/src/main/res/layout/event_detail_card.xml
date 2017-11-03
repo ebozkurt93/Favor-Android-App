@@ -5,8 +5,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="380dp"
              android:layout_height="230dp"
-             android:background="@drawable/event_detail_card_background"
-             android:elevation="6dp">
+             android:background="@drawable/event_detail_card_background">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

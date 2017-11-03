@@ -74,7 +74,7 @@ public class MapHelper {
 
 
     public static void setMapSettings(GoogleMap map, Activity activity, boolean scrollable, boolean zoomable) {
-
+/*
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
@@ -87,7 +87,7 @@ public class MapHelper {
         } catch (Resources.NotFoundException e) {
             Log.e(TAG, "Can't find style. Error: ", e);
         }
-
+*/
         map.setInfoWindowAdapter(new MyMapInfoWindowAdapter(activity));
         map.getUiSettings().setMapToolbarEnabled(false);
         //map.setMyLocationEnabled(true);

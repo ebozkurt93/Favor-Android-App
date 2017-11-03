@@ -7,8 +7,10 @@ import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.AnimationHelper;
+import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.PasswordChecker;
 import android.ebozkurt.com.favor.helpers.PasswordHintToggler;
+import android.ebozkurt.com.favor.helpers.TemporaryHelper;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
 import android.ebozkurt.com.favor.views.LoadingDialogFragment;
@@ -75,6 +77,8 @@ public class LoginActivity extends ActivityHelper {
         //actionBarRightText.setTypeface(null, Typeface.ITALIC);
         signInButton = (Button) findViewById(R.id.activity_login_sign_in_button);
         signInButton.setEnabled(false);
+        //todo remove this
+        signInButton.setEnabled(true);
         signInButton.setClipToOutline(true);
 
         //todo remove this after refresh token implementation & auto login process
@@ -96,6 +100,7 @@ public class LoginActivity extends ActivityHelper {
         passwordTextInputLayout = (TextInputLayout) findViewById(R.id.activity_login_password_text_input_layout);
         passwordToggleTextView = (TextView) findViewById(R.id.activity_login_password_toggle_editText);
         passwordToggleTextView.setVisibility(View.INVISIBLE);
+        TemporaryHelper.setLoginInfo(this, emailEditText, passwordEditText);
 /*
         emailEditText.setFilters(new InputFilter[] {
                 new InputFilter.AllCaps() {
@@ -163,16 +168,9 @@ public class LoginActivity extends ActivityHelper {
                                         User user1 = gson.fromJson(jsonString, User.class);
                                         Log.i("dev", "onResponse: " + user1.toString());
                                         //user1 = (User) response.body().getPayload();
-                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(getString(R.string.__sp_key), Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                                        editor.putString(getString(R.string.__sp_access_token),accessToken);
-                                        editor.putString(getString(R.string.__sp_user_name), user1.getName());
-                                        editor.putString(getString(R.string.__sp_user_lastname), user1.getLastname());
-                                        editor.putString(getString(R.string.__sp_user_email), user1.getEmail());
-                                        editor.putInt(getString(R.string.__sp_user_point), user1.getPoints());
-                                        editor.putInt(getString(R.string.__sp_user_active_event_count), user1.getActiveEventCount());
-                                        editor.putString(getString(R.string.__sp_user_rating), user1.getRating().toString());
-                                        editor.commit();
+                                        //todo change here before release
+                                        CommonOperations.saveUserInfo(LoginActivity.this, user1);
+                                        TemporaryHelper.saveLoginInfo(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
 
                                         Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                                         i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
