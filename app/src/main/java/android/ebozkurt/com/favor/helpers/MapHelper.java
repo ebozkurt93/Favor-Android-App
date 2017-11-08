@@ -50,13 +50,17 @@ public class MapHelper {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.default_marker, null); //todo
         switch (mapMarkerState) {
-            case "now":
+            case "NOW":
+                v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.marker_background_now));
                 break;
-            case "later":
+            case "LATER":
                 v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.marker_background_later));
                 break;
+            case "SELECTED":
+                v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.marker_background_selected));
+                break;
             default:
-                v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.invisible));
+                v.setBackgroundTintList(activity.getResources().getColorStateList(R.color.marker_icon_default));
                 break;
         }
 
@@ -70,7 +74,6 @@ public class MapHelper {
 
         return BitmapDescriptorFactory.fromBitmap(BitmapHelper.getBitmapFromVectorDrawable(activity.getResources().getDrawable(R.drawable.map_current_position_marker)));
     }
-
 
 
     public static void setMapSettings(GoogleMap map, Activity activity, boolean scrollable, boolean zoomable) {
@@ -129,5 +132,35 @@ public class MapHelper {
             e.printStackTrace(); // getFromLocation() may sometimes fail
         }
         return addressText;
+    }
+
+    /**
+     * Calculate distance between two points in latitude and longitude taking
+     * into account height difference. If you are not interested in height
+     * difference pass 0.0. Uses Haversine method as its base.
+     * <p>
+     * lat1, lon1 Start point lat2, lon2 End point el1 Start altitude in meters
+     * el2 End altitude in meters
+     *
+     * @returns Distance in Meters
+     */
+    public static double distance(double lat1, double lat2, double lon1,
+                                  double lon2/*, double el1, double el2*/) {
+
+        final int R = 6371; // Radius of the earth
+
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+
+        //double height = el1 - el2;
+
+        distance = Math.pow(distance, 2);// + Math.pow(height, 2);
+
+        return Math.sqrt(distance);
     }
 }

@@ -90,9 +90,6 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
         ActivityHelper.initialize(this);
         ActivityHelper.hideKeyboardWhenEdittextNotFocused(getWindow().getDecorView().getRootView(), CreateEvent2Activity.this);
 
-        RelativeLayout actionBarLayout = (RelativeLayout) findViewById(R.id.sign_up1_action_bar_relative_layout);
-        actionBarLayout.setBackground(getResources().getDrawable(R.drawable.gradient_background_action_bar));
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_create_event2_mapfragment);
         mapFragment.getMapAsync(this);

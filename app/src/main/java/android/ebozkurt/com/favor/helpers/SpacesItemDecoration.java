@@ -1,4 +1,4 @@
-package android.ebozkurt.com.favor.views;
+package android.ebozkurt.com.favor.helpers;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -21,9 +21,11 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         outRect.left = mSpace;
         outRect.right = mSpace;
-        outRect.top = mSpace;
-        outRect.bottom = mSpace;
 
+        if (parent.getChildAdapterPosition(view) == 0)
+            outRect.left = mSpace * 2;
+        if (parent.getChildAdapterPosition(view) == parent.getChildCount() + 1)
+            outRect.right = mSpace * 2;
 
         // Add top margin only for the first item to avoid double space between items
         /*if (parent.getChildAdapterPosition(view) == 0)

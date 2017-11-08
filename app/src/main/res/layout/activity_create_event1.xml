@@ -5,8 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_appbar"
+    android:fitsSystemWindows="true"
     tools:context="android.ebozkurt.com.favor.CreateEvent1Activity">
-
+<!--
     <android.ebozkurt.com.favor.views.StatusBarView
         android:layout_width="0dp"
         android:id="@+id/activity_create_event1_status_bar"
@@ -15,13 +17,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
+-->
     <TextView
         android:id="@+id/activity_create_event1_title_textview"
         style="@style/CreateEventTextView"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="@drawable/gradient_background_action_bar"
         android:gravity="center"
         android:text="@string/create_event"
         android:textColor="@color/colorAccent"
@@ -30,16 +31,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_create_event1_status_bar"/>
 
+
     <TextView
         android:id="@+id/textView2"
         style="@style/CreateEventTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:background="@color/colorAccent"
+        android:paddingLeft="28dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center|left"
         android:text="@string/please_select_a_category"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_create_event1_title_textview"/>
 
@@ -47,9 +50,9 @@
         android:id="@+id/activity_create_event1_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
-
+android:background="@color/colorAccent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         android:layout_marginBottom="0dp"

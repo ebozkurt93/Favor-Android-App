@@ -52,10 +52,6 @@ public class SignUp1Activity extends ActivityHelper {
         surnameLayout = (TextInputLayout) findViewById(R.id.activity_sign_up1_surname_text_input_layout);
         nextButton.setEnabled(false);
         nextButton.setClipToOutline(true);
-        actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
-        actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
-        actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);
-        actionBarBackground4 = (View) findViewById(R.id.sign_up_action_bar_background_view4);
         String formattedTermsOfConditions = String.format(getResources().getString(R.string.by_proceeding_you), getResources().getString(R.string.app_name));
         termsOfConditions = (TextView) findViewById(R.id.activity_sign_up1_terms_and_conditions_textView);
         termsOfConditions.setText(Html.fromHtml(formattedTermsOfConditions));

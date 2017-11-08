@@ -169,8 +169,10 @@ public class LoginActivity extends ActivityHelper {
                                         Log.i("dev", "onResponse: " + user1.toString());
                                         //user1 = (User) response.body().getPayload();
                                         //todo change here before release
-                                        CommonOperations.saveUserInfo(LoginActivity.this, user1);
                                         TemporaryHelper.saveLoginInfo(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
+                                        CommonOperations.saveAccessToken(LoginActivity.this, accessToken);
+                                        CommonOperations.saveUserInfo(LoginActivity.this, user1);
+
 
                                         Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                                         i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

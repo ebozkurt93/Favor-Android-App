@@ -12,6 +12,13 @@ import android.ebozkurt.com.favor.domain.User;
 
 public class CommonOperations {
 
+    public static void saveAccessToken(Context context, String token) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.__sp_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(context.getString(R.string.__sp_access_token), token);
+        editor.apply();
+    }
+
     public static String getAccessToken(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.__sp_key), Context.MODE_PRIVATE);
         return sharedPreferences.getString(context.getString(R.string.__sp_access_token), "");
@@ -20,7 +27,7 @@ public class CommonOperations {
     public static void saveUserInfo(Context context, User user) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.__sp_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(context.getString(R.string.__sp_access_token), getAccessToken(context));
+        //editor.putString(context.getString(R.string.__sp_access_token), getAccessToken(context));
         if (user.getName() != null)
             editor.putString(context.getString(R.string.__sp_user_name), user.getName());
         if (user.getLastname() != null)

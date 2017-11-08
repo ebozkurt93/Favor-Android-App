@@ -79,7 +79,7 @@
     <string name="done">Done</string>
     <string name="current_password">Current Password</string>
     <string name="edit_password">Edit Password</string>
-    <string name="end_time">End Time</string>
+    <string name="expiration_time">Expiration Time</string>
     <string name="please_select_a_category">Please select a category.</string>
     <string name="set_new_location">Set New Location</string>
     <string name="search_bar_hint">Looking for a %1$s to make?</string>
@@ -90,6 +90,7 @@
     <string name="event_created">Your %1$s has been created.</string>
     <string name="getting_location">Trying to find your location...</string>
     <string name="permission_denied">Permission denied.</string>
+    <string name="type_here">Type here.</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

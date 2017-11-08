@@ -3,17 +3,17 @@
              android:id="@+id/default_map_marker"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
+             android:background="@drawable/marker_pin"
              android:clipChildren="false"
-             android:clipToPadding="false"
-             android:elevation="6dp"
-             android:background="@drawable/marker_pin">
+             android:clipToPadding="false">
 
     <ImageView
         android:id="@+id/default_map_marker_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingBottom="7dp"
+        android:padding="8dp"
+        android:layout_marginBottom="4.5dp"
         android:scaleType="fitXY"
         android:tint="@color/marker_icon_default"/>
 </FrameLayout>

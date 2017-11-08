@@ -13,9 +13,10 @@ import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.MapHelper;
+import android.ebozkurt.com.favor.helpers.TimeHelper;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
-import android.ebozkurt.com.favor.views.SpacesItemDecoration;
+import android.ebozkurt.com.favor.helpers.SpacesItemDecoration;
 import android.location.Location;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -23,7 +24,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -56,17 +56,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -99,8 +93,11 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final int LOCATION_PERMISSION_CODE = 99;
 
     private ArrayList<Event> events;
+    private ArrayList<Marker> eventMarkers;
 
     RecyclerView eventsRecyclerView;
+    TextView eventsCounterTextView;
+    int selectedItemPosition = 0;
 
 
     @Override
@@ -117,7 +114,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_home_bottom_navigation_bar);
         BottomNavigationViewHelper.initialize(this, bottomNavigationView, 0);
-        Log.i("dev", "onCreate: " + points);
         userPointsTextView = (TextView) findViewById(R.id.activity_home_points_textview);
         userPointsTextView.setText("" + points);
         myLocationImageView = (ImageView) findViewById(R.id.activity_home_my_location_imageview);
@@ -127,9 +123,28 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         startLocationUpdates();
         //getEventsNearby(currentCoordinates.latitude, currentCoordinates.longitude);
 
-
+        eventsCounterTextView = (TextView) findViewById(R.id.activity_home_events_counter_textview);
         eventsRecyclerView = (RecyclerView) findViewById(R.id.activity_home_events_recycler_view);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        eventsRecyclerView.addItemDecoration(decoration);
+        eventsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int pos = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+                if (pos != -1) {
+                    updateSelectedMarker(pos);
+                }
+            }
+
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.activity_home_mapfragment);
@@ -218,7 +233,13 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         @Override
                         public void onLocationResult(LocationResult locationResult) {
                             // do work here
+                            boolean coordinatesSetBefore = currentCoordinates != null;
                             onLocationChanged(locationResult.getLastLocation());
+                            if (!coordinatesSetBefore) {
+                                map.moveCamera(CameraUpdateFactory.newLatLng(currentCoordinates));
+                                if (currentCoordinates != null)
+                                    getEventsNearby(currentCoordinates.latitude, currentCoordinates.longitude);
+                            }
                         }
                     },
                     Looper.myLooper());
@@ -307,7 +328,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         currentCoordinates = new LatLng(location.getLatitude(), location.getLongitude());
-        addMapMarker();
+        addCurrentPositionMapMarker();
     }
 
     public void Test(View v) {
@@ -326,22 +347,40 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                     String json = gson.toJson(response.body().getPayload());
                     List<Event> eventList = gson.fromJson(json, new TypeToken<List<Event>>() {
                     }.getType());
-                    if (eventList.size() > 0) {
-                        events = new ArrayList<Event>();
-                        for (Event e : eventList) {
-                            events.add(e);
-                        }
-                        EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this);
-                        eventsRecyclerView.setAdapter(adapter);
-                        eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-
-                        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
-                        eventsRecyclerView.addItemDecoration(decoration);
+                    //if (eventList.size() > 0) {
+                    events = new ArrayList<Event>();
+                    if (eventMarkers != null) {
+                        for (Marker m : eventMarkers)
+                            m.remove();
                     }
+                    eventMarkers = new ArrayList<Marker>();
 
-                    for (Event event : events) {
-                        Log.i("dev", event.toString());
+                    for (Event e : eventList) {
+                        events.add(e);
+                        String mapMarkerState;
+                        if (TimeHelper.isEventNow(ActivityHelper.stringToDateTime(e.getLatestStartDate())))
+                            mapMarkerState = "NOW";
+                        else
+                            mapMarkerState = "LATER";
+                        LatLng eventLocation = new LatLng(e.getLatitude(), e.getLongitude());
+                        final MarkerOptions myMarkerOptions = new MarkerOptions()
+                                .position(eventLocation)
+                                .icon(MapHelper.getMapIcon(HomeActivity.this, e.getCategory(), mapMarkerState));
+
+                        Marker eventMarker = map.addMarker(myMarkerOptions);
+                        eventMarkers.add(eventMarker);
                     }
+                    if (events.size() > 1){
+                        updateSelectedMarker(0);
+                        eventsCounterTextView.setVisibility(View.VISIBLE);
+                    }
+                    else eventsCounterTextView.setVisibility(View.INVISIBLE);
+
+                    //add all events to screen via recyclerview
+                    EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, currentCoordinates);
+                    eventsRecyclerView.setAdapter(adapter);
+                    eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                    //}
 
                 } else {
                     Log.i("dev", "getting event list failed.");
@@ -414,7 +453,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (currentCoordinates == null) {
             currentCoordinates = new LatLng(40.891444, 29.379922);
         }*/
-        addMapMarker();
+        addCurrentPositionMapMarker();
         /*
         Marker testmarker = map.addMarker(new MarkerOptions()
                 .position(new LatLng(currentCoordinates.latitude + 0.001, currentCoordinates.longitude + 0.001))
@@ -424,7 +463,16 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                return marker.getId().equals(currentPositionMarker.getId());
+                int pos = 0;
+                for (Marker m : eventMarkers) {
+                    if (marker.equals(m)) {
+                        eventsRecyclerView.smoothScrollToPosition(pos);
+                        updateSelectedMarker(pos);
+                        break;
+                    }
+                    pos++;
+                }
+                return true;//marker.getId().equals(currentPositionMarker.getId());
             }
         });
 
@@ -446,7 +494,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    private void addMapMarker() {
+    private void addCurrentPositionMapMarker() {
         if (currentPositionMarker != null) {
             currentPositionMarker.remove();
         }
@@ -457,5 +505,43 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             currentPositionMarker = map.addMarker(myMarkerOptions);
         }
+    }
+
+    private void updateSelectedMarker(int index) {
+        //update previously selectedItem marker
+        Event previouslySelectedEvent = events.get(selectedItemPosition);
+        String mapMarkerState;
+        if (TimeHelper.isEventNow(ActivityHelper.stringToDateTime(previouslySelectedEvent.getLatestStartDate())))
+            mapMarkerState = "NOW";
+        else
+            mapMarkerState = "LATER";
+        LatLng eventLocation = new LatLng(previouslySelectedEvent.getLatitude(), previouslySelectedEvent.getLongitude());
+        final MarkerOptions previousMyMarkerOptions = new MarkerOptions()
+                .position(eventLocation)
+                .icon(MapHelper.getMapIcon(HomeActivity.this, previouslySelectedEvent.getCategory(), mapMarkerState));
+        Marker previouslySelectedEventMarker = eventMarkers.get(selectedItemPosition);
+        previouslySelectedEventMarker.remove();
+        previouslySelectedEventMarker = map.addMarker(previousMyMarkerOptions);
+        eventMarkers.remove(selectedItemPosition);
+        eventMarkers.add(selectedItemPosition, previouslySelectedEventMarker);
+
+        //updating first marker as selected
+        Marker selectedMarker = eventMarkers.get(index);
+        selectedMarker.remove();
+        Event selectedEvent = events.get(index);
+        LatLng selectedEventLocation = new LatLng(selectedEvent.getLatitude(), selectedEvent.getLongitude());
+        MarkerOptions myMarkerOptions = new MarkerOptions()
+                .position(selectedEventLocation)
+                .icon(MapHelper.getMapIcon(HomeActivity.this, selectedEvent.getCategory(), "SELECTED"));
+        selectedMarker = map.addMarker(myMarkerOptions);
+        eventMarkers.remove(index);
+        eventMarkers.add(index, selectedMarker);
+        selectedItemPosition = index;
+
+        updateRecyclerViewPositionIndicator(selectedItemPosition);
+    }
+
+    private void updateRecyclerViewPositionIndicator(int pos) {
+        eventsCounterTextView.setText(pos + 1 + "/" + events.size());
     }
 }

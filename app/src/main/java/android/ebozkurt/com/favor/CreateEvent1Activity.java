@@ -33,6 +33,7 @@ public class CreateEvent1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event1);
         ActivityHelper.initialize(this);
+        ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.activity_create_event1_bottom_navigation_bar);
         BottomNavigationViewHelper.initialize(this, bottomNavigationView, 2);

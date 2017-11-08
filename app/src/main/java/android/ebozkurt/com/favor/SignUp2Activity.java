@@ -70,15 +70,6 @@ public class SignUp2Activity extends ActivityHelper {
 
         shake = AnimationUtils.loadAnimation(this, R.anim.button_shake_animation);
 
-
-        actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
-        actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
-        actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);
-        actionBarBackground4 = (View) findViewById(R.id.sign_up_action_bar_background_view4);
-        actionBarBackground1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        actionBarBackground2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-
-
         actionBarBack = (ImageButton) findViewById(R.id.sign_up1_action_bar_image_button);
         cancelTextView = (TextView) findViewById(R.id.sign_up1_action_bar_right_text_view);
         cancelTextView.setText(R.string.cancel);

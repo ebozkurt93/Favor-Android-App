@@ -32,14 +32,6 @@ public class SignUp4Activity extends ActivityHelper {
         ActivityHelper.initialize(this);
         ActivityHelper.transparentStatusBar(getWindow(), getResources());
 
-        actionBarBackground1 = (View) findViewById(R.id.sign_up_action_bar_background_view1);
-        actionBarBackground2 = (View) findViewById(R.id.sign_up_action_bar_background_view2);
-        actionBarBackground3 = (View) findViewById(R.id.sign_up_action_bar_background_view3);
-        actionBarBackground4 = (View) findViewById(R.id.sign_up_action_bar_background_view4);
-        actionBarBackground1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        actionBarBackground2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        actionBarBackground3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        actionBarBackground4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
 
         String formattedTopText = String.format(getResources().getString(R.string.congratulations_you_are), getResources().getString(R.string.app_name));
         topText = (TextView) findViewById(R.id.activity_sign_up4_top_text);
