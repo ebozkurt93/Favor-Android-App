@@ -51,6 +51,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -141,6 +142,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 int pos = linearLayoutManager.findLastCompletelyVisibleItemPosition();
                 if (pos != -1) {
                     updateSelectedMarker(pos);
+                    Marker marker = eventMarkers.get(pos);
+                    map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
                 }
             }
 
@@ -370,11 +373,10 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Marker eventMarker = map.addMarker(myMarkerOptions);
                         eventMarkers.add(eventMarker);
                     }
-                    if (events.size() > 1){
+                    if (events.size() > 1) {
                         updateSelectedMarker(0);
                         eventsCounterTextView.setVisibility(View.VISIBLE);
-                    }
-                    else eventsCounterTextView.setVisibility(View.INVISIBLE);
+                    } else eventsCounterTextView.setVisibility(View.INVISIBLE);
 
                     //add all events to screen via recyclerview
                     EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, currentCoordinates);

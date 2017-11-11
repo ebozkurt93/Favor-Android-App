@@ -1,6 +1,8 @@
 package android.ebozkurt.com.favor;
 
+import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,9 +41,10 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
         title.setText(R.string.edit_name);
         back = (ImageView) findViewById(R.id.sign_up1_action_bar_image_button);
 
-        //temporary name and lastname
-        name = "ExampleName";
-        lastname = "ExampleLastname";
+        final User user = CommonOperations.getUserInfo(this);
+        //name and lastname
+        name = user.getName();
+        lastname = user.getLastname();
 
         nameEditText.setText(name);
         lastnameEditText.setText(lastname);
@@ -83,6 +86,15 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                user.setName(ActivityHelper.getTrimmedString(nameEditText));
+                user.setLastname(ActivityHelper.getTrimmedString(lastnameEditText));
+                CommonOperations.updateUserInfo(EditProfileNameLastnameActivity.this, user);
             }
         });
     }

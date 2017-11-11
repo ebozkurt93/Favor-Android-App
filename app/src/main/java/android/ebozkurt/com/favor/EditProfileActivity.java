@@ -2,7 +2,9 @@ package android.ebozkurt.com.favor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
+import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.DividerItemDecoration;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -42,11 +44,12 @@ public class EditProfileActivity extends AppCompatActivity {
         done.setText(R.string.done);
         done.setVisibility(View.VISIBLE);
 
-        //todo get profile picture, name, lastname, description, email address at here, set them to list items
-        name = "ExampleName";
-        lastname = "ExampleLastname";
+        //todo get profile picture, description at here, set them to list items
+        User user = CommonOperations.getUserInfo(this);
+        name = user.getName();
+        lastname = user.getLastname();
         personalDescription = "This is an example personal descriptionEditText, try changing it.";
-        email = "example@boon-app.com";
+        email = user.getEmail();
 
 
         EditProfileActivity.Settings list_profile_pic = new EditProfileActivity.Settings(getResources().getDrawable(R.drawable.profile), getResources().getString(R.string.profile_picture), "profile_pic");
