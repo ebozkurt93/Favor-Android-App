@@ -57,6 +57,8 @@ public class CommonOperations {
             editor.putInt(context.getString(R.string.__sp_user_active_event_count), user.getActiveEventCount());
         if (user.getRating() != null)
             editor.putString(context.getString(R.string.__sp_user_rating), user.getRating().toString());
+        if (user.getId() != null)
+            editor.putInt(context.getString(R.string.__sp_user_id), user.getId());
         editor.apply();
     }
 
@@ -69,6 +71,7 @@ public class CommonOperations {
         user.setPoints(sharedPreferences.getInt(context.getString(R.string.__sp_user_point), 0));
         user.setActiveEventCount(sharedPreferences.getInt(context.getString(R.string.__sp_user_active_event_count), 0));
         user.setRating(Double.parseDouble(sharedPreferences.getString(context.getString(R.string.__sp_user_rating), "")));
+        user.setId(sharedPreferences.getInt(context.getString(R.string.__sp_user_id), 0));
         return user;
     }
 

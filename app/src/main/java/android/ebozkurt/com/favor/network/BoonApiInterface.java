@@ -1,5 +1,6 @@
 package android.ebozkurt.com.favor.network;
 
+import android.ebozkurt.com.favor.domain.Event;
 import android.ebozkurt.com.favor.domain.helpers.EventCreate;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.domain.User;
@@ -37,4 +38,7 @@ public interface BoonApiInterface {
 
     @POST("user/secure/editprofile")
     Call<JSONResponse> editProfile(@Header("Authorization") String authorizationHeader, @Body User user);
+
+    @POST("event/secure/sendrequest")
+    Call<JSONResponse> sendRequest(@Header("Authorization") String authorizationHeader, @Body Event event);
 }

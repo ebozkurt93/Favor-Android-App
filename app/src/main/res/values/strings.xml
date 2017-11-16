@@ -93,6 +93,7 @@
     <string name="permission_denied">Permission denied.</string>
     <string name="type_here">Type here.</string>
     <string name="distance_away">%1$s away</string>
+    <string name="sent_request">Your request is sent.</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

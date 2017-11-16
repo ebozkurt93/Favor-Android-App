@@ -8,10 +8,15 @@ import android.content.res.ColorStateList;
 import android.ebozkurt.com.favor.EventCardDetailFragment;
 import android.ebozkurt.com.favor.R;
 import android.ebozkurt.com.favor.domain.Event;
+import android.ebozkurt.com.favor.domain.User;
+import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.CategoryHelper;
+import android.ebozkurt.com.favor.helpers.CommonOperations;
 import android.ebozkurt.com.favor.helpers.MapHelper;
 import android.ebozkurt.com.favor.helpers.TimeHelper;
+import android.ebozkurt.com.favor.network.BoonApiInterface;
+import android.ebozkurt.com.favor.network.RetrofitBuilder;
 import android.ebozkurt.com.favor.views.CustomRatingBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +35,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by erdem on 27.10.2017.
@@ -63,6 +72,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
             view1 = (View) itemView.findViewById(R.id.event_detail_card_view1);
             view2 = (View) itemView.findViewById(R.id.event_detail_card_view2);
+
         }
     }
 
@@ -70,12 +80,14 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     private Context context;
     private android.support.v4.app.FragmentManager fragmentManager;
     private LatLng myLocation;
+    private User user;
 
-    public EventsAdapter(List<Event> events, Context context, android.support.v4.app.FragmentManager fragmentManager, LatLng myLocation) {
+    public EventsAdapter(List<Event> events, Context context, android.support.v4.app.FragmentManager fragmentManager, LatLng myLocation, User user) {
         this.events = events;
         this.context = context;
         this.fragmentManager = fragmentManager;
         this.myLocation = myLocation;
+        this.user = user;
     }
 
     private Context getContext() {
@@ -89,6 +101,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
         View eventView = inflater.inflate(R.layout.event_detail_card, parent, false);
         ViewHolder viewHolder = new ViewHolder(eventView);
+
         return viewHolder;
     }
 
@@ -115,11 +128,31 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             color = getContext().getResources().getColor(R.color.marker_background_later);
         holder.view1.setBackgroundTintList(ColorStateList.valueOf(color));
         holder.view2.setBackgroundColor(color);
+        if (event.getCreator().getId().equals(user.getId()))
+            holder.sendRequestButton.setEnabled(false);
 
 
         holder.sendRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BoonApiInterface apiService = RetrofitBuilder.returnService();
+                final String accessToken = CommonOperations.getAccessToken(context);
+                Call<JSONResponse> call = apiService.sendRequest(accessToken, event);
+                call.enqueue(new Callback<JSONResponse>() {
+                    @Override
+                    public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                        if (response.body().isSuccess()) {
+                            ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.sent_request), Toast.LENGTH_LONG);
+                        } else {
+                            ActivityHelper.DisplayCustomToast(context, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONResponse> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
@@ -129,7 +162,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                 //open eventcarddetailfragment
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.add(R.id.activity_home_event_card_detail_fragment_framelayout,
-                        new EventCardDetailFragment().newInstance(event, (int) MapHelper.distance(event.getLatitude(), myLocation.latitude, event.getLongitude(), myLocation.longitude)),"details");
+                        new EventCardDetailFragment().newInstance(event, (int) MapHelper.distance(event.getLatitude(), myLocation.latitude, event.getLongitude(), myLocation.longitude)), "details");
                 ft.commit();
             }
         });

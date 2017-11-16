@@ -138,8 +138,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if(newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    LinearLayoutManager layoutManager = ((LinearLayoutManager)eventsRecyclerView.getLayoutManager());
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    LinearLayoutManager layoutManager = ((LinearLayoutManager) eventsRecyclerView.getLayoutManager());
                     int pos = layoutManager.findFirstVisibleItemPosition();
                     //eventsRecyclerView.scrollToPosition(pos);
                     updateSelectedMarker(pos);
@@ -197,15 +197,13 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     }
+
     @Override
-    public boolean onKeyDown ( int keyCode, KeyEvent event)
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            killDetailsFragment();
-            return false;
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        if (!killDetailsFragment())
+            super.onBackPressed();
     }
+
 
     protected void startLocationUpdates() {
         if (checkLocationPermission()) {
@@ -406,7 +404,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                     } else eventsCounterTextView.setVisibility(View.INVISIBLE);
 
                     //add all events to screen via recyclerview
-                    EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, getSupportFragmentManager(), currentCoordinates);
+                    EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, getSupportFragmentManager(), currentCoordinates, CommonOperations.getUserInfo(HomeActivity.this));
                     eventsRecyclerView.setAdapter(adapter);
                     eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
                     //}
@@ -579,10 +577,15 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void updateRecyclerViewPositionIndicator(int pos) {
         eventsCounterTextView.setText(pos + 1 + "/" + events.size());
     }
-    private void killDetailsFragment() {
+
+    //return true if fragment found
+    private boolean killDetailsFragment() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment f = fm.findFragmentByTag("details");
-        if (f != null)
+        if (f != null) {
             fm.beginTransaction().remove(f).commit();
+            return true;
+        }
+        return false;
     }
 }
