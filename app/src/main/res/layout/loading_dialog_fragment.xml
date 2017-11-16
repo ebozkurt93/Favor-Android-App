@@ -7,6 +7,7 @@
                 android:layout_gravity="center">
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_dialog_fragment_loading"
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:lottie_autoPlay="true"

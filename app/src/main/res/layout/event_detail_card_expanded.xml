@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/event_detail_card_expanded_constraint_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_height="500dp"
+    android:maxWidth="400dp"
+    android:background="@drawable/event_detail_card_expanded_background">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/event_detail_card_expanded_profile__picture_circleimageview"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/berkin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/event_detail_card_expanded_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="Name"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/event_detail_card_expanded_profile__picture_circleimageview"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_card_expanded_profile__picture_circleimageview"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_profile__picture_circleimageview"/>
+
+    <TextView
+        android:id="@+id/event_detail_card_expanded_description_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:maxLines="3"
+        android:text="Description"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/event_detail_card_expanded_name_textview"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_card_expanded_name_textview"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_name_textview"/>
+
+    <TextView
+        android:id="@+id/event_detail_card_expanded_reviews_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:text="12 Reviews"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_description_textview"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/event_detail_card_expanded_reviews_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/squash"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_reviews_textview">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/event_detail_card_expanded_details_constraintlayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/event_detail_card_expanded_details_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_reviews_recyclerview"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_reward_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:text="Reward"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_expanded_details_reward_points_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_reward_points_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:gravity="center"
+            android:text="x points"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_details_reward_textview"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_expiration_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="Expiration Time"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_expanded_details_expiration_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_expiration_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:gravity="center"
+            android:text="day time"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_details_expiration_time_textview"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="28dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_location_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:text="Location"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_expanded_details_location_distance_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_location_distance_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:text="x km away"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_details_location_textview"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_category_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="Category"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/event_detail_card_expanded_details_category_text_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/event_detail_card_expanded_details_category_text_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="cat name"
+            android:textColor="@color/createEventText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_details_category_textview"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

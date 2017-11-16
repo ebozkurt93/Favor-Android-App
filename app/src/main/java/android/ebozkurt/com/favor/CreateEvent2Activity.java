@@ -20,6 +20,7 @@ import java.util.Calendar;
 
 import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.ebozkurt.com.favor.helpers.MapHelper;
+import android.ebozkurt.com.favor.helpers.TimeHelper;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
 import android.ebozkurt.com.favor.views.LoadingDialogFragment;
@@ -375,23 +376,12 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
 
     public void setEventEndDateRadioButton(RadioButton button, int hoursToAdd) {
-        String day, time;
-
         Calendar eventDate = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
         eventDate.add(Calendar.HOUR, hoursToAdd);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        time = sdf.format(eventDate.getTime());
-        if (today.get(Calendar.YEAR) == eventDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == eventDate.get(Calendar.DAY_OF_YEAR)) {
-            //today
-            day = getResources().getString(R.string.today);
-        } else {
-            String[] days = getResources().getStringArray(R.array.days_short);
-            day = days[eventDate.get(Calendar.DAY_OF_WEEK) - 1];
-        }
-        String finalText = String.format(getResources().getString(R.string.timeVar_dayVar), time, day);
+        String[] endDate = TimeHelper.setEventExpirationDate(this, eventDate, false);
+        String finalText = String.format(getResources().getString(R.string.timeVar_dayVar), endDate[0], endDate[1]);
         button.setText(finalText);
-
     }
 
 

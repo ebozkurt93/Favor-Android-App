@@ -34,4 +34,30 @@ public class CategoryHelper {
         return iconId;
 
     }
+
+    public static int getCategoryName(String categoryId) {
+        int categoryName;
+        switch (categoryId) {
+            case "RIDE":
+                categoryName = R.string.ride;
+                break;
+            case "DELIVERY":
+                categoryName = R.string.delivery;
+                break;
+            case "TEACH":
+                categoryName = R.string.teach;
+                break;
+            case "BORROW":
+                categoryName = R.string.borrow;
+                break;
+            case "SOCIALIZE":
+                categoryName = R.string.socialize;
+                break;
+            default:
+                categoryName = R.string.ride;
+                break;
+        }
+        return categoryName;
+
+    }
 }

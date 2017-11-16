@@ -35,6 +35,6 @@ public interface BoonApiInterface {
     @GET("event/secure/getallevents/{latitude}/{longitude}")
     Call<JSONResponse> getAllEvents(@Header("Authorization") String authorizationHeader, @Path("latitude") double latitude, @Path("longitude") double longitude);
 
-    @POST("demo/editprofile")
+    @POST("user/secure/editprofile")
     Call<JSONResponse> editProfile(@Header("Authorization") String authorizationHeader, @Body User user);
 }

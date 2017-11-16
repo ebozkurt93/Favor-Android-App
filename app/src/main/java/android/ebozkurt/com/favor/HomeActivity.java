@@ -21,12 +21,16 @@ import android.location.Location;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,6 +76,7 @@ import retrofit2.Response;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback {
+
     AHBottomNavigation bottomNavigationView;
     TextView userPointsTextView;
     ImageView myLocationImageView;
@@ -132,19 +137,31 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
+                if(newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    LinearLayoutManager layoutManager = ((LinearLayoutManager)eventsRecyclerView.getLayoutManager());
+                    int pos = layoutManager.findFirstVisibleItemPosition();
+                    //eventsRecyclerView.scrollToPosition(pos);
+                    updateSelectedMarker(pos);
+                    Marker marker = eventMarkers.get(pos);
+                    map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                }
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                /*LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int pos = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+                Log.i("dev", "pos "+ pos);
                 if (pos != -1) {
                     updateSelectedMarker(pos);
                     Marker marker = eventMarkers.get(pos);
                     map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-                }
+                }*/
+
+
             }
 
         });
@@ -177,8 +194,18 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
-    }
 
+
+    }
+    @Override
+    public boolean onKeyDown ( int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            killDetailsFragment();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     protected void startLocationUpdates() {
         if (checkLocationPermission()) {
@@ -379,7 +406,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                     } else eventsCounterTextView.setVisibility(View.INVISIBLE);
 
                     //add all events to screen via recyclerview
-                    EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, currentCoordinates);
+                    EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, getSupportFragmentManager(), currentCoordinates);
                     eventsRecyclerView.setAdapter(adapter);
                     eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
                     //}
@@ -494,6 +521,12 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
         */
 
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                killDetailsFragment();
+            }
+        });
     }
 
     private void addCurrentPositionMapMarker() {
@@ -545,5 +578,11 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void updateRecyclerViewPositionIndicator(int pos) {
         eventsCounterTextView.setText(pos + 1 + "/" + events.size());
+    }
+    private void killDetailsFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentByTag("details");
+        if (f != null)
+            fm.beginTransaction().remove(f).commit();
     }
 }

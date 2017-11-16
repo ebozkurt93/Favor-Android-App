@@ -42,17 +42,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="Test"
         android:text="press me"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/activity_home_mapfragment"
-        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.501"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_home_mapfragment"/>
 
     <TextView
         android:id="@+id/activity_home_points_textview"
@@ -60,39 +60,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:text="0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <ImageView
         android:id="@+id/activity_home_my_location_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/login_signup_button_background"
+        android:elevation="6dp"
+        android:padding="8dp"
         android:src="@drawable/ic_my_location_black_24dp"
         android:tint="@color/createEventText"
-        android:padding="8dp"
-        android:elevation="6dp"
-        android:background="@drawable/login_signup_button_background"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <include
-        android:visibility="gone"
         android:id="@+id/include5"
         layout="@layout/event_detail_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/activity_home_bottom_navigation_bar"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/activity_home_bottom_navigation_bar">
+        app:layout_constraintRight_toRightOf="parent">
 
     </include>
 
@@ -101,8 +101,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:textColor="@color/createEventText"
         android:layout_marginEnd="32dp"
+        android:textColor="@color/createEventText"
         app:layout_constraintBottom_toTopOf="@+id/activity_home_events_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -117,6 +117,16 @@
         app:layout_constraintRight_toRightOf="parent">
 
     </android.support.v7.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/activity_home_event_card_detail_fragment_framelayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_home_events_recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
         android:id="@+id/activity_home_bottom_navigation_bar"

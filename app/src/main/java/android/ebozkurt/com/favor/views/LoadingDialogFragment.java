@@ -6,15 +6,20 @@ import android.ebozkurt.com.favor.R;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
 import android.ebozkurt.com.favor.helpers.KeyboardHelper;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import com.airbnb.lottie.LottieAnimationView;
 
 /**
  * Created by erdem on 18.09.2017.
@@ -53,6 +58,13 @@ public class LoadingDialogFragment extends DialogFragment {
         // Show soft keyboard automatically and request focus to field
         //mEditText.requestFocus();
         //getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        LottieAnimationView loadingAnimationView = view.findViewById(R.id.loading_dialog_fragment_loading);
+        PorterDuffColorFilter backgroundColorFilter = new PorterDuffColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+        PorterDuffColorFilter insideColorFilter = new PorterDuffColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+        loadingAnimationView.addColorFilterToLayer("Shape Layer 1", backgroundColorFilter);
+        loadingAnimationView.addColorFilterToLayer("Shape Layer 2", insideColorFilter);
+        loadingAnimationView.addColorFilterToLayer("Shape Layer 3", insideColorFilter);
     }
 
     @Override

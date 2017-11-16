@@ -3,8 +3,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="380dp"
+             android:layout_width="match_parent"
+             android:layout_marginLeft="8dp"
+             android:layout_marginRight="8dp"
              android:layout_height="230dp"
+             android:maxWidth="400dp"
              android:background="@drawable/event_detail_card_background">
 
     <android.support.constraint.ConstraintLayout
