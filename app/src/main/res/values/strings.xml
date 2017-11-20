@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Boon</string>
+    <string name="app_name">Favor</string>
     <!-- todo remove placeholder texts before release -->
     <string name="placeholder_long">Lorem ipsum dolor sit amet, mea ei alii reprehendunt, an his mucius facilis corpora. Vim volutpat principes forensibus ei, sed appetere periculis ut, et sit perfecto quaestio persequeris. Mei id malis volutpat. Pro ad nullam mediocrem facilisis, sed graece imperdiet prodesset ut. Ei libris graecis pri, pri modo percipit luptatum no. Modus detraxit patrioque ad sed, duis reprimique ne mel. Te decore delectus eos, nec probo efficiendi ad, in qui vidit senserit similique.</string>
     <string name="placeholder_short">Lorem ipsum dolor sit amet</string>
@@ -89,7 +89,7 @@
     <string name="general_error">An error occurred. Please try again.</string>
     <string name="email_already_in_use">This email is already is use.</string>
     <string name="event_created">Your %1$s has been created.</string>
-    <string name="getting_location">Trying to find your location...</string>
+    <string name="getting_location">Trying to find your location.</string>
     <string name="permission_denied">Permission denied.</string>
     <string name="type_here">Type here.</string>
     <string name="distance_away">%1$s away</string>

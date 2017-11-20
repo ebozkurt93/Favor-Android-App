@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    android:id="@+id/event_detail_card_expanded_constraint_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/event_detail_card_expanded_constraint_layout"
     android:layout_width="match_parent"
+    android:layout_height="500dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
-    android:layout_height="500dp"
-    android:maxWidth="400dp"
-    android:background="@drawable/event_detail_card_expanded_background">
+    android:background="@drawable/event_detail_card_expanded_background"
+    android:maxWidth="400dp">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -67,16 +67,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_description_textview"/>
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/event_detail_card_expanded_reviews_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:visibility="invisible"
         android:layout_marginTop="12dp"
         android:background="@color/squash"
         app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_reviews_textview">
 
     </android.support.v7.widget.RecyclerView>
 
+    <include
+        android:id="@+id/ad"
+        layout="@layout/event_review_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_card_expanded_reviews_textview"/>
     <android.support.constraint.ConstraintLayout
         android:id="@+id/event_detail_card_expanded_details_constraintlayout"
         android:layout_width="0dp"

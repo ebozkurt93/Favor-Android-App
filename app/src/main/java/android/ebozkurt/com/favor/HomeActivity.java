@@ -66,6 +66,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -105,6 +106,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     TextView eventsCounterTextView;
     int selectedItemPosition = 0;
 
+    int latestScrollValue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,31 +140,24 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     LinearLayoutManager layoutManager = ((LinearLayoutManager) eventsRecyclerView.getLayoutManager());
-                    int pos = layoutManager.findFirstVisibleItemPosition();
-                    //eventsRecyclerView.scrollToPosition(pos);
+                    int pos;
+                    if (latestScrollValue < 0)
+                        pos = layoutManager.findFirstVisibleItemPosition(); //== layoutManager.findLastCompletelyVisibleItemPosition() ? layoutManager.findFirstCompletelyVisibleItemPosition() : layoutManager.findFirstCompletelyVisibleItemPosition();
+                    else pos = layoutManager.findLastVisibleItemPosition();
                     updateSelectedMarker(pos);
                     Marker marker = eventMarkers.get(pos);
-                    map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                    map.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()), 500, null);
+                    //}
                 }
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-                /*LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                int pos = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-                Log.i("dev", "pos "+ pos);
-                if (pos != -1) {
-                    updateSelectedMarker(pos);
-                    Marker marker = eventMarkers.get(pos);
-                    map.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-                }*/
-
-
+                if (recyclerView.getScrollState() != RecyclerView.SCROLL_STATE_IDLE) ;
+                latestScrollValue = dx;
             }
 
         });
@@ -187,7 +183,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 if (currentCoordinates != null) {
-                    map.moveCamera(CameraUpdateFactory.newLatLng(currentCoordinates));
+                    map.animateCamera(CameraUpdateFactory.newLatLng(currentCoordinates), 500, null);
+
 
                 } else {
                     ActivityHelper.DisplayCustomToast(HomeActivity.this, getResources().getString(R.string.getting_location), Toast.LENGTH_LONG);
@@ -264,7 +261,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                             boolean coordinatesSetBefore = currentCoordinates != null;
                             onLocationChanged(locationResult.getLastLocation());
                             if (!coordinatesSetBefore) {
-                                map.moveCamera(CameraUpdateFactory.newLatLng(currentCoordinates));
+                                map.animateCamera(CameraUpdateFactory.newLatLng(currentCoordinates), 500, null);
+
                                 if (currentCoordinates != null)
                                     getEventsNearby(currentCoordinates.latitude, currentCoordinates.longitude);
                             }
@@ -386,7 +384,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
                     for (Event e : eventList) {
                         events.add(e);
                         String mapMarkerState;
-                        if (TimeHelper.isEventNow(ActivityHelper.stringToDateTime(e.getLatestStartDate())))
+                        Calendar endDate = ActivityHelper.stringToDateTime(e.getLatestStartDate());
+                        TimeHelper.setEventExpirationDate(HomeActivity.this, endDate, true);
+                        if (TimeHelper.isEventNow(endDate))
                             mapMarkerState = "NOW";
                         else
                             mapMarkerState = "LATER";
@@ -544,7 +544,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         //update previously selectedItem marker
         Event previouslySelectedEvent = events.get(selectedItemPosition);
         String mapMarkerState;
-        if (TimeHelper.isEventNow(ActivityHelper.stringToDateTime(previouslySelectedEvent.getLatestStartDate())))
+        Calendar endDate = ActivityHelper.stringToDateTime(previouslySelectedEvent.getLatestStartDate());
+        TimeHelper.setEventExpirationDate(HomeActivity.this, endDate, true);
+        if (TimeHelper.isEventNow(endDate))
             mapMarkerState = "NOW";
         else
             mapMarkerState = "LATER";

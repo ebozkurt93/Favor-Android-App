@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 /**
@@ -51,6 +53,7 @@ public class EventCardDetailFragment extends Fragment {
         args.putString("expiration", event.getLatestStartDate());
         args.putInt("distance", distance);
         args.putString("category", event.getCategory());
+        args.putString("description", event.getCreator().getDescription());
         eventCardDetailFragment.setArguments(args);
 
         return eventCardDetailFragment;

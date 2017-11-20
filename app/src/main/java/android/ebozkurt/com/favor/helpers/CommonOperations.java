@@ -10,6 +10,8 @@ import android.ebozkurt.com.favor.domain.User;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.network.BoonApiInterface;
 import android.ebozkurt.com.favor.network.RetrofitBuilder;
+import android.ebozkurt.com.favor.views.LoadingDialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -59,6 +61,8 @@ public class CommonOperations {
             editor.putString(context.getString(R.string.__sp_user_rating), user.getRating().toString());
         if (user.getId() != null)
             editor.putInt(context.getString(R.string.__sp_user_id), user.getId());
+        if (user.getDescription() != null)
+            editor.putString(context.getString(R.string.__sp_user_description), user.getDescription());
         editor.apply();
     }
 
@@ -72,28 +76,34 @@ public class CommonOperations {
         user.setActiveEventCount(sharedPreferences.getInt(context.getString(R.string.__sp_user_active_event_count), 0));
         user.setRating(Double.parseDouble(sharedPreferences.getString(context.getString(R.string.__sp_user_rating), "")));
         user.setId(sharedPreferences.getInt(context.getString(R.string.__sp_user_id), 0));
+        user.setDescription(sharedPreferences.getString(context.getString(R.string.__sp_user_description), ""));
         return user;
     }
 
-    public static void updateUserInfo(final Context context, final User user) {
+    public static void updateUserInfo(final Context context, final FragmentManager fm, final User user) {
         BoonApiInterface apiService = RetrofitBuilder.returnService();
         final String accessToken = CommonOperations.getAccessToken(context);
         Call<JSONResponse> call = apiService.editProfile(accessToken, user);
         final Activity activity = (Activity) context;
+        final LoadingDialogFragment loadingDialogFragment = ActivityHelper.getLoadingDialog();
+        loadingDialogFragment.show(fm, "");
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                 if (response.body().isSuccess()) {
                     saveUserInfo(context, user);
+                    loadingDialogFragment.dismiss();
                     activity.finish();
                 } else
                     ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                loadingDialogFragment.dismiss();
 
             }
 
             @Override
             public void onFailure(Call<JSONResponse> call, Throwable t) {
                 ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                loadingDialogFragment.dismiss();
             }
         });
     }

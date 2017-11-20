@@ -94,7 +94,7 @@ public class EditProfileNameLastnameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 user.setName(ActivityHelper.getTrimmedString(nameEditText));
                 user.setLastname(ActivityHelper.getTrimmedString(lastnameEditText));
-                CommonOperations.updateUserInfo(EditProfileNameLastnameActivity.this, user);
+                CommonOperations.updateUserInfo(EditProfileNameLastnameActivity.this, getSupportFragmentManager(), user);
             }
         });
     }

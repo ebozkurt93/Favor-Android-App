@@ -295,21 +295,21 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                             user.setPoints(user.getPoints() - Integer.valueOf(eventPointsTextView.getText().toString()));
                             user.setActiveEventCount(user.getActiveEventCount() - 1);
                             CommonOperations.saveUserInfo(CreateEvent2Activity.this, user);
-
+                            loadingDialogFragment.dismiss();
                             Intent i = new Intent(CreateEvent2Activity.this, HomeActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                             finish();
                         } else {
                             ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
-
+                            loadingDialogFragment.dismiss();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
                         ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
-
+                        loadingDialogFragment.dismiss();
                     }
                 });
             }
