@@ -2,6 +2,7 @@ package android.ebozkurt.com.favor.helpers;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.ebozkurt.com.favor.ChatListActivity;
 import android.ebozkurt.com.favor.CreateEvent1Activity;
 import android.ebozkurt.com.favor.EditProfileActivity;
 import android.ebozkurt.com.favor.HomeActivity;
@@ -114,6 +115,10 @@ public class BottomNavigationViewHelper {
                     switch (position) {
                         case 0:
                             i = new Intent(activity, HomeActivity.class);
+                            nextActivity(i, activity, true);
+                            break;
+                        case 1:
+                            i = new Intent(activity, ChatListActivity.class);
                             nextActivity(i, activity, true);
                             break;
                         case 2:

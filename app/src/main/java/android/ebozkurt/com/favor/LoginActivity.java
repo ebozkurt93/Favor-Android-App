@@ -153,53 +153,57 @@ public class LoginActivity extends ActivityHelper {
                 call.enqueue(new Callback<JSONResponse>() {
                     @Override
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                        if (response.body().isSuccess()) {
-                            loadingDialogFragment.dismiss();
-                            final String accessToken = "Bearer " + response.body().getPayload().toString();
-                            Call<JSONResponse> call1 = apiService.getMyInfo(accessToken);
-                            loadingDialogFragment.show(getSupportFragmentManager(), "");
-                            call1.enqueue(new Callback<JSONResponse>() {
-                                @Override
-                                public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                                    if (response.body().isSuccess()) {
-                                        Gson gson = new Gson();
-                                        String jsonString = new JSONObject((Map) response.body().getPayload()).toString();
-                                        Log.i("dev", "onResponse: " + jsonString);
-                                        User user1 = gson.fromJson(jsonString, User.class);
-                                        Log.i("dev", "onResponse: " + user1.toString());
-                                        //user1 = (User) response.body().getPayload();
-                                        //todo change here before release
-                                        TemporaryHelper.saveLoginInfo(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
-                                        CommonOperations.saveAccessToken(LoginActivity.this, accessToken);
-                                        CommonOperations.saveUserInfo(LoginActivity.this, user1);
+                        loadingDialogFragment.dismiss();
+                        if (response.body() instanceof JSONResponse) {
+                            if (response.body().isSuccess()) {
+                                final String accessToken = "Bearer " + response.body().getPayload().toString();
+                                Call<JSONResponse> call1 = apiService.getMyInfo(accessToken);
+                                loadingDialogFragment.show(getSupportFragmentManager(), "");
+                                call1.enqueue(new Callback<JSONResponse>() {
+                                    @Override
+                                    public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                                        loadingDialogFragment.dismiss();
+                                        if (response.body() instanceof JSONResponse) {
+                                            if (response.body().isSuccess()) {
+                                                Gson gson = new Gson();
+                                                String jsonString = new JSONObject((Map) response.body().getPayload()).toString();
+                                                Log.i("dev", "onResponse: " + jsonString);
+                                                User user1 = gson.fromJson(jsonString, User.class);
+                                                Log.i("dev", "onResponse: " + user1.toString());
+                                                //user1 = (User) response.body().getPayload();
+                                                //todo change here before release
+                                                TemporaryHelper.saveLoginInfo(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
+                                                CommonOperations.saveAccessToken(LoginActivity.this, accessToken);
+                                                CommonOperations.saveUserInfo(LoginActivity.this, user1);
 
 
-                                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                                        i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(i);
-                                        finish();
-                                        //todo clear backstack
-                                    } else {
+                                                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                                                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(i);
+                                                finish();
+                                                //todo clear backstack
+                                            } else {
+                                                AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
+                                                ActivityHelper.DisplayGeneralErrorToast(LoginActivity.this);
+                                            }
+                                        } else
+                                            ActivityHelper.DisplayGeneralErrorToast(LoginActivity.this);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<JSONResponse> call, Throwable t) {
                                         loadingDialogFragment.dismiss();
                                         AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
-                                        ActivityHelper.DisplayCustomToast(LoginActivity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                                        ActivityHelper.DisplayGeneralErrorToast(LoginActivity.this);
                                     }
-                                }
-
-                                @Override
-                                public void onFailure(Call<JSONResponse> call, Throwable t) {
-                                    loadingDialogFragment.dismiss();
-                                    AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
-                                    ActivityHelper.DisplayCustomToast(LoginActivity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
-                                }
-                            });
+                                });
 
 
-                        } else {
-                            loadingDialogFragment.dismiss();
-                            AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
-                            ActivityHelper.DisplayCustomToast(LoginActivity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
-                        }
+                            } else {
+                                AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
+                                ActivityHelper.DisplayCustomToast(LoginActivity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+                            }
+                        } else ActivityHelper.DisplayGeneralErrorToast(LoginActivity.this);
                     }
 
 
@@ -207,7 +211,7 @@ public class LoginActivity extends ActivityHelper {
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
                         loadingDialogFragment.dismiss();
                         AnimationHelper.initializeShakeAnimation(LoginActivity.this, signInButton);
-                        ActivityHelper.DisplayCustomToast(LoginActivity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                        ActivityHelper.DisplayGeneralErrorToast(LoginActivity.this);
 
                     }
                 });

@@ -159,16 +159,17 @@ public class SignUp3Activity extends ActivityHelper {
                 call.enqueue(new Callback<JSONResponse>() {
                     @Override
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                        if (response.body().isSuccess()) {
-                            loadingDialogFragment.dismiss();
-                            Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                            startActivity(i);
-                        } else {
-                            loadingDialogFragment.dismiss();
-                            AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
-                            ActivityHelper.DisplayCustomToast(SignUp3Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
-                        }
+                        loadingDialogFragment.dismiss();
+                        if(response.body() instanceof JSONResponse) {
+                            if (response.body().isSuccess()) {
+                                Intent i = new Intent(SignUp3Activity.this, SignUp4Activity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(i);
+                            } else {
+                                AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
+                                ActivityHelper.DisplayCustomToast(SignUp3Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+                            }
+                        } else ActivityHelper.DisplayGeneralErrorToast(SignUp3Activity.this);
                     }
 
 
@@ -176,7 +177,7 @@ public class SignUp3Activity extends ActivityHelper {
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
                         loadingDialogFragment.dismiss();
                         AnimationHelper.initializeShakeAnimation(SignUp3Activity.this, signUp);
-                        ActivityHelper.DisplayCustomToast(SignUp3Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                        ActivityHelper.DisplayGeneralErrorToast(SignUp3Activity.this);
 
                     }
                 });

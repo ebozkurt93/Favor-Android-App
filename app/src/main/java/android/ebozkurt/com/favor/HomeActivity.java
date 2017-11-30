@@ -28,7 +28,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -368,46 +370,51 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                if (response.body().isSuccess()) {
-                    Gson gson = new Gson();
-                    String json = gson.toJson(response.body().getPayload());
-                    List<Event> eventList = gson.fromJson(json, new TypeToken<List<Event>>() {
-                    }.getType());
-                    //if (eventList.size() > 0) {
-                    events = new ArrayList<Event>();
-                    if (eventMarkers != null) {
-                        for (Marker m : eventMarkers)
-                            m.remove();
-                    }
-                    eventMarkers = new ArrayList<Marker>();
+                if (response.body() instanceof JSONResponse) {
+                    if (response.body().isSuccess()) {
+                        Gson gson = new Gson();
+                        String json = gson.toJson(response.body().getPayload());
+                        List<Event> eventList = gson.fromJson(json, new TypeToken<List<Event>>() {
+                        }.getType());
+                        //if (eventList.size() > 0) {
+                        events = new ArrayList<Event>();
+                        if (eventMarkers != null) {
+                            for (Marker m : eventMarkers)
+                                m.remove();
+                        }
+                        eventMarkers = new ArrayList<Marker>();
 
-                    for (Event e : eventList) {
-                        events.add(e);
-                        String mapMarkerState;
-                        Calendar endDate = ActivityHelper.stringToDateTime(e.getLatestStartDate());
-                        TimeHelper.setEventExpirationDate(HomeActivity.this, endDate, true);
-                        if (TimeHelper.isEventNow(endDate))
-                            mapMarkerState = "NOW";
-                        else
-                            mapMarkerState = "LATER";
-                        LatLng eventLocation = new LatLng(e.getLatitude(), e.getLongitude());
-                        final MarkerOptions myMarkerOptions = new MarkerOptions()
-                                .position(eventLocation)
-                                .icon(MapHelper.getMapIcon(HomeActivity.this, e.getCategory(), mapMarkerState));
+                        for (Event e : eventList) {
+                            events.add(e);
+                            String mapMarkerState;
+                            Calendar endDate = ActivityHelper.stringToDateTime(e.getLatestStartDate());
+                            TimeHelper.setEventExpirationDate(HomeActivity.this, endDate, true);
+                            if (TimeHelper.isEventNow(endDate))
+                                mapMarkerState = "NOW";
+                            else
+                                mapMarkerState = "LATER";
+                            LatLng eventLocation = new LatLng(e.getLatitude(), e.getLongitude());
+                            final MarkerOptions myMarkerOptions = new MarkerOptions()
+                                    .position(eventLocation)
+                                    .icon(MapHelper.getMapIcon(HomeActivity.this, e.getCategory(), mapMarkerState));
 
-                        Marker eventMarker = map.addMarker(myMarkerOptions);
-                        eventMarkers.add(eventMarker);
-                    }
-                    if (events.size() > 1) {
-                        updateSelectedMarker(0);
-                        eventsCounterTextView.setVisibility(View.VISIBLE);
-                    } else eventsCounterTextView.setVisibility(View.INVISIBLE);
+                            Marker eventMarker = map.addMarker(myMarkerOptions);
+                            eventMarkers.add(eventMarker);
+                        }
+                        if (events.size() > 1) {
+                            updateSelectedMarker(0);
+                            eventsCounterTextView.setVisibility(View.VISIBLE);
+                        } else eventsCounterTextView.setVisibility(View.INVISIBLE);
 
-                    //add all events to screen via recyclerview
-                    EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, getSupportFragmentManager(), currentCoordinates, CommonOperations.getUserInfo(HomeActivity.this));
-                    eventsRecyclerView.setAdapter(adapter);
-                    eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                    //}
+                        //add all events to screen via recyclerview
+                        EventsAdapter adapter = new EventsAdapter(events, HomeActivity.this, getSupportFragmentManager(), currentCoordinates, CommonOperations.getUserInfo(HomeActivity.this));
+                        eventsRecyclerView.setAdapter(adapter);
+                        eventsRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                        SnapHelper snapHelper = new LinearSnapHelper();
+                        snapHelper.attachToRecyclerView(eventsRecyclerView);
+                        //}
+
+                    } else Log.i("dev", "getting event list failed.");
 
                 } else {
                     Log.i("dev", "getting event list failed.");
@@ -453,14 +460,14 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                if (response.body().isSuccess()) {
+                if (response.body() instanceof JSONResponse && response.body().isSuccess()) {
                     Gson gson = new Gson();
                     String jsonString = new JSONObject((Map) response.body().getPayload()).toString();
                     User user1 = gson.fromJson(jsonString, User.class);
                     CommonOperations.saveUserInfo(HomeActivity.this, user1);
                     points = user1.getPoints();
                     userPointsTextView.setText("" + points);
-                }
+                } //else error
             }
 
             @Override

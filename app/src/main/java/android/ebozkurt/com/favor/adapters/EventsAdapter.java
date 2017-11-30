@@ -141,16 +141,18 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                 call.enqueue(new Callback<JSONResponse>() {
                     @Override
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                        if (response.body().isSuccess()) {
-                            ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.sent_request), Toast.LENGTH_LONG);
-                        } else {
-                            ActivityHelper.DisplayCustomToast(context, response.body().getError().getMessage(), Toast.LENGTH_LONG);
-                        }
+                        if (response.body() instanceof JSONResponse) {
+                            if (response.body().isSuccess()) {
+                                ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.sent_request), Toast.LENGTH_LONG);
+                            } else {
+                                ActivityHelper.DisplayCustomToast(context, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+                            }
+                        } else ActivityHelper.DisplayGeneralErrorToast(context);
                     }
 
                     @Override
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
-
+                        ActivityHelper.DisplayGeneralErrorToast(context);
                     }
                 });
             }

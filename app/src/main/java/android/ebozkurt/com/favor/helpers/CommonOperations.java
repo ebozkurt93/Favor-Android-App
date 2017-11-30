@@ -90,20 +90,17 @@ public class CommonOperations {
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                if (response.body().isSuccess()) {
-                    saveUserInfo(context, user);
-                    loadingDialogFragment.dismiss();
-                    activity.finish();
-                } else
-                    ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
                 loadingDialogFragment.dismiss();
-
+                if (response.body() instanceof JSONResponse && response.body().isSuccess()) {
+                    saveUserInfo(context, user);
+                    activity.finish();
+                } else ActivityHelper.DisplayGeneralErrorToast(context);
             }
 
             @Override
             public void onFailure(Call<JSONResponse> call, Throwable t) {
-                ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
                 loadingDialogFragment.dismiss();
+                ActivityHelper.DisplayGeneralErrorToast(context);
             }
         });
     }

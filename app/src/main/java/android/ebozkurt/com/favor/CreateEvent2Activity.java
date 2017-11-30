@@ -288,28 +288,28 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
                     @Override
                     public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                         loadingDialogFragment.dismiss();
-                        if (response.body().isSuccess()) {
-                            ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, String.format(getResources().getString(R.string.event_created), getString(R.string.app_name)), Toast.LENGTH_LONG);
+                        if (response.body() instanceof JSONResponse) {
+                            if (response.body().isSuccess()) {
+                                ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, String.format(getResources().getString(R.string.event_created), getString(R.string.app_name)), Toast.LENGTH_LONG);
 
-                            User user = CommonOperations.getUserInfo(CreateEvent2Activity.this);
-                            user.setPoints(user.getPoints() - Integer.valueOf(eventPointsTextView.getText().toString()));
-                            user.setActiveEventCount(user.getActiveEventCount() - 1);
-                            CommonOperations.saveUserInfo(CreateEvent2Activity.this, user);
-                            loadingDialogFragment.dismiss();
-                            Intent i = new Intent(CreateEvent2Activity.this, HomeActivity.class);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                            finish();
-                        } else {
-                            ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
-                            loadingDialogFragment.dismiss();
-                        }
+                                User user = CommonOperations.getUserInfo(CreateEvent2Activity.this);
+                                user.setPoints(user.getPoints() - Integer.valueOf(eventPointsTextView.getText().toString()));
+                                user.setActiveEventCount(user.getActiveEventCount() - 1);
+                                CommonOperations.saveUserInfo(CreateEvent2Activity.this, user);
+                                Intent i = new Intent(CreateEvent2Activity.this, HomeActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, response.body().getError().getMessage(), Toast.LENGTH_LONG);
+                            }
+                        } else ActivityHelper.DisplayGeneralErrorToast(CreateEvent2Activity.this);
                     }
 
                     @Override
                     public void onFailure(Call<JSONResponse> call, Throwable t) {
-                        ActivityHelper.DisplayCustomToast(CreateEvent2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
                         loadingDialogFragment.dismiss();
+                        ActivityHelper.DisplayGeneralErrorToast(CreateEvent2Activity.this);
                     }
                 });
             }

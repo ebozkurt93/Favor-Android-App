@@ -318,7 +318,7 @@ public class SignUp2Activity extends ActivityHelper {
                             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
                                 loadingDialogFragment.dismiss();
 
-                                if (response.body().isSuccess()) {
+                                if (response.body() instanceof JSONResponse && response.body().isSuccess()) {
                                     boolean isEmailRegistered = response.body().getPayload().equals(Boolean.TRUE);
                                     if (isEmailRegistered) {
                                         AnimationHelper.initializeShakeAnimation(SignUp2Activity.this, nextButton);
@@ -336,9 +336,8 @@ public class SignUp2Activity extends ActivityHelper {
                                     }
                                 } else {
                                     AnimationHelper.initializeShakeAnimation(SignUp2Activity.this, nextButton);
-                                    ActivityHelper.DisplayCustomToast(SignUp2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                                    ActivityHelper.DisplayGeneralErrorToast(SignUp2Activity.this);
                                 }
-                                Log.i("dev", "onResponse: " + response.body().getPayload().toString() + "\t" + Boolean.TRUE.toString());
                             }
 
 
@@ -346,7 +345,7 @@ public class SignUp2Activity extends ActivityHelper {
                             public void onFailure(Call<JSONResponse> call, Throwable t) {
                                 loadingDialogFragment.dismiss();
                                 AnimationHelper.initializeShakeAnimation(SignUp2Activity.this, nextButton);
-                                ActivityHelper.DisplayCustomToast(SignUp2Activity.this, getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+                                ActivityHelper.DisplayGeneralErrorToast(SignUp2Activity.this);
 
                             }
                         });

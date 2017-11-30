@@ -91,6 +91,10 @@ public class ActivityHelper extends AppCompatActivity {
         toast.show();
     }
 
+    public static void DisplayGeneralErrorToast (Context context) {
+        ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
+    }
+
     public static LoadingDialogFragment getLoadingDialog() {
         LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment();
         loadingDialogFragment.setCancelable(false);
