@@ -2,7 +2,6 @@ package android.ebozkurt.com.favor;
 
 import android.content.Intent;
 import android.ebozkurt.com.favor.helpers.ActivityHelper;
-import android.ebozkurt.com.favor.helpers.BitmapHelper;
 import android.ebozkurt.com.favor.helpers.BottomNavigationViewHelper;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         //description = "This is an example personal descriptionEditText, try changing it.";
         description = "";
         points = 112;
-        profilePic = getDrawable(R.drawable.berkin);
+        profilePic = getDrawable(R.drawable.profile_pic);
         numberOfActiveEvents = 3;
         numberOfReviews = 5;
 

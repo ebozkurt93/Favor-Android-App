@@ -19,6 +19,8 @@
     <color name="chat_action_bar_text">@color/charcoal_grey</color>
     <color name="chat_chatbox_text">@color/colorAccent</color>
     <color name="chat_bubble_text">@color/charcoal_grey</color>
+    <color name="chat_event_action_divider">@color/charcoal_grey</color>
+
 
     <!--map marker colors -->
     <color name="marker_icon_default">@color/charcoal_grey</color>
