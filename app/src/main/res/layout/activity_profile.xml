@@ -15,16 +15,17 @@
         android:layout_height="wrap_content"
         android:background="@android:color/black"/>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/gradient_background"
         android:layout_weight="1.0">
 
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <!--
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -38,7 +39,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-
+-->
 
             <ImageView
                 android:id="@+id/activity_profile_edit_imageview"
@@ -91,7 +92,6 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="3"
-                android:text="@string/personal_description_empty"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -101,7 +101,7 @@
             <TextView
                 android:id="@+id/activity_profile_points_textview"
                 style="@style/Points"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:text="256"
@@ -110,22 +110,46 @@
                 app:layout_constraintTop_toBottomOf="@+id/activity_profile_personal_description_textview"/>
 
             <TextView
-                android:id="@+id/activity_profile_ongoing_events_textview"
+                android:id="@+id/activity_profile_requests_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/ongoing_events"
+                android:text="Requests"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activity_profile_points_textview"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/activity_profile_requests_recyclerview"
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_profile_requests_textview">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/activity_profile_ongoing_events_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/ongoing_events"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_profile_requests_recyclerview"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_profile_ongoing_events_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="230dp"
                 android:layout_marginTop="24dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -143,13 +167,13 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
+                app:layout_constraintTop_toBottomOf="@+id/activity_profile_ongoing_events_recyclerView"/>
 
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView2"
+                android:id="@+id/activity_profile_reviews_recyclerview"
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_height="230dp"
                 android:layout_marginTop="24dp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -163,7 +187,7 @@
                 android:layout_marginTop="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView2"/>
+                app:layout_constraintTop_toBottomOf="@+id/activity_profile_reviews_recyclerview"/>
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline"
@@ -175,7 +199,7 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation

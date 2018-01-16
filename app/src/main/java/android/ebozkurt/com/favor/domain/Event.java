@@ -19,7 +19,7 @@ public class Event {
     private User creator;
     @SerializedName("helper")
     @Expose
-    private Object helper;
+    private User helper;
     @SerializedName("description")
     @Expose
     private String description;
@@ -58,11 +58,11 @@ public class Event {
         this.creator = creator;
     }
 
-    public Object getHelper() {
+    public User getHelper() {
         return helper;
     }
 
-    public void setHelper(Object helper) {
+    public void setHelper(User helper) {
         this.helper = helper;
     }
 

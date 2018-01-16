@@ -91,6 +91,21 @@ public class ActivityHelper extends AppCompatActivity {
         toast.show();
     }
 
+    public static void DisplayCustomToast(Context context, String message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        View view = toast.getView();
+        view.setBackgroundResource(R.drawable.toast_background);
+        TextView text = (TextView) view.findViewById(android.R.id.message);
+        text.setGravity(Gravity.CENTER);
+        text.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        int lrPadding = BitmapHelper.dpToPx(context, 12);
+        int tbPadding = BitmapHelper.dpToPx(context, 6);
+        text.setPadding(lrPadding, tbPadding, lrPadding, tbPadding);
+
+/*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+        toast.show();
+    }
+
     public static void DisplayGeneralErrorToast (Context context) {
         ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
     }

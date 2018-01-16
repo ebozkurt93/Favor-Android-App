@@ -104,4 +104,10 @@ public class CommonOperations {
             }
         });
     }
+
+    public static void deleteUserInfo(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.__sp_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().apply();
+    }
 }

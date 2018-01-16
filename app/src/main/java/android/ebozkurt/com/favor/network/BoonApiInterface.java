@@ -2,6 +2,7 @@ package android.ebozkurt.com.favor.network;
 
 import android.ebozkurt.com.favor.domain.Event;
 import android.ebozkurt.com.favor.domain.helpers.EventCreate;
+import android.ebozkurt.com.favor.domain.helpers.EventRequestAccept;
 import android.ebozkurt.com.favor.domain.helpers.JSONResponse;
 import android.ebozkurt.com.favor.domain.User;
 
@@ -41,4 +42,10 @@ public interface BoonApiInterface {
 
     @POST("event/secure/sendrequest")
     Call<JSONResponse> sendRequest(@Header("Authorization") String authorizationHeader, @Body Event event);
+
+    @POST("user/secure/getmyeventrequests")
+    Call<JSONResponse> getMyEventRequests(@Header("Authorization") String authorizationHeader);
+
+    @POST("demo/secure/accepteventrequest")
+    Call<JSONResponse> acceptEventRequest (@Header("Authorization") String authorizationHeader, @Body EventRequestAccept eventRequestAccept);
 }

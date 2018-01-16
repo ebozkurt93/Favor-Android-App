@@ -70,6 +70,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
+    <string name="yesterday">Yesterday</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="save">Save</string>
     <string name="edit_name">Edit Name</string>
@@ -95,6 +96,8 @@
     <string name="distance_away">%1$s away</string>
     <string name="sent_request">Your request is sent.</string>
     <string name="user_wants_finalize_event">![CDATA[<b>%1$s</b> wants to finalize Favor.]]</string>
+    <string name="accept">Accept</string>
+    <string name="success">Success</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>
