@@ -8,6 +8,7 @@ import android.ebozkurt.com.favor.R;
 import android.ebozkurt.com.favor.views.LoadingDialogFragment;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -106,7 +107,7 @@ public class ActivityHelper extends AppCompatActivity {
         toast.show();
     }
 
-    public static void DisplayGeneralErrorToast (Context context) {
+    public static void DisplayGeneralErrorToast(Context context) {
         ActivityHelper.DisplayCustomToast(context, context.getResources().getString(R.string.general_error), Toast.LENGTH_LONG);
     }
 
@@ -153,6 +154,17 @@ public class ActivityHelper extends AppCompatActivity {
             //e.printStackTrace();
         }
         return cal;
+    }
+
+    public static View adjustItemWidthForRecyclerView(Context context, View view) {
+        view.setLayoutParams(new RecyclerView.LayoutParams(WindowHelper.getWindowSize(context)[0] - BitmapHelper.dpToPx(context, 16), RecyclerView.LayoutParams.MATCH_PARENT));
+        //WindowHelper.setMargins(eventView, 8, 0, 8, 0);
+        return view;
+    }
+
+    public static void restartActivity(Activity activity) {
+        activity.finish();
+        activity.startActivity(activity.getIntent());
     }
 
 }

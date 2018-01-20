@@ -98,6 +98,7 @@
     <string name="user_wants_finalize_event">![CDATA[<b>%1$s</b> wants to finalize Favor.]]</string>
     <string name="accept">Accept</string>
     <string name="success">Success</string>
+    <string name="delete">Delete</string>
     <string-array name="days_short">
         <item>Sun</item>
         <item>Mon</item>

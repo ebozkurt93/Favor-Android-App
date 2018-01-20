@@ -93,8 +93,7 @@ public class EventRequestsAdapter extends RecyclerView.Adapter<EventRequestsAdap
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View eventView = inflater.inflate(R.layout.event_request_card, parent, false);
-        eventView.setLayoutParams(new RecyclerView.LayoutParams(WindowHelper.getWindowSize(context)[0] - BitmapHelper.dpToPx(context, 16), RecyclerView.LayoutParams.MATCH_PARENT));
-        //WindowHelper.setMargins(eventView, 8, 0, 8, 0);
+        eventView = ActivityHelper.adjustItemWidthForRecyclerView(context, eventView);
         ViewHolder viewHolder = new ViewHolder(eventView);
         return viewHolder;
     }

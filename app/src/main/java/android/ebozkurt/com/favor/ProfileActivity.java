@@ -1,6 +1,7 @@
 package android.ebozkurt.com.favor;
 
 import android.content.Intent;
+import android.ebozkurt.com.favor.adapters.ActiveEventsAdapter;
 import android.ebozkurt.com.favor.adapters.EventRequestsAdapter;
 import android.ebozkurt.com.favor.domain.Event;
 import android.ebozkurt.com.favor.domain.EventRequest;
@@ -18,8 +19,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -51,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
     User user;
 
     List<EventRequest> eventRequests;
+    List<Event> ongoingEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +80,18 @@ public class ProfileActivity extends AppCompatActivity {
 
         SpacesItemDecoration decoration = new SpacesItemDecoration(16);
         requestsRecyclerView.addItemDecoration(decoration);
+        ongoingEventsRecyclerView.addItemDecoration(decoration);
+        reviewsRecyclerView.addItemDecoration(decoration);
 
 
         //if isMyProfile not initialized, assume that is true
         isMyProfile = true;
 
         if (isMyProfile = true) {
+            CommonOperations.getUserInfo(this);
+            getEventRequests();
+            getMyActiveEvents();
+            getEventReviews();
             user = CommonOperations.getUserInfo(this);
 
             name = user.getName();
@@ -109,7 +118,6 @@ public class ProfileActivity extends AppCompatActivity {
                 descriptionTextView.setText(description);
             }
             pointsTextView.setText(Integer.toString(points));
-            getEventRequests();
 
 
         } else {
@@ -148,6 +156,46 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void getMyActiveEvents() {
+        BoonApiInterface apiService = RetrofitBuilder.returnService();
+        String accessToken = CommonOperations.getAccessToken(this);
+        Call<JSONResponse> call = apiService.getMyActiveEvents(accessToken);
+        call.enqueue(new Callback<JSONResponse>() {
+            @Override
+            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+                if (response.body() instanceof JSONResponse) {
+                    if (response.body().isSuccess()) {
+                        Gson gson = new Gson();
+                        String json = gson.toJson(response.body().getPayload());
+                        List<Event> events = gson.fromJson(json, new TypeToken<List<Event>>() {
+                        }.getType());
+                        Collections.reverse(events);
+                        ongoingEvents = new ArrayList<Event>();
+                        for (Event event : events) {
+                            ongoingEvents.add(event);
+                        }
+                        if (ongoingEvents.size() == 0) {
+                            //no active events
+                            ongoingEventsRecyclerView.setVisibility(View.GONE);
+                        } else {
+                            ActiveEventsAdapter activeEventsAdapter = new ActiveEventsAdapter(ongoingEvents, ProfileActivity.this, getSupportFragmentManager(), ProfileActivity.this);
+                            ongoingEventsRecyclerView.setAdapter(activeEventsAdapter);
+                            ongoingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                        }
+                    }
+                } else {
+                    ongoingEventsRecyclerView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
     private void getEventRequests() {
         BoonApiInterface apiService = RetrofitBuilder.returnService();
         String accessToken = CommonOperations.getAccessToken(this);
@@ -155,7 +203,7 @@ public class ProfileActivity extends AppCompatActivity {
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-                if(response.body() instanceof JSONResponse) {
+                if (response.body() instanceof JSONResponse) {
                     if (response.body().isSuccess()) {
                         Gson gson = new Gson();
                         String json = gson.toJson(response.body().getPayload());
@@ -172,17 +220,17 @@ public class ProfileActivity extends AppCompatActivity {
                         for (EventRequest request : requests) {
                             eventRequests.add(request);*/
                         }
-                        if(eventRequests.size() == 0) {
+                        if (eventRequests.size() == 0) {
                             //no event requests
-                            requestsRecyclerView.setVisibility(View.INVISIBLE);
-                        }else {
+                            requestsRecyclerView.setVisibility(View.GONE);
+                        } else {
                             EventRequestsAdapter eventRequestsAdapter = new EventRequestsAdapter(eventRequests, ProfileActivity.this);
                             requestsRecyclerView.setAdapter(eventRequestsAdapter);
                             requestsRecyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this, LinearLayoutManager.HORIZONTAL, false));
                         }
 
                     } else {
-                        requestsRecyclerView.setVisibility(View.INVISIBLE);
+                        requestsRecyclerView.setVisibility(View.GONE);
                     }
                 }
             }
@@ -192,6 +240,9 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void getEventReviews() {
+        //reviewsRecyclerView.setVisibility(View.GONE); //wont work
     }
 
 }

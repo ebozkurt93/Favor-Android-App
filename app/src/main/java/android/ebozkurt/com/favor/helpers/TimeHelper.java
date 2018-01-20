@@ -47,9 +47,9 @@ public class TimeHelper {
         }
         sdf.setCalendar(expirationDate);
         time = sdf.format(expirationDate.getTime());
-        if (yesterday.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
+        /*if (yesterday.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
             day = context.getResources().getString(R.string.yesterday);
-        } else if (today.get(Calendar.YEAR) == expirationDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
+        } else*/ if (today.get(Calendar.YEAR) == expirationDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
             //today
             day = context.getResources().getString(R.string.today);
         } else {
