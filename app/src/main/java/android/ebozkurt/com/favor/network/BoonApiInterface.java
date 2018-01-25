@@ -54,4 +54,7 @@ public interface BoonApiInterface {
 
     @POST("demo/secure/deleteevent")
     Call<JSONResponse> deleteEvent(@Header("Authorization") String authorizationHeader, @Body Event event);
+
+    @POST("demo/secure/getmystartedevents")
+    Call<JSONResponse> getMyStartedEvents(@Header("Authorization") String authorizationHeader);
 }
