@@ -71,7 +71,7 @@ public class InitialActivity extends ActivityHelper {
         login.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent i = new Intent(InitialActivity.this, CreateEvent1Activity.class);
+                Intent i = new Intent(InitialActivity.this, ChatActivity.class);
                 startActivity(i);
                 return false;
             }

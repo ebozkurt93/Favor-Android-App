@@ -146,6 +146,7 @@ public class LoginActivity extends ActivityHelper {
                 User user = new User();
                 user.setEmail(emailEditText.getText().toString());
                 user.setPassword(passwordEditText.getText().toString());
+                CommonOperations.deleteUserInfo(getApplicationContext());
 
                 Call<JSONResponse> call = apiService.login(user);
                 final LoadingDialogFragment loadingDialogFragment = ActivityHelper.getLoadingDialog();

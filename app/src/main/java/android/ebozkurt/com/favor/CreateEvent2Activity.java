@@ -392,7 +392,7 @@ public class CreateEvent2Activity extends AppCompatActivity implements CounterHa
 
         //sabancı coordinates
         if (coordinates == null) {
-            coordinates = new LatLng(40.891444, 29.379922);
+            coordinates = new LatLng(40.891894, 29.174129);
         }
         //LatLng coordinates = new LatLng(40.7143528,-74.0059731); //ny coordinates
         String addressText = MapHelper.getAddress(CreateEvent2Activity.this.getApplicationContext(), coordinates);

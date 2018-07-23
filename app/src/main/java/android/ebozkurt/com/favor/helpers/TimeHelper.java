@@ -49,7 +49,30 @@ public class TimeHelper {
         time = sdf.format(expirationDate.getTime());
         /*if (yesterday.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
             day = context.getResources().getString(R.string.yesterday);
-        } else*/ if (today.get(Calendar.YEAR) == expirationDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
+        } else*/
+
+        Calendar tempToday = today;
+        Calendar tempExpirationDate = expirationDate;
+
+
+        tempToday.set(Calendar.MILLISECOND, 0);
+        tempToday.set(Calendar.MINUTE, 0);
+        tempToday.set(Calendar.HOUR, 0);
+        tempToday.set(Calendar.HOUR_OF_DAY, 0);
+
+        tempExpirationDate.set(Calendar.MILLISECOND, 0);
+        tempExpirationDate.set(Calendar.MINUTE, 0);
+        tempExpirationDate.set(Calendar.HOUR, 0);
+        tempExpirationDate.set(Calendar.HOUR_OF_DAY, 0);
+
+        long dayDifference = (long) Math.ceil((float) (tempToday.getTimeInMillis() - tempExpirationDate.getTimeInMillis()) / (24 * 60 * 60 * 1000));
+
+
+        if (dayDifference > 6) {
+            //Calendar.MONTH has + 1 because of Java date/time API, months are defined as starting from 0 at API...
+            day = Integer.toString(expirationDate.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(expirationDate.get(Calendar.MONTH) + 1) + "/" + Integer.toString(expirationDate.get(Calendar.YEAR));
+
+        } else if (today.get(Calendar.YEAR) == expirationDate.get(Calendar.YEAR) && today.get(Calendar.DAY_OF_YEAR) == expirationDate.get(Calendar.DAY_OF_YEAR)) {
             //today
             day = context.getResources().getString(R.string.today);
         } else {
